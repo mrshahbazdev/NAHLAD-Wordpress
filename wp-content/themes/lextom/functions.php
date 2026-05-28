@@ -234,3 +234,103 @@ function lextom_dequeue_block_styles() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'lextom_dequeue_block_styles', 100 );
+
+/* ------------------------------------------------------------------
+ * Auto-create pages on theme activation
+ * ----------------------------------------------------------------*/
+function lextom_create_default_pages() {
+    $pages = array(
+        array(
+            'slug'     => 'kto-sme',
+            'title'    => 'Kto sme',
+            'template' => 'page-kto-sme.php',
+        ),
+        array(
+            'slug'     => 'odborny-personal',
+            'title'    => 'Odborný personál',
+            'template' => 'page-odborny-personal.php',
+        ),
+        array(
+            'slug'     => 'vip-care-technology',
+            'title'    => 'VIP Care Technology',
+            'template' => 'page-vip-care-technology.php',
+        ),
+        array(
+            'slug'     => 'distribucia-produktov',
+            'title'    => 'Distribúcia produktov',
+            'template' => 'page-distribucia-produktov.php',
+        ),
+        array(
+            'slug'     => 'distribucia-produkt',
+            'title'    => 'Prenosný sprchový a sušiaci systém',
+            'template' => 'page-distribucia-produkt.php',
+        ),
+        array(
+            'slug'     => 'development',
+            'title'    => 'Development',
+            'template' => 'page-development.php',
+        ),
+    );
+
+    foreach ( $pages as $page_data ) {
+        $existing = get_page_by_path( $page_data['slug'] );
+        if ( $existing ) {
+            continue;
+        }
+
+        $page_id = wp_insert_post( array(
+            'post_title'   => $page_data['title'],
+            'post_name'    => $page_data['slug'],
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'post_content' => '',
+        ) );
+
+        if ( $page_id && ! is_wp_error( $page_id ) ) {
+            update_post_meta( $page_id, '_wp_page_template', $page_data['template'] );
+        }
+    }
+
+    // Set "Kto sme" as the front page.
+    $front = get_page_by_path( 'kto-sme' );
+    if ( $front ) {
+        update_option( 'show_on_front', 'page' );
+        update_option( 'page_on_front', $front->ID );
+    }
+
+    // Create primary menu with all pages.
+    $menu_name = 'LeXtom hlavné menu';
+    $menu_exists = wp_get_nav_menu_object( $menu_name );
+    if ( ! $menu_exists ) {
+        $menu_id = wp_create_nav_menu( $menu_name );
+        if ( ! is_wp_error( $menu_id ) ) {
+            $menu_items = array(
+                'kto-sme'               => array( 'Kto sme', 'Who We Are' ),
+                'odborny-personal'      => array( 'Odborný personál', 'Professional Staff' ),
+                'vip-care-technology'   => array( 'VIP Care Technology', 'VIP Care Technology' ),
+                'distribucia-produktov' => array( 'Distribúcia produktov', 'Product Distribution' ),
+                'development'           => array( 'Development', 'Development' ),
+            );
+            $order = 1;
+            foreach ( $menu_items as $slug => $labels ) {
+                $page_obj = get_page_by_path( $slug );
+                if ( $page_obj ) {
+                    wp_update_nav_menu_item( $menu_id, 0, array(
+                        'menu-item-title'     => $labels[0],
+                        'menu-item-object'    => 'page',
+                        'menu-item-object-id' => $page_obj->ID,
+                        'menu-item-type'      => 'post_type',
+                        'menu-item-status'    => 'publish',
+                        'menu-item-position'  => $order,
+                        'menu-item-description' => $labels[1],
+                    ) );
+                    $order++;
+                }
+            }
+            $locations = get_theme_mod( 'nav_menu_locations', array() );
+            $locations['primary'] = $menu_id;
+            set_theme_mod( 'nav_menu_locations', $locations );
+        }
+    }
+}
+add_action( 'after_switch_theme', 'lextom_create_default_pages' );
