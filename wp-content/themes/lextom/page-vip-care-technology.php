@@ -21,13 +21,13 @@ $img = LEXTOM_URI . '/assets/images/';
       <span>AI-assisted care</span><span>Automated hygiene</span><span>Patient monitoring</span><span>Eco intelligent healthcare</span>
     </div>
     <div class="modules">
-      <div class="mod active"><span class="dot"></span>VIP BED</div>
-      <div class="mod locked">VIP RING</div>
-      <div class="mod locked">VIP HUB</div>
-      <div class="mod locked">VIP BOT</div>
-      <div class="mod locked">VIP ROOM</div>
-      <div class="mod locked">VIP SPACE</div>
-      <div class="mod locked">ECO &amp; AI INFRASTRUCTURE</div>
+      <a href="#vipbed"><div class="mod active"><span class="dot"></span>VIP BED</div></a>
+      <a href="#ecosystem"><div class="mod locked">VIP RING</div></a>
+      <a href="#ecosystem"><div class="mod locked">VIP HUB</div></a>
+      <a href="#ecosystem"><div class="mod locked">VIP BOT</div></a>
+      <a href="#ecosystem"><div class="mod locked">VIP ROOM</div></a>
+      <a href="#ecosystem"><div class="mod locked">VIP SPACE</div></a>
+      <a href="#ecosystem"><div class="mod locked">ECO &amp; AI INFRASTRUCTURE</div></a>
     </div>
   </div>
 </header>
@@ -44,7 +44,11 @@ $img = LEXTOM_URI . '/assets/images/';
       <div class="stat reveal d2"><div class="num">~9 000</div><div class="lbl" data-sk="seniorov čaká na miesto v zariadení" data-en="seniors waiting for a place in a facility">seniorov čaká na miesto v zariadení</div></div>
       <div class="stat reveal"><div class="num">50 %</div><div class="lbl" data-sk="potenciálne zníženie záťaže personálu" data-en="potential staff burden reduction">potenciálne zníženie záťaže personálu</div></div>
     </div>
-    <div class="frame reveal"><img src="<?php echo esc_url( $img . 'vipcare-market-sk.jpg' ); ?>" alt="Výzva trhu" style="width:100%;display:block"></div>
+    <!-- Language-specific market images -->
+    <div class="frame reveal">
+      <img class="langimg show" data-for="sk" src="<?php echo esc_url( $img . 'vipcare-market-sk.jpg' ); ?>" alt="Výzva trhu" style="width:100%;display:block">
+      <img class="langimg" data-for="en" src="<?php echo esc_url( $img . 'vipcare-market-sk.jpg' ); ?>" alt="Market Challenge" style="width:100%;display:block">
+    </div>
     <div class="pains">
       <div class="pain reveal"><span class="pico">◷</span><h4 data-sk="Nedostatok personálu" data-en="Staff shortage">Nedostatok personálu</h4><p data-sk="Tisíce voľných pracovných miest naprieč Slovenskom." data-en="Thousands of vacancies across Slovakia.">Tisíce voľných pracovných miest naprieč Slovenskom.</p></div>
       <div class="pain reveal d1"><span class="pico">↗</span><h4 data-sk="Rastúce náklady" data-en="Rising costs">Rastúce náklady</h4><p data-sk="Prevádzkové náklady rastú každý rok rýchlejšie." data-en="Operating costs grow faster every year.">Prevádzkové náklady rastú každý rok rýchlejšie.</p></div>
@@ -56,8 +60,19 @@ $img = LEXTOM_URI . '/assets/images/';
   </div>
 </section>
 
+<!-- KNOW MORE BUTTON -->
+<div style="text-align:center;position:relative;z-index:1;padding:0 5vw 20px;">
+  <button class="btn-know-more" id="btnKnowMore" data-sk="Zistiť viac" data-en="Know More">
+    <span data-sk="Zistiť viac" data-en="Know More">Zistiť viac</span>
+    <span class="arrow">▼</span>
+  </button>
+</div>
+
+<!-- EXPANDABLE CONTENT -->
+<div class="expandable-content" id="expandableContent">
+
 <!-- VIP BED CORE -->
-<section class="lextom-core">
+<section class="lextom-core" id="vipbed">
   <div class="wrap">
     <div class="sec-label reveal" data-sk="Hlavný produkt" data-en="Main Product">Hlavný produkt</div>
     <div class="core-head">
@@ -72,7 +87,6 @@ $img = LEXTOM_URI . '/assets/images/';
       </div>
       <div class="ph reveal d1"><img src="<?php echo esc_url( $img . 'vipcare-bed-hero.jpg' ); ?>" alt="VIP BED"></div>
     </div>
-
     <div class="abcd">
       <div class="feat reveal">
         <div class="ab">A</div>
@@ -120,22 +134,20 @@ $img = LEXTOM_URI . '/assets/images/';
   </div>
 </section>
 
-<!-- OSOBNÝ PRÍBEH -->
-<section class="lextom-story">
+<!-- OSOBNÝ PRÍBEH (Blog-style) -->
+<section class="lextom-story--blog">
   <div class="wrap">
-    <div class="story-frame reveal">
-      <div class="ph"><img src="<?php echo esc_url( $img . 'vipcare-team-story.jpg' ); ?>" alt="PaedDr. Tomáš Hvostík s tímom"></div>
-      <div class="body">
-        <div class="byline" data-sk="Príbeh, ktorý dal vzniknúť VIP Care Technology" data-en="The story behind VIP Care Technology">Príbeh, ktorý dal vzniknúť VIP Care Technology</div>
-        <h2 data-sk="Začalo sa to pri posteli mojej mamy" data-en="It started at my mother's bedside">Začalo sa to pri <em>posteli mojej mamy</em></h2>
-        <p class="lead" data-sk="Niektoré nápady sa nerodia v zasadačkách. Rodia sa v noci, pri lôžku človeka, ktorého milujete." data-en="Some ideas are not born in boardrooms. They are born at night, at the bedside of someone you love.">Niektoré nápady sa nerodia v zasadačkách. Rodia sa v noci, pri lôžku človeka, ktorého milujete.</p>
-        <p>Počas dlhého, niekoľkomesačného obdobia — predtým, než sme mamu umiestnili do zariadenia — som sa o ňu staral doma, vlastnými rukami. Poznám tú únavu aj bezmocnosť: zdvíhanie, polohovanie, hygiena, bdenie v noci, strach z preležanín. A jednu otázku, ktorá ma neopúšťala: <strong>prečo to musí byť také ťažké a prečo neexistuje niečo, čo by tej starostlivosti vrátilo dôstojnosť?</strong></p>
-        <p>Z tej otázky vznikol nápad — a keď som technológiu, akú som si predstavoval, nenašiel, začali sme ju stavať. Hľadali sme partnerov, testovali, skladali znova. No technológia bola len začiatok. Narazil som na múr vyšší než akýkoľvek technický problém — <strong>na systém a jeho pravidlá.</strong></p>
-        <p>Mama má dnes 84 rokov a je v zariadení pre seniorov — a ja stále premýšľam, ako jej dať starostlivosť inú, lepšiu. <strong>Nerobíme produkt pre trh. Robíme to, čo by sme chceli mať pre vlastných rodičov.</strong></p>
-        <div class="quote">
-          <blockquote>Všetko, čo budujeme, je odpoveďou na jedinú otázku, ktorú si kladiem dodnes — <em>ako dať tým, ktorých milujeme, starostlivosť, akú si zaslúžia?</em></blockquote>
-          <div class="sig">— PaedDr. Tomáš Hvostík, PhD., zakladateľ LeXtom s.r.o.</div>
-        </div>
+    <div class="story-article reveal">
+      <div class="byline" data-sk="Príbeh, ktorý dal vzniknúť VIP Care Technology" data-en="The story behind VIP Care Technology">Príbeh, ktorý dal vzniknúť VIP Care Technology</div>
+      <h2 data-sk="Začalo sa to pri posteli mojej mamy" data-en="It started at my mother's bedside">Začalo sa to pri <em>posteli mojej mamy</em></h2>
+      <div class="story-img"><img src="<?php echo esc_url( $img . 'vipcare-showroom.jpg' ); ?>" alt="VIP Care showroom"></div>
+      <p class="lead" data-sk="Niektoré nápady sa nerodia v zasadačkách. Rodia sa v noci, pri lôžku človeka, ktorého milujete." data-en="Some ideas are not born in boardrooms. They are born at night, at the bedside of someone you love.">Niektoré nápady sa nerodia v zasadačkách. Rodia sa v noci, pri lôžku človeka, ktorého milujete.</p>
+      <p>Počas dlhého, niekoľkomesačného obdobia — predtým, než sme mamu umiestnili do zariadenia — som sa o ňu staral doma, vlastnými rukami. Poznám tú únavu aj bezmocnosť: zdvíhanie, polohovanie, hygiena, bdenie v noci, strach z preležanín. A jednu otázku, ktorá ma neopúšťala: <strong>prečo to musí byť také ťažké a prečo neexistuje niečo, čo by tej starostlivosti vrátilo dôstojnosť?</strong></p>
+      <p>Z tej otázky vznikol nápad — a keď som technológiu, akú som si predstavoval, nenašiel, začali sme ju stavať. Hľadali sme partnerov, testovali, skladali znova. No technológia bola len začiatok. Narazil som na múr vyšší než akýkoľvek technický problém — <strong>na systém a jeho pravidlá.</strong></p>
+      <p>Mama má dnes 84 rokov a je v zariadení pre seniorov — a ja stále premýšľam, ako jej dať starostlivosť inú, lepšiu. <strong>Nerobíme produkt pre trh. Robíme to, čo by sme chceli mať pre vlastných rodičov.</strong></p>
+      <div class="quote">
+        <blockquote>Všetko, čo budujeme, je odpoveďou na jedinú otázku, ktorú si kladiem dodnes — <em>ako dať tým, ktorých milujeme, starostlivosť, akú si zaslúžia?</em></blockquote>
+        <div class="sig">— PaedDr. Tomáš Hvostík, PhD., zakladateľ LeXtom s.r.o.</div>
       </div>
     </div>
   </div>
@@ -158,7 +170,7 @@ $img = LEXTOM_URI . '/assets/images/';
   </div>
 </section>
 
-<!-- ROI -->
+<!-- ROI (inside expandable) -->
 <section class="lextom-roi">
   <div class="wrap">
     <div class="sec-label reveal" data-sk="Ekonomický prínos" data-en="Economic Benefit">Ekonomický prínos</div>
@@ -184,25 +196,39 @@ $img = LEXTOM_URI . '/assets/images/';
   </div>
 </section>
 
-<!-- FUTURE ECOSYSTEM -->
-<section class="lextom-future">
+<!-- FUTURE ECOSYSTEM (new text) -->
+<section class="lextom-future" id="ecosystem">
   <div class="wrap">
     <div class="sec-label reveal" data-sk="Ekosystém budúcnosti" data-en="Future Ecosystem">Ekosystém budúcnosti</div>
     <h2 class="sec-h reveal" data-sk="VIP BED je prvým prvkom prepojeného systému" data-en="VIP BED is the first element of a connected system">VIP BED je prvým prvkom <em>prepojeného systému</em></h2>
-    <p class="intro-line reveal d1">VIP Care Technology nie je jeden produkt, ale postupne budovaná infraštruktúra starostlivosti.</p>
+    <div class="lang-sk">
+      <p class="intro-line reveal d1">VIP Care Technology predstavuje dlhodobú víziu modernej starostlivosti založenej na prepojení inteligentných technológií, automatizácie a dátovej podpory pre rozhodovanie.</p>
+      <p class="intro-line reveal d1">VIP BED je prvé dostupné riešenie v rámci pripravovaného ekosystému, ktorého cieľom je postupne vytvárať nové štandardy v oblasti zdravotnej, sociálnej a domácej starostlivosti.</p>
+      <p class="intro-line reveal d1">Každý ďalší modul bude navrhnutý tak, aby rozšíril schopnosti systému a priniesol väčšiu bezpečnosť, efektivitu a komfort pre pacientov, personál a poskytovateľov služieb.</p>
+      <p class="intro-line reveal d2"><strong>Budujeme technologickú platformu pripravenú na potreby budúcnosti.</strong></p>
+    </div>
+    <div class="lang-en">
+      <p class="intro-line reveal d1">VIP Care Technology represents a long-term vision of modern care based on the connection of intelligent technologies, automation and data support for decision-making.</p>
+      <p class="intro-line reveal d1">VIP BED is the first available solution within the prepared ecosystem, the aim of which is to gradually create new standards in the field of health, social and home care.</p>
+      <p class="intro-line reveal d1">Each subsequent module will be designed to expand the capabilities of the system and bring greater safety, efficiency and comfort for patients, staff and service providers.</p>
+      <p class="intro-line reveal d2"><strong>We are building a technology platform ready for the needs of the future.</strong></p>
+    </div>
+    <div class="frame reveal" style="margin:30px 0 40px;border:0.5px solid var(--line);border-radius:8px;overflow:hidden;">
+      <img src="<?php echo esc_url( $img . 'vipcare-showroom.jpg' ); ?>" alt="VIP Care Technology ecosystem" style="width:100%;display:block;">
+    </div>
     <div class="modlist reveal d1">
-      <div class="modrow live"><div class="mname">VIP BED</div><div class="mdesc">Autonómna platforma starostlivosti — aktuálne dostupné jadro ekosystému.</div><div class="mstate" data-sk="Dostupné" data-en="Available">Dostupné</div></div>
-      <div class="modrow"><div class="mname">VIP RING</div><div class="mdesc">Biometrická vrstva — kontinuálne snímanie vitálnych funkcií.</div><div class="mstate" data-sk="V príprave" data-en="In preparation">V príprave</div></div>
-      <div class="modrow"><div class="mname">VIP HUB</div><div class="mdesc">Dátové a rozhodovacie jadro s prediktívnou analytikou starostlivosti.</div><div class="mstate">V príprave</div></div>
-      <div class="modrow"><div class="mname">VIP BOT</div><div class="mdesc">Autonómna asistencia pri každodenných úkonoch starostlivosti.</div><div class="mstate">V príprave</div></div>
-      <div class="modrow"><div class="mname">VIP ROOM</div><div class="mdesc">Inteligentné prostredie izby integrované s celou platformou.</div><div class="mstate">V príprave</div></div>
-      <div class="modrow"><div class="mname">VIP SPACE</div><div class="mdesc">Suverénna cloudová infraštruktúra pre bezpečnú správu dát.</div><div class="mstate">V príprave</div></div>
-      <div class="modrow"><div class="mname">ECO &amp; AI Infrastructure</div><div class="mdesc">Energeticky efektívna a ekologická infraštruktúra celého systému.</div><div class="mstate">V príprave</div></div>
+      <div class="modrow live"><div class="mname">VIP BED</div><div class="mdesc" data-sk="Autonómna platforma starostlivosti — aktuálne dostupné jadro ekosystému." data-en="Autonomous care platform — currently available core of the ecosystem.">Autonómna platforma starostlivosti — aktuálne dostupné jadro ekosystému.</div><div class="mstate" data-sk="Dostupné" data-en="Available">Dostupné</div></div>
+      <div class="modrow"><div class="mname">VIP RING</div><div class="mdesc" data-sk="Biometrická vrstva — kontinuálne snímanie vitálnych funkcií." data-en="Biometric layer — continuous vital sign monitoring.">Biometrická vrstva — kontinuálne snímanie vitálnych funkcií.</div><div class="mstate" data-sk="V príprave" data-en="In preparation">V príprave</div></div>
+      <div class="modrow"><div class="mname">VIP HUB</div><div class="mdesc" data-sk="Dátové a rozhodovacie jadro s prediktívnou analytikou starostlivosti." data-en="Data and decision core with predictive care analytics.">Dátové a rozhodovacie jadro s prediktívnou analytikou starostlivosti.</div><div class="mstate" data-sk="V príprave" data-en="In preparation">V príprave</div></div>
+      <div class="modrow"><div class="mname">VIP BOT</div><div class="mdesc" data-sk="Autonómna asistencia pri každodenných úkonoch starostlivosti." data-en="Autonomous assistance in everyday care tasks.">Autonómna asistencia pri každodenných úkonoch starostlivosti.</div><div class="mstate" data-sk="V príprave" data-en="In preparation">V príprave</div></div>
+      <div class="modrow"><div class="mname">VIP ROOM</div><div class="mdesc" data-sk="Inteligentné prostredie izby integrované s celou platformou." data-en="Intelligent room environment integrated with the entire platform.">Inteligentné prostredie izby integrované s celou platformou.</div><div class="mstate" data-sk="V príprave" data-en="In preparation">V príprave</div></div>
+      <div class="modrow"><div class="mname">VIP SPACE</div><div class="mdesc" data-sk="Suverénna cloudová infraštruktúra pre bezpečnú správu dát." data-en="Sovereign cloud infrastructure for secure data management.">Suverénna cloudová infraštruktúra pre bezpečnú správu dát.</div><div class="mstate" data-sk="V príprave" data-en="In preparation">V príprave</div></div>
+      <div class="modrow"><div class="mname">ECO &amp; AI Infrastructure</div><div class="mdesc" data-sk="Energeticky efektívna a ekologická infraštruktúra celého systému." data-en="Energy-efficient and ecological infrastructure for the entire system.">Energeticky efektívna a ekologická infraštruktúra celého systému.</div><div class="mstate" data-sk="V príprave" data-en="In preparation">V príprave</div></div>
     </div>
   </div>
 </section>
 
-<!-- WARRANTY -->
+<!-- WARRANTY (inside expandable) -->
 <section class="lextom-warranty">
   <div class="wrap">
     <div class="sec-label reveal" data-sk="Záruka a podpora" data-en="Warranty and Support">Záruka a podpora</div>
@@ -214,6 +240,43 @@ $img = LEXTOM_URI . '/assets/images/';
     </div>
   </div>
 </section>
+
+<!-- CERTIFICATES & PARTNERSHIP -->
+<section class="lextom-certificates">
+  <div class="wrap">
+    <div class="sec-label reveal" data-sk="Certifikáty a partnerstvá" data-en="Certificates & Partnerships">Certifikáty a partnerstvá</div>
+    <div class="lang-sk">
+      <h2 class="sec-h reveal">Overená kvalita a <em>autorizované partnerstvo</em></h2>
+      <p class="reveal d1" style="font-size:15px;line-height:1.8;color:var(--sage);max-width:760px;margin-bottom:30px">Ak výrobca poskytne certifikáty a partnerské dohody, budú zverejnené priamo na tejto stránke ako dôkaz kvality a autorizovanej spolupráce.</p>
+    </div>
+    <div class="lang-en">
+      <h2 class="sec-h reveal">Verified quality and <em>authorized partnership</em></h2>
+      <p class="reveal d1" style="font-size:15px;line-height:1.8;color:var(--sage);max-width:760px;margin-bottom:30px">When the manufacturer provides certificates and partnership agreements, they will be published directly on this page as proof of quality and authorized cooperation.</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <span class="cert-icon">&#x1F4DC;</span>
+        <h3 data-sk="Certifikáty produktov" data-en="Product Certificates">Certifikáty produktov</h3>
+        <p data-sk="CE certifikácia, bezpečnostné certifikáty a zdravotnícke schválenia." data-en="CE certification, safety certificates and medical approvals.">CE certifikácia, bezpečnostné certifikáty a zdravotnícke schválenia.</p>
+        <div class="cert-placeholder" data-sk="Dokumenty budú doplnené po poskytnutí výrobcom" data-en="Documents will be added once provided by manufacturer">Dokumenty budú doplnené po poskytnutí výrobcom</div>
+      </div>
+      <div class="cert-card reveal d1">
+        <span class="cert-icon">&#x1F91D;</span>
+        <h3 data-sk="Partnerská dohoda s výrobcom" data-en="Manufacturer Partnership Agreement">Partnerská dohoda s výrobcom</h3>
+        <p data-sk="Autorizovaná distribučná zmluva potvrdzujúca oprávnenosť distribúcie a servisnej podpory." data-en="Authorized distribution agreement confirming distribution and service support authorization.">Autorizovaná distribučná zmluva potvrdzujúca oprávnenosť distribúcie a servisnej podpory.</p>
+        <div class="cert-placeholder" data-sk="Dokument bude zverejnený po podpise" data-en="Document will be published after signing">Dokument bude zverejnený po podpise</div>
+      </div>
+      <div class="cert-card reveal d2">
+        <span class="cert-icon">&#x1F3C5;</span>
+        <h3 data-sk="Ďalšie certifikáty" data-en="Additional Certificates">Ďalšie certifikáty</h3>
+        <p data-sk="ISO certifikáty, ocenenia a ďalšie dokumenty súvisiace s produktmi." data-en="ISO certificates, awards and other documents related to products.">ISO certifikáty, ocenenia a ďalšie dokumenty súvisiace s produktmi.</p>
+        <div class="cert-placeholder" data-sk="Pripravujeme" data-en="In preparation">Pripravujeme</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /.expandable-content -->
 
 <!-- CTA -->
 <section class="lextom-cta">

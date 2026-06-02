@@ -33,9 +33,10 @@
   }
 
   /* ---------- REVEAL ON SCROLL ---------- */
+  var observer = null;
   var reveals = document.querySelectorAll('.reveal');
   if (reveals.length && 'IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(
+    observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (e) {
           if (e.isIntersecting) {
@@ -77,12 +78,36 @@
       var forLang = img.getAttribute('data-for');
       img.classList.toggle('show', forLang === lang);
     });
+
+    // Toggle lang-sk / lang-en blocks
+    document.querySelectorAll('.lang-sk, .lang-en').forEach(function (el) {
+      el.style.display = el.classList.contains('lang-' + lang) ? '' : 'none';
+    });
   };
 
   // Restore saved language on page load
   var savedLang = localStorage.getItem('lextom_lang');
   if (savedLang && !document.body.classList.contains('polylang-active')) {
     window.setLang(savedLang);
+  }
+
+  /* ---------- EXPANDABLE CONTENT (KNOW MORE) ---------- */
+  var btnKM = document.getElementById('btnKnowMore');
+  var expContent = document.getElementById('expandableContent');
+  if (btnKM && expContent) {
+    btnKM.addEventListener('click', function () {
+      expContent.classList.toggle('open');
+      btnKM.classList.toggle('expanded');
+      if (expContent.classList.contains('open')) {
+        // Re-observe reveals inside expanded content
+        expContent.querySelectorAll('.reveal').forEach(function (el) {
+          if (observer) observer.observe(el);
+        });
+        setTimeout(function () {
+          expContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    });
   }
 
   /* ---------- PRODUCT GALLERY THUMBNAILS ---------- */
