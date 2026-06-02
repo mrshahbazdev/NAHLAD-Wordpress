@@ -81,7 +81,7 @@
 
     // Toggle lang-sk / lang-en blocks
     document.querySelectorAll('.lang-sk, .lang-en').forEach(function (el) {
-      el.style.display = el.classList.contains('lang-' + lang) ? '' : 'none';
+      el.style.display = el.classList.contains('lang-' + lang) ? 'block' : 'none';
     });
   };
 
