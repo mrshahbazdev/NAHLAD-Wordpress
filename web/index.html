@@ -18,6 +18,10 @@
   body{font-family:'Manrope',sans-serif;background:var(--forest-deep);color:var(--cream);-webkit-font-smoothing:antialiased;overflow-x:hidden}
   ::selection{background:var(--brass);color:var(--forest)}
 
+  /* language blocks */
+  .lang-sk,.lang-en{transition:opacity .3s}
+  .lang-en{display:none}
+
   /* fixovaná podkladová vodotlač s mapou */
   .watermark{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url('images/mapa-watermark.webp');background-repeat:no-repeat;background-position:center center;background-size:min(60vw,560px);opacity:0.06;filter:grayscale(1)}
 
@@ -80,6 +84,9 @@
   .manager h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(24px,3vw,38px);line-height:1.2;color:var(--cream);margin-bottom:26px;letter-spacing:-.3px}
   .manager p{font-size:clamp(14px,1.35vw,16px);line-height:1.85;color:var(--sage);margin-bottom:18px}
   .manager p strong{color:var(--cream);font-weight:500}
+  .manager .quote-box{margin-top:24px;padding:20px 24px;border-left:2px solid var(--brass);background:rgba(212,180,131,0.04);border-radius:0 6px 6px 0}
+  .manager .quote-box blockquote{font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:clamp(16px,1.8vw,20px);line-height:1.45;color:var(--cream);margin-bottom:8px}
+  .manager .quote-box .sig{font-size:12px;letter-spacing:.5px;color:var(--brass)}
 
   /* VÍZIA */
   .vision{background:var(--forest);position:relative;overflow:hidden}
@@ -144,22 +151,37 @@
   <div class="hero-inner">
     <div class="eyebrow">LeXtom s.r.o.<span class="dot">·</span>Slovensko<span class="dot">·</span>od 2016</div>
     <h1 class="hero-title">
-      <span class="word" style="animation-delay:.4s">Inovácie a technológie</span>
-      <span class="word accent" style="animation-delay:.55s">s ľudským rozmerom.</span>
+      <span class="word" style="animation-delay:.4s" data-sk="Inovácie a technológie" data-en="Innovation and technology">Inovácie a technológie</span>
+      <span class="word accent" style="animation-delay:.55s" data-sk="s ľudským rozmerom." data-en="with a human dimension.">s ľudským rozmerom.</span>
     </h1>
-    <p class="hero-sub">Prepájame sociálne služby, zdravotníctvo, šport, vzdelávanie a moderné technológie do funkčných celkov s reálnym dopadom na ľudí, inštitúcie a komunity.</p>
-    <div class="hero-scroll"><a href="#firma"><span>Kto sme</span><span class="ln"></span></a></div>
+    <p class="hero-sub" data-sk="Prepájame sociálne služby, zdravotníctvo, šport, vzdelávanie a moderné technológie do funkčných celkov s reálnym dopadom na ľudí, inštitúcie a komunity." data-en="We connect social services, healthcare, sports, education and modern technologies into functional ecosystems with real impact on people, institutions and communities.">Prepájame sociálne služby, zdravotníctvo, šport, vzdelávanie a moderné technológie do funkčných celkov s reálnym dopadom na ľudí, inštitúcie a komunity.</p>
+    <div class="hero-scroll"><a href="#firma"><span data-sk="Kto sme" data-en="Who we are">Kto sme</span><span class="ln"></span></a></div>
   </div>
 </header>
 
 <!-- 1. FIRMA -->
 <section class="company" id="firma">
   <div class="wrap">
-    <div class="sec-label reveal">Kto sme</div>
-    <h2 class="reveal">LeXtom s.r.o. — spoločnosť prepájajúca sociálny dopad, inovácie a praktické riešenia</h2>
-    <p class="reveal d1"><strong>LeXtom s.r.o. je slovenská spoločnosť</strong> zameraná na rozvoj projektov, služieb a riešení v oblastiach, kde sa stretáva spoločenská potreba, odborné know-how, technologický pokrok a praktická realizácia. Spoločnosť pôsobí ako flexibilná projektová, inovačná a realizačná platforma, ktorá prepája sociálne služby, zdravotníctvo, šport, vzdelávanie, developerské projektové riešenia, moderné technológie, automatizáciu, robotizáciu, AI riešenia a smart ekologické prístupy do funkčných celkov.</p>
-    <p class="reveal d1">Jej cieľom nie je vytvárať izolované produkty bez širšieho významu, ale rozvíjať riešenia, ktoré majú konkrétny dopad na ľudí, organizácie, komunity, verejné inštitúcie a moderné prostredie služieb. LeXtom s.r.o. vníma súčasný svet ako priestor, v ktorom už nestačí pracovať iba tradičným spôsobom. Sociálne služby, zdravotníctvo, verejný sektor, športové prostredie, mestá, obce, zariadenia starostlivosti aj moderné developerské projekty potrebujú nové typy prepojení — medzi ľuďmi, dátami, technológiami, infraštruktúrou a službami.</p>
-    <p class="reveal d2">Práve v tomto priestore spoločnosť hľadá svoju hodnotu: identifikuje potreby, prepája odborné kapacity, vytvára partnerstvá a pripravuje riešenia, ktoré dokážu fungovať v reálnych podmienkach. Dôležitou súčasťou smerovania spoločnosti je sociálna zodpovednosť, podpora dostupnosti služieb, zavádzanie moderných technologických nástrojov a orientácia na inovácie, ktoré majú nielen ekonomický, ale aj verejnoprospešný význam. <strong>LeXtom s.r.o. preto možno charakterizovať ako spoločnosť, ktorá stojí na hranici medzi projektovým manažmentom, sociálnymi inováciami, zdravotníckymi riešeniami, technologickým vývojom a novým spôsobom myslenia o službách budúcnosti.</strong></p>
+    <div class="lang-sk">
+      <div class="sec-label reveal">Kto sme</div>
+      <h2 class="reveal">LeXtom s.r.o. — tvoríme riešenia, ktoré majú zmysel</h2>
+      <p class="reveal d1">V spoločnosti LeXtom veríme, že technológie, inovácie a podnikanie majú najväčšiu hodnotu vtedy, keď slúžia ľuďom. Preto nevytvárame projekty len preto, aby existovali. Hľadáme oblasti, kde môžeme priniesť skutočnú pomoc, vyššiu kvalitu života, efektívnejšie služby a lepšiu budúcnosť pre jednotlivcov, organizácie aj celé komunity.</p>
+      <p class="reveal d1">Naša cesta stojí na prepájaní odborných skúseností, moderných technológií a reálnych potrieb spoločnosti. Pôsobíme v oblastiach sociálnych služieb, zdravotníctva, športu, vzdelávania, developmentu, automatizácie, robotizácie, umelej inteligencie, smart technológií a ekologických riešení. V každej z nich hľadáme príležitosti, ako priniesť praktické inovácie, ktoré majú skutočný význam.</p>
+      <p class="reveal d2">Nezameriavame sa iba na jednotlivé produkty. Budujeme riešenia, ktoré dokážu fungovať v reálnom svete a vytvárať dlhodobú hodnotu. Našou ambíciou je prepájať ľudí, odborníkov, partnerov a technológie tak, aby vznikali projekty s pozitívnym spoločenským dopadom.</p>
+      <p class="reveal d2">Veríme, že budúcnosť patrí riešeniam, ktoré spájajú pokrok s ľudskosťou. Preto je pre nás dôležitá nielen ekonomická udržateľnosť, ale aj spoločenská zodpovednosť, dostupnosť služieb, dôstojnosť človeka a podpora tých, ktorí pomoc najviac potrebujú.</p>
+      <p class="reveal d2">Každý projekt, ktorý vytvárame, vzniká s presvedčením, že inovácie majú zmysel iba vtedy, keď zlepšujú život ľudí. To je dôvod, prečo robíme to, čo robíme. Nie preto, že musíme. Ale preto, že veríme, že moderné technológie môžu prinášať viac ľudskosti, viac bezpečia a viac príležitostí pre všetkých.</p>
+      <p class="reveal d2"><strong>LeXtom s.r.o. je miestom, kde sa stretáva vízia budúcnosti s úprimnou snahou pomáhať.</strong></p>
+    </div>
+    <div class="lang-en">
+      <div class="sec-label reveal">Who We Are</div>
+      <h2 class="reveal">LeXtom s.r.o. — Creating Solutions That Matter</h2>
+      <p class="reveal d1">At LeXtom, we believe that technology, innovation, and entrepreneurship create the greatest value when they serve people. That is why we do not develop projects simply for the sake of creating products. Instead, we focus on areas where we can bring real help, improve quality of life, increase efficiency, and contribute to a better future for individuals, organizations, and entire communities.</p>
+      <p class="reveal d1">Our journey is built on connecting professional expertise, modern technologies, and real-world needs. We operate across social care, healthcare, sports, education, development projects, automation, robotics, artificial intelligence, smart technologies, and sustainable ecological solutions. In every field, we seek opportunities to deliver practical innovations that create meaningful and lasting impact.</p>
+      <p class="reveal d2">We are not focused solely on individual products. We build comprehensive solutions designed to function in real environments and generate long-term value. Our ambition is to connect people, experts, partners, and technologies to create projects with a positive social impact.</p>
+      <p class="reveal d2">We believe that the future belongs to solutions that combine technological progress with humanity. For this reason, economic sustainability is only part of our mission. Equally important are social responsibility, accessibility of services, human dignity, and support for those who need it most.</p>
+      <p class="reveal d2">Every project we develop is driven by a simple belief: innovation only has value when it improves people's lives. That is why we do what we do—not because we have to, but because we believe that modern technologies can bring more humanity, greater safety, and more opportunities for everyone.</p>
+      <p class="reveal d2"><strong>LeXtom s.r.o. is where a vision for the future meets a genuine commitment to making a difference.</strong></p>
+    </div>
   </div>
 </section>
 
@@ -170,15 +192,32 @@
       <img src="images/manazer.jpg" alt="PaedDr. Tomáš Hvostík, PhD.">
       <div class="badge">
         <div class="nm">PaedDr. Tomáš Hvostík, PhD.</div>
-        <div class="rl">Konateľ · LeXtom s.r.o.</div>
+        <div class="rl" data-sk="Konateľ · LeXtom s.r.o." data-en="CEO · LeXtom s.r.o.">Konateľ · LeXtom s.r.o.</div>
       </div>
     </div>
     <div class="text">
-      <div class="sec-label reveal">Manažment</div>
-      <h2 class="reveal">Manažér, tvorca riešení a iniciátor inovačných projektov</h2>
-      <p class="reveal d1"><strong>PaedDr. Tomáš Hvostík, PhD.</strong> je manažér, podnikateľ a odborník orientovaný na technologické, inovatívne a spoločensky prospešné riešenia, ktorý prepája skúsenosti zo sociálnej oblasti, športu, projektového riadenia, inovácií, AI riešení, automatizácie a developerských projektov s praktickou schopnosťou premieňať vízie na konkrétne výsledky.</p>
-      <p class="reveal d1">Ako konateľ spoločnosti udáva firme smer, ktorý nestojí iba na obchodnom uvažovaní, ale predovšetkým na schopnosti rozpoznať, kde vzniká reálna potreba a ako ju možno pretaviť do funkčného projektu. Jeho odborný profil vychádza z presvedčenia, že budúcnosť sociálnych služieb, zdravotníctva, športu, verejného priestoru a projektového developmentu bude postavená na prepájaní ľudského prístupu s modernými technológiami.</p>
-      <p class="reveal d2">Profiluje sa ako manažér, ktorý nevníma inovácie iba ako technickú novinku, ale ako nástroj na zlepšenie fungovania ľudí, inštitúcií a systémov. V sociálnej oblasti a zdravotníctve je tento prístup mimoriadne dôležitý, pretože moderné riešenia musia rešpektovať ľudskú dôstojnosť, citlivosť prostredia, potrebu dôvery a odbornosť. Výsledkom má byť <strong>nový typ manažérskeho a projektového prístupu</strong> — taký, ktorý spája strategické myslenie, technologickú odvahu, sociálne cítenie a schopnosť praktickej realizácie.</p>
+      <div class="lang-sk">
+        <div class="sec-label reveal">Manažment</div>
+        <h2 class="reveal">Vizionár, inovátor a tvorca riešení</h2>
+        <div class="quote-box reveal">
+          <blockquote>„V uponáhľanej dobe je úsmev jediná úprimná vec, ktorú môžeme človeku nezištne vždy darovať."</blockquote>
+          <div class="sig">— PaedDr. Tomáš Hvostík, PhD.</div>
+        </div>
+        <p class="reveal d1">Verím, že technológie majú skutočný význam iba vtedy, keď pomáhajú ľuďom. Počas svojej profesionálnej cesty prepájam skúsenosti zo sociálnych služieb, zdravotníctva, športu, projektového riadenia, inovácií, umelej inteligencie a moderných technológií s cieľom vytvárať riešenia, ktoré prinášajú reálnu hodnotu spoločnosti.</p>
+        <p class="reveal d1">Ako zakladateľ a konateľ spoločnosti LeXtom sa zameriavam na projekty, ktoré spájajú ľudský prístup s technologickým pokrokom. Mojou ambíciou nie je vytvárať inovácie pre samotné inovácie, ale budovať systémy, ktoré zlepšujú kvalitu života, zvyšujú efektivitu služieb a prinášajú dôstojnejšiu budúcnosť pre ľudí, ktorí ich potrebujú.</p>
+        <p class="reveal d2">Každý projekt vnímam ako príležitosť premeniť víziu na konkrétne riešenie, ktoré má pozitívny dopad na jednotlivcov, organizácie aj celú spoločnosť.</p>
+      </div>
+      <div class="lang-en">
+        <div class="sec-label reveal">Management</div>
+        <h2 class="reveal">Visionary, Innovator and Solution Creator</h2>
+        <div class="quote-box reveal">
+          <blockquote>"In a fast-paced world, a smile is the only sincere gift we can always offer another person selflessly."</blockquote>
+          <div class="sig">— PaedDr. Tomáš Hvostík, PhD.</div>
+        </div>
+        <p class="reveal d1">I believe that technology only has true value when it serves people. Throughout my professional journey, I have combined experience in social care, healthcare, sports, project management, innovation, artificial intelligence, and modern technologies to develop solutions that create meaningful and lasting impact.</p>
+        <p class="reveal d1">As the founder and CEO of LeXtom, my focus is on projects that connect human-centered thinking with technological progress. My goal is not to innovate for the sake of innovation, but to build systems that improve quality of life, enhance service efficiency, and contribute to a more dignified future for those who need it most.</p>
+        <p class="reveal d2">I view every project as an opportunity to transform vision into practical solutions that positively influence individuals, organizations, and society as a whole.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -186,11 +225,28 @@
 <!-- 3. VÍZIA -->
 <section class="vision" id="vizia">
   <div class="wrap">
-    <div class="sec-label reveal">Vízia spoločnosti</div>
-    <blockquote class="bigq reveal">Technológie, ktoré neslúžia iba na znižovanie nákladov, ale predovšetkým na <em>zvyšovanie kvality života, bezpečnosti a dôstojnosti človeka.</em></blockquote>
-    <p class="reveal d1">Víziou spoločnosti je podieľať sa na tvorbe modernej, technologicky vyspelej a spoločensky zodpovednej infraštruktúry služieb, ktorá prepája sociálnu oblasť, zdravotníctvo, šport, smart riešenia, ekologické inovácie, automatizáciu, robotizáciu a umelú inteligenciu do jednotného systému s praktickým využitím na Slovensku aj v širšom európskom priestore.</p>
-    <p class="reveal d1">Európske krajiny čelia podobným výzvam: starnutie populácie, nedostatok odborného personálu, rastúce nároky na zdravotnícke a sociálne služby, potreba efektívnejšieho riadenia verejných zdrojov, tlak na ekologickú udržateľnosť a rastúci význam dátovo riadeného rozhodovania. LeXtom chce na tieto výzvy reagovať víziou prepojených riešení, ktoré umožnia vytvárať <strong>inteligentné systémy služieb</strong> — od sociálnej starostlivosti a zdravotníckej podpory, cez smart monitoring, automatizované procesy, AI asistenciu a robotické prvky až po developerské riešenia novej generácie.</p>
-    <p class="reveal d2">Vízia smeruje k prepojeniu európskych skúseností, odborných kapacít a inovatívnych trendov do systému, ktorý podporuje výmenu know-how, spoločné projekty a cezhraničné partnerstvá. <strong>LeXtom chce byť súčasťou tejto transformácie ako partner, ktorý rozumie lokálnym potrebám, ale zároveň sleduje európske smerovanie</strong> — k smart službám, AI podpore, robotizácii, udržateľným technológiám a novým modelom spolupráce medzi verejným, súkromným a odborným sektorom.</p>
+    <div class="lang-sk">
+      <div class="sec-label reveal">Naša vízia</div>
+      <blockquote class="bigq reveal">Technológie, ktoré neslúžia iba na znižovanie nákladov, ale predovšetkým na <em>zvyšovanie kvality života, bezpečnosti a dôstojnosti človeka.</em></blockquote>
+      <p class="reveal d1">Veríme, že budúcnosť patrí svetu, v ktorom ľudia žijú dlhšie, zdravšie, bezpečnejšie a dôstojnejšie. Svetu, kde technológie nenahrádzajú človeka, ale pomáhajú mu naplno prežívať život, zachovať si nezávislosť a venovať viac času tomu, na čom skutočne záleží.</p>
+      <p class="reveal d1">Našou víziou je budovať prepojený ekosystém riešení, služieb a technológií, ktoré vytvárajú lepšie podmienky pre život jednotlivcov, rodín, komunít aj celej spoločnosti. Ekosystém, v ktorom môže každý človek nielen prijímať pomoc, podporu a nové príležitosti, ale zároveň svojimi skúsenosťami, vedomosťami a aktivitami prispievať k rozvoju ostatných.</p>
+      <p class="reveal d1">Veríme, že moderná spoločnosť potrebuje viac než izolované produkty alebo samostatné služby. Potrebuje inteligentne prepojené prostredie, v ktorom spolupracujú ľudia, odborníci, organizácie a technológie s jediným cieľom — zvyšovať kvalitu života a vytvárať udržateľnú budúcnosť pre ďalšie generácie.</p>
+      <p class="reveal d2">Preto prepájame oblasti zdravotníctva, sociálnych služieb, športu, vzdelávania, umelej inteligencie, automatizácie, robotizácie, smart technológií a ekologických riešení do jedného funkčného celku. Každá z týchto oblastí predstavuje časť väčšieho obrazu, ktorého výsledkom je efektívnejšia starostlivosť, lepšie rozhodovanie, dostupnejšie služby a vyššia kvalita života.</p>
+      <p class="reveal d2">Naším cieľom nie je vytvárať technológie pre technológie. Naším cieľom je vytvárať prostredie, v ktorom môže človek žiť kvalitnejšie, dlhšie a spokojnejšie. Prostredie, ktoré podporuje zdravie, samostatnosť, bezpečnosť, vzdelávanie, medziľudské vzťahy a aktívne zapojenie do spoločnosti.</p>
+      <p class="reveal d2">Chceme byť súčasťou novej generácie európskych riešení, ktoré spájajú inovácie s ľudskosťou, technologický pokrok so spoločenskou zodpovednosťou a ekonomický rast s reálnym prínosom pre ľudí.</p>
+      <p class="reveal d2"><strong>Pretože veríme, že skutočný pokrok nemeria technológia. Skutočný pokrok meria kvalita života človeka.</strong></p>
+    </div>
+    <div class="lang-en">
+      <div class="sec-label reveal">Our Vision</div>
+      <blockquote class="bigq reveal">Technology that does not just reduce costs, but above all <em>improves quality of life, safety and human dignity.</em></blockquote>
+      <p class="reveal d1">We believe that the future belongs to a world where people live longer, healthier, safer, and more fulfilling lives. A world where technology does not replace human beings, but empowers them to live more independently, preserve their dignity, and dedicate more time to what truly matters.</p>
+      <p class="reveal d1">Our vision is to build an interconnected ecosystem of solutions, services, and technologies that create better conditions for individuals, families, communities, and society as a whole. An ecosystem where every person can not only receive support, care, and new opportunities but can also contribute their knowledge, experience, and value to help others grow.</p>
+      <p class="reveal d1">We believe that modern society needs more than isolated products or standalone services. It needs an intelligently connected environment where people, professionals, organizations, and technologies work together with a common purpose — to improve quality of life and create a sustainable future for generations to come.</p>
+      <p class="reveal d2">That is why we connect healthcare, social care, sports, education, artificial intelligence, automation, robotics, smart technologies, and sustainable innovations into one integrated ecosystem. Each of these areas represents an important part of a larger vision whose outcome is more effective care, better decision-making, greater accessibility of services, and a higher quality of life.</p>
+      <p class="reveal d2">Our goal is not to create technology for technology's sake. Our goal is to create an environment where people can live better, longer, and more meaningful lives. An environment that supports health, independence, safety, education, human connection, and active participation in society.</p>
+      <p class="reveal d2">We aspire to be part of a new generation of European solutions that combine innovation with humanity, technological advancement with social responsibility, and economic growth with a genuine positive impact on people's lives.</p>
+      <p class="reveal d2"><strong>Because we believe that true progress is not measured by technology itself. True progress is measured by the quality of human life.</strong></p>
+    </div>
   </div>
 </section>
 
@@ -198,7 +254,7 @@
 <section class="infographic">
   <div class="wrap">
     <div class="frame reveal"><img src="images/vizia-infografika.jpg" alt="Moderná, technologicky vyspelá a spoločensky zodpovedná infraštruktúra služieb — jednotný systém pre Slovensko a Európu"></div>
-    <p class="cap reveal d1">Prepojený systém služieb — lokálne potreby a európske smerovanie.</p>
+    <p class="cap reveal d1" data-sk="Prepojený systém služieb — lokálne potreby a európske smerovanie." data-en="Connected service system — local needs and European direction.">Prepojený systém služieb — lokálne potreby a európske smerovanie.</p>
   </div>
 </section>
 
@@ -206,7 +262,7 @@
   <div class="fwrap">
     <div class="fcol">
       <img class="flogo" src="images/lextom-logo.png" alt="LeXtom s.r.o.">
-      <p>Slovenská spoločnosť prepájajúca sociálny dopad, inovácie a praktické riešenia do funkčných celkov.</p>
+      <p data-sk="Slovenská spoločnosť prepájajúca sociálny dopad, inovácie a praktické riešenia do funkčných celkov." data-en="Slovak company connecting social impact, innovation and practical solutions into functional ecosystems.">Slovenská spoločnosť prepájajúca sociálny dopad, inovácie a praktické riešenia do funkčných celkov.</p>
     </div>
     <div class="fcol">
       <h4>Menu</h4>
@@ -217,7 +273,7 @@
       <a href="development.html" data-sk="Development" data-en="Development">Development</a>
     </div>
     <div class="fcol">
-      <h4>Kontakt</h4>
+      <h4 data-sk="Kontakt" data-en="Contact">Kontakt</h4>
       <a href="mailto:info@lextom.sk">info@lextom.sk</a>
       <a href="#" onclick="return false">www.lextom.sk</a>
     </div>
@@ -235,7 +291,6 @@
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   const tg=document.getElementById('navtoggle'),nl=document.getElementById('navlinks');
   tg.addEventListener('click',()=>nl.classList.toggle('open'));
-  
 
   function setLang(lang){
     document.documentElement.lang=lang;
@@ -246,6 +301,9 @@
     document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
     document.querySelectorAll('.langimg').forEach(img=>{
       const u=(lang==='en')?'en':'sk'; img.classList.toggle('show',img.dataset.for===u);
+    });
+    document.querySelectorAll('.lang-sk,.lang-en').forEach(el=>{
+      el.style.display=el.classList.contains('lang-'+lang)?'':'none';
     });
     try{localStorage.setItem('lextom_lang',lang)}catch(e){}
   }
