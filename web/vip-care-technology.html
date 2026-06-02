@@ -686,7 +686,7 @@
       const u=(lang==='en')?'en':'sk'; img.classList.toggle('show',img.dataset.for===u);
     });
     document.querySelectorAll('.lang-sk,.lang-en').forEach(el=>{
-      el.style.display=el.classList.contains('lang-'+lang)?'':'none';
+      el.style.display=el.classList.contains('lang-'+lang)?'block':'none';
     });
     try{localStorage.setItem('lextom_lang',lang)}catch(e){}
   }
