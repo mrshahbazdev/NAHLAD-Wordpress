@@ -14,6 +14,7 @@ $img = LEXTOM_URI . '/assets/images/';
 <header class="lextom-hero lextom-hero--ecosystem lextom-hero--tall">
   <div class="hero-crestbg"><img src="<?php echo esc_url( $img . 'vipcare-crest.webp' ); ?>" alt="VIP Care Technology"></div>
   <div class="hero-inner">
+    <img class="hero-logo" src="<?php echo esc_url( $img . 'vipcare-logo.jpg' ); ?>" alt="VIP Care Technology LeXtom">
     <div class="ecosystem-badge"><span class="pulse"></span>VIP Care Technology Solution</div>
     <h1 class="hero-title" data-sk="Inteligentná platforma starostlivosti pre moderné zdravotníctvo" data-en="Intelligent care platform for modern healthcare">Inteligentná <span class="accent">platforma starostlivosti</span> pre moderné zdravotníctvo</h1>
     <p class="hero-sub" data-sk="AI-asistovaná starostlivosť, automatizovaná hygiena, monitoring pacienta a eko-inteligentná infraštruktúra — prepojený ekosystém novej generácie." data-en="AI-assisted care, automated hygiene, patient monitoring and eco-intelligent infrastructure — a connected next-generation ecosystem.">AI-asistovaná starostlivosť, automatizovaná hygiena, monitoring pacienta a eko-inteligentná infraštruktúra — prepojený ekosystém novej generácie.</p>
