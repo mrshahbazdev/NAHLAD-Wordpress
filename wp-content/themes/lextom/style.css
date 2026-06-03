@@ -481,6 +481,8 @@ h1.hero-title em { font-style: italic; color: var(--brass); }
 .lextom-graphic .hint { text-align: center; font-size: 12.5px; color: var(--muted); margin-top: 18px; letter-spacing: .3px; }
 .langimg { display: none; }
 .langimg.show { display: block; }
+.lextom-graphic .frame img.langimg { display: none; }
+.lextom-graphic .frame img.langimg.show { display: block; }
 
 /* VÝHODY / Benefits */
 .lextom-benefits { background: var(--forest-deep); }
