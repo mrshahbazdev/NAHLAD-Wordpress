@@ -46,6 +46,7 @@ if ( $watermark_url ) : ?>
             'vip-care-technology'   => array( 'sk' => 'VIP Care Technology', 'en' => 'VIP Care Technology' ),
             'distribucia-produktov' => array( 'sk' => 'Distribúcia produktov', 'en' => 'Product Distribution' ),
             'development'           => array( 'sk' => 'Development', 'en' => 'Development' ),
+            'contact'               => array( 'sk' => 'Kontakt', 'en' => 'Contact' ),
         );
 
         foreach ( $nav_items as $slug => $labels ) :
