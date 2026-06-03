@@ -46,8 +46,8 @@ $img = LEXTOM_URI . '/assets/images/';
     </div>
     <!-- Language-specific market images -->
     <div class="frame reveal">
-      <img class="langimg show" data-for="sk" src="<?php echo esc_url( $img . 'vipcare-market-sk.jpg' ); ?>" alt="Výzva trhu" style="width:100%;display:block">
-      <img class="langimg" data-for="en" src="<?php echo esc_url( $img . 'vipcare-market-sk.jpg' ); ?>" alt="Market Challenge" style="width:100%;display:block">
+      <img class="langimg show" data-for="sk" src="<?php echo esc_url( $img . 'vipcare-market-sk.jpg' ); ?>" alt="Výzva trhu">
+      <img class="langimg" data-for="en" src="<?php echo esc_url( $img . 'vipcare-market-en.jpg' ); ?>" alt="Market Challenge">
     </div>
     <div class="pains">
       <div class="pain reveal"><span class="pico">◷</span><h4 data-sk="Nedostatok personálu" data-en="Staff shortage">Nedostatok personálu</h4><p data-sk="Tisíce voľných pracovných miest naprieč Slovenskom." data-en="Thousands of vacancies across Slovakia.">Tisíce voľných pracovných miest naprieč Slovenskom.</p></div>
