@@ -1037,6 +1037,31 @@ h1.hero-title em { font-style: italic; color: var(--brass); }
   .cert-grid { grid-template-columns: 1fr; }
 }
 
+/* ============ CONTACT PAGE ============ */
+.lextom-contact { background: var(--forest-deep); padding: 120px 5vw 80px; min-height: 100vh; display: flex; align-items: center; }
+.contact-inner { max-width: 680px; margin: 0 auto; width: 100%; }
+.contact-head { text-align: center; margin-bottom: 40px; }
+.contact-h { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(28px, 4vw, 44px); line-height: 1.15; color: var(--cream); margin: 14px 0; }
+.contact-h em { font-style: italic; color: var(--brass); }
+.contact-sub { color: var(--muted); font-size: 15px; max-width: 50ch; margin: 0 auto; line-height: 1.6; }
+.contact-form { display: flex; flex-direction: column; gap: 18px; }
+.cfield { display: flex; flex-direction: column; gap: 7px; }
+.cfield label { font-size: 11.5px; letter-spacing: 2px; text-transform: uppercase; color: var(--brass); font-weight: 600; }
+.cfield input, .cfield textarea { background: rgba(255,255,255,0.04); border: 0.5px solid var(--line); color: var(--cream); padding: 14px 16px; font-size: 15px; font-family: 'Manrope', sans-serif; font-weight: 300; transition: border-color .25s, background .25s; border-radius: 4px; width: 100%; }
+.cfield input:focus, .cfield textarea:focus { outline: none; border-color: var(--brass); background: rgba(255,255,255,0.07); }
+.cfield textarea { min-height: 140px; resize: vertical; }
+.cfield input::placeholder, .cfield textarea::placeholder { color: rgba(244,241,234,0.25); }
+.contact-actions { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.contact-legal { font-size: 11.5px; color: var(--muted); max-width: 34ch; line-height: 1.5; }
+.contact-msg { margin-top: 14px; padding: 14px 18px; font-size: 14px; display: none; border-left: 3px solid; border-radius: 4px; }
+.contact-msg.ok { display: block; background: rgba(212,180,131,0.1); border-color: var(--brass); color: var(--brass); }
+.contact-msg.err { display: block; background: rgba(226,35,26,0.1); border-color: var(--red); color: var(--red); }
+.contact-direct { margin-top: 40px; padding-top: 30px; border-top: 0.5px solid var(--line); display: grid; grid-template-columns: 1fr; gap: 20px; text-align: center; }
+@media (min-width: 600px) { .contact-direct { grid-template-columns: 1fr 1fr; text-align: left; } }
+.contact-direct-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.contact-direct-val { font-family: 'Fraunces', serif; font-size: 18px; color: var(--cream); }
+.contact-direct-val a:hover { color: var(--brass); }
+
 /* ============ ELEMENTOR OVERRIDES ============ */
 .elementor-page .lextom-nav { z-index: 100; }
 body.elementor-page { padding-top: 0; }

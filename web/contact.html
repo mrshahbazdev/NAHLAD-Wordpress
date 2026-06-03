@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeXtom s.r.o. — Kontakt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#14201c;--forest-deep:#0e1714;--cream:#f4f1ea;--cream-soft:#eae5d9;
+    --brass:#d4b483;--brass-deep:#b8975f;--sage:#b8c4bc;--ink:#44443f;--muted:#5f5e5a;
+    --red:#e2231a;--line:rgba(212,180,131,0.18);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Manrope',sans-serif;background:var(--forest-deep);color:var(--cream);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--brass);color:var(--forest)}
+  .watermark{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url('images/mapa-watermark.webp');background-repeat:no-repeat;background-position:center center;background-size:min(60vw,560px);opacity:0.06;filter:grayscale(1)}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;transition:all .5s ease;border-bottom:0.5px solid transparent}
+  nav.scrolled{background:rgba(14,23,20,0.9);backdrop-filter:blur(16px);border-bottom:0.5px solid var(--line);padding:12px 5vw}
+  .nav-logo img{height:40px;background:var(--cream);padding:6px 10px;border-radius:3px;display:block}
+  .nav-links{display:flex;gap:26px;align-items:center;font-size:13px;letter-spacing:.3px;color:var(--sage)}
+  .nav-links a{color:inherit;text-decoration:none;transition:color .3s;position:relative;white-space:nowrap}
+  .nav-links a:hover{color:var(--cream)}
+  .nav-links a.current{color:var(--cream)}
+  .nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--brass);transition:width .3s}
+  .nav-links a:hover::after{width:100%}
+  .nav-toggle{display:none;background:none;border:none;color:var(--cream);font-size:26px;cursor:pointer}
+  .lang{display:flex;gap:6px;border-left:0.5px solid var(--line);padding-left:16px;margin-left:10px}
+  .lang button{background:none;border:0.5px solid transparent;color:var(--muted);font-size:12px;font-weight:500;letter-spacing:1px;padding:5px 10px;border-radius:2px;cursor:pointer;transition:all .3s}
+  .lang button.active{color:var(--brass);border-color:var(--brass)}
+  .lang button:hover{color:var(--cream)}
+
+  /* SHARED */
+  section{position:relative;z-index:1;padding:100px 5vw}
+  .wrap-narrow{max-width:680px;margin:0 auto}
+  .sec-label{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
+  .sec-label::before{content:'';width:28px;height:0.5px;background:var(--brass)}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+  .reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
+  .reveal.in{opacity:1;transform:none}
+  .btn{font-size:14px;font-weight:500;letter-spacing:.3px;padding:15px 34px;border-radius:2px;cursor:pointer;text-decoration:none;transition:all .35s cubic-bezier(.16,1,.3,1);display:inline-flex;align-items:center;gap:10px;background:var(--brass);color:var(--forest);border:1px solid var(--brass)}
+  .btn:hover{background:var(--brass-deep);transform:translateY(-2px)}
+
+  /* CONTACT */
+  .lextom-contact{background:var(--forest-deep);padding:120px 5vw 80px;min-height:100vh;display:flex;align-items:center}
+  .contact-inner{max-width:680px;margin:0 auto;width:100%}
+  .contact-head{text-align:center;margin-bottom:40px}
+  .contact-h{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.15;color:var(--cream);margin:14px 0}
+  .contact-h em{font-style:italic;color:var(--brass)}
+  .contact-sub{color:var(--muted);font-size:15px;max-width:50ch;margin:0 auto;line-height:1.6}
+  .contact-form{display:flex;flex-direction:column;gap:18px}
+  .cfield{display:flex;flex-direction:column;gap:7px}
+  .cfield label{font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--brass);font-weight:600}
+  .cfield input,.cfield textarea{background:rgba(255,255,255,0.04);border:0.5px solid var(--line);color:var(--cream);padding:14px 16px;font-size:15px;font-family:'Manrope',sans-serif;font-weight:300;transition:border-color .25s,background .25s;border-radius:4px;width:100%}
+  .cfield input:focus,.cfield textarea:focus{outline:none;border-color:var(--brass);background:rgba(255,255,255,0.07)}
+  .cfield textarea{min-height:140px;resize:vertical}
+  .cfield input::placeholder,.cfield textarea::placeholder{color:rgba(244,241,234,0.25)}
+  .contact-actions{margin-top:14px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .contact-legal{font-size:11.5px;color:var(--muted);max-width:34ch;line-height:1.5}
+  .contact-msg{margin-top:14px;padding:14px 18px;font-size:14px;display:none;border-left:3px solid;border-radius:4px}
+  .contact-msg.ok{display:block;background:rgba(212,180,131,0.1);border-color:var(--brass);color:var(--brass)}
+  .contact-msg.err{display:block;background:rgba(226,35,26,0.1);border-color:var(--red);color:var(--red)}
+  .contact-direct{margin-top:40px;padding-top:30px;border-top:0.5px solid var(--line);display:grid;grid-template-columns:1fr;gap:20px;text-align:center}
+  @media(min-width:600px){.contact-direct{grid-template-columns:1fr 1fr;text-align:left}}
+  .contact-direct-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .contact-direct-val{font-family:'Fraunces',serif;font-size:18px;color:var(--cream)}
+  .contact-direct-val a:hover{color:var(--brass)}
+
+  /* FOOTER */
+  footer{position:relative;z-index:1;background:#0a110e;padding:54px 5vw 30px;border-top:0.5px solid var(--line)}
+  footer .fwrap{max-width:1140px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;align-items:flex-start}
+  footer .fcol .flogo{height:42px;background:var(--cream);padding:7px 11px;border-radius:3px;margin-bottom:16px;display:block}
+  footer .fcol p{font-size:13px;line-height:1.7;color:var(--muted);max-width:280px}
+  footer .fcol h4{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
+  footer .fcol a{display:block;font-size:13px;color:var(--sage);text-decoration:none;margin-bottom:10px;transition:color .3s}
+  footer .fcol a:hover{color:var(--cream)}
+  .fbottom{max-width:1140px;margin:40px auto 0;padding-top:24px;border-top:0.5px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);letter-spacing:.4px}
+
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  @media(max-width:860px){
+    .nav-links{position:fixed;top:0;right:-100%;height:100vh;width:75%;max-width:320px;flex-direction:column;background:var(--forest);padding:90px 36px;gap:22px;align-items:flex-start;transition:right .4s;border-left:0.5px solid var(--line)}
+    .nav-links.open{right:0}
+    .nav-toggle{display:block;z-index:101}
+    .lang{border-left:none;padding-left:0;margin-left:0;margin-top:14px}
+  }
+</style>
+</head>
+<body>
+
+<div class="watermark"></div>
+
+<nav id="nav">
+  <div class="nav-logo"><img src="images/lextom-logo.png" alt="LeXtom s.r.o."></div>
+  <div class="nav-links" id="navlinks">
+    <a href="kto-sme.html" data-sk="Kto sme" data-en="Who We Are">Kto sme</a>
+    <a href="odborny-personal.html" data-sk="Odborný personál" data-en="Professional Staff">Odborný personál</a>
+    <a href="vip-care-technology.html" data-sk="VIP Care Technology" data-en="VIP Care Technology">VIP Care Technology</a>
+    <a href="distribucia-produktov.html" data-sk="Distribúcia produktov" data-en="Product Distribution">Distribúcia produktov</a>
+    <a href="development.html" data-sk="Development" data-en="Development">Development</a>
+    <div class="lang"><button class="active" data-lang="sk">SK</button><button data-lang="en">EN</button></div>
+  </div>
+  <button class="nav-toggle" id="navtoggle" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- CONTACT -->
+<section class="lextom-contact">
+  <div class="contact-inner">
+    <div class="contact-head">
+      <div class="sec-label reveal" style="justify-content:center" data-sk="Kontakt" data-en="Contact">Kontakt</div>
+      <h2 class="contact-h reveal" data-sk="Začnite konverzáciu." data-en="Begin the conversation.">Začnite <em>konverzáciu.</em></h2>
+      <p class="contact-sub reveal d1" data-sk="Tri polia. Bez zbytočností. Odpovieme do jedného pracovného dňa s ďalšími krokmi." data-en="Three fields. No friction. We respond within one business day with the next steps.">Tri polia. Bez zbytočností. Odpovieme do jedného pracovného dňa s ďalšími krokmi.</p>
+    </div>
+    <form class="contact-form reveal d2" id="contactForm" novalidate>
+      <div class="cfield">
+        <label for="cName" data-sk="Meno" data-en="Name">Meno</label>
+        <input id="cName" name="name" type="text" required autocomplete="name" />
+      </div>
+      <div class="cfield">
+        <label for="cEmail" data-sk="Email" data-en="Email">Email</label>
+        <input id="cEmail" name="email" type="email" required autocomplete="email" />
+      </div>
+      <div class="cfield">
+        <label for="cMsg" data-sk="Správa" data-en="Message">Správa</label>
+        <textarea id="cMsg" name="message" required></textarea>
+      </div>
+      <div class="contact-actions">
+        <p class="contact-legal" data-sk="Odoslaním súhlasíte s prijímaním dôverných materiálov. Vaše kontaktné údaje nezdieľame s tretími stranami." data-en="By submitting, you agree to receive confidential materials. We do not share contact data with third parties.">Odoslaním súhlasíte s prijímaním dôverných materiálov. Vaše kontaktné údaje nezdieľame s tretími stranami.</p>
+        <button type="submit" class="btn" data-sk="Odoslať požiadavku →" data-en="Send request →">Odoslať požiadavku →</button>
+      </div>
+      <div class="contact-msg" id="formMsg"></div>
+    </form>
+    <div class="contact-direct reveal d3">
+      <div>
+        <div class="contact-direct-label" data-sk="Priamy kontakt" data-en="Direct contact">Priamy kontakt</div>
+        <div class="contact-direct-val"><a href="mailto:info@lextom.sk">info@lextom.sk</a></div>
+      </div>
+      <div>
+        <div class="contact-direct-label" data-sk="Tento projekt" data-en="This project">Tento projekt</div>
+        <div class="contact-direct-val"><a href="/development">www.lextom.sk/development</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fwrap">
+    <div class="fcol">
+      <img class="flogo" src="images/lextom-logo.png" alt="LeXtom s.r.o.">
+      <p data-sk="Slovenská spoločnosť prepájajúca sociálny dopad, inovácie a praktické riešenia do funkčných celkov." data-en="A Slovak company connecting social impact, innovation and practical solutions into functional units.">Slovenská spoločnosť prepájajúca sociálny dopad, inovácie a praktické riešenia do funkčných celkov.</p>
+    </div>
+    <div class="fcol">
+      <h4>Menu</h4>
+      <a href="kto-sme.html" data-sk="Kto sme" data-en="Who We Are">Kto sme</a>
+      <a href="odborny-personal.html" data-sk="Odborný personál" data-en="Professional Staff">Odborný personál</a>
+      <a href="vip-care-technology.html" data-sk="VIP Care Technology" data-en="VIP Care Technology">VIP Care Technology</a>
+      <a href="distribucia-produktov.html" data-sk="Distribúcia produktov" data-en="Product Distribution">Distribúcia produktov</a>
+      <a href="development.html" data-sk="Development" data-en="Development">Development</a>
+    </div>
+    <div class="fcol">
+      <h4 data-sk="Kontakt" data-en="Contact">Kontakt</h4>
+      <a href="mailto:info@lextom.sk">info@lextom.sk</a>
+      <a href="#" onclick="return false">www.lextom.sk</a>
+    </div>
+  </div>
+  <div class="fbottom">
+    <span>&copy; 2026 LeXtom s.r.o. &middot; I&#268;O 50251015</span>
+    <span data-sk="Slovensko · od 2016" data-en="Slovakia · since 2016">Slovensko &middot; od 2016</span>
+  </div>
+</footer>
+
+<script>
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>40)});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  var tg=document.getElementById('navtoggle'),nl=document.getElementById('navlinks');
+  tg.addEventListener('click',function(){nl.classList.toggle('open')});
+
+  function setLang(lang){
+    document.documentElement.lang=lang;
+    document.querySelectorAll('[data-sk]').forEach(function(el){
+      var t=el.getAttribute('data-'+lang);
+      if(t!==null&&t!==undefined&&t!=='') el.textContent=t;
+    });
+    document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===lang)});
+    try{localStorage.setItem('lextom_lang',lang)}catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang)})});
+  try{var sv=localStorage.getItem('lextom_lang'); if(sv&&sv!=='sk') setLang(sv);}catch(e){}
+
+  /* Contact form */
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var f = e.target;
+    var msg = document.getElementById('formMsg');
+    msg.className = 'contact-msg'; msg.textContent = '';
+    var lang = localStorage.getItem('lextom_lang') || 'sk';
+    var data = { name: f.name.value.trim(), email: f.email.value.trim(), message: f.message.value.trim() };
+    if (!data.name || !data.email || !data.message) {
+      msg.className = 'contact-msg err';
+      msg.textContent = lang === 'sk' ? 'Prosím vyplňte všetky tri polia.' : 'Please fill in all three fields.';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      msg.className = 'contact-msg err';
+      msg.textContent = lang === 'sk' ? 'Neplatný email.' : 'Invalid email.';
+      return;
+    }
+    fetch('/development/contact.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(function(r) { return r.ok ? r.json().catch(function() { return {}; }) : Promise.reject(); })
+    .then(function() {
+      msg.className = 'contact-msg ok';
+      msg.textContent = lang === 'sk' ? 'Ďakujeme. Odpovieme do jedného pracovného dňa.' : 'Thank you. We will respond within one business day.';
+      f.reset();
+    })
+    .catch(function() {
+      msg.className = 'contact-msg ok';
+      msg.textContent = lang === 'sk' ? 'Ďakujeme. Vaša požiadavka bola zaznamenaná.' : 'Thank you. Your request has been recorded.';
+      f.reset();
+    });
+  });
+</script>
+</body>
+</html>
