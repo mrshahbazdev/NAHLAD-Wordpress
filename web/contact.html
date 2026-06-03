@@ -1,236 +1,197 @@
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LeXtom s.r.o. — Kontakt</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VIP Care Tech — Contact</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --forest:#14201c;--forest-deep:#0e1714;--cream:#f4f1ea;--cream-soft:#eae5d9;
-    --brass:#d4b483;--brass-deep:#b8975f;--sage:#b8c4bc;--ink:#44443f;--muted:#5f5e5a;
-    --red:#e2231a;--line:rgba(212,180,131,0.18);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:'Manrope',sans-serif;background:var(--forest-deep);color:var(--cream);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  ::selection{background:var(--brass);color:var(--forest)}
-  .watermark{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url('images/mapa-watermark.webp');background-repeat:no-repeat;background-position:center center;background-size:min(60vw,560px);opacity:0.06;filter:grayscale(1)}
+:root{
+  --navy:#0D1E35;--navy-2:#16304F;--navy-soft:#1A3658;
+  --red:#C0292B;--red-2:#E8393C;
+  --gold:#B8963E;--gold-2:#D4AF55;
+  --silver:#9AAFC0;--light:#F3F6F9;--cream:#ECE5D5;
+  --white:#FFFFFF;--dark:#060F1A;
+  --text:#1A2B3C;--muted:#5A7089;--border:#D8E3EC;
+  --f-display:'Cormorant Garamond',Georgia,serif;
+  --f-body:'Outfit',system-ui,sans-serif;
+  --f-mono:'Bebas Neue','Outfit',sans-serif;
+  --pad-x:clamp(1.25rem,5vw,4.5rem);
+  --maxw:1360px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--f-body);background:var(--white);color:var(--text);line-height:1.7;font-weight:300;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+input,textarea,select{font-family:inherit;}
+.eyebrow{display:inline-flex;align-items:center;gap:.85rem;font-family:var(--f-body);font-weight:500;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--red);}
+.eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--red);}
+.eyebrow--light{color:var(--gold-2);}
+.eyebrow--light::before{background:var(--gold);}
 
-  /* NAV */
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;transition:all .5s ease;border-bottom:0.5px solid transparent}
-  nav.scrolled{background:rgba(14,23,20,0.9);backdrop-filter:blur(16px);border-bottom:0.5px solid var(--line);padding:12px 5vw}
-  .nav-logo img{height:40px;background:var(--cream);padding:6px 10px;border-radius:3px;display:block}
-  .nav-links{display:flex;gap:26px;align-items:center;font-size:13px;letter-spacing:.3px;color:var(--sage)}
-  .nav-links a{color:inherit;text-decoration:none;transition:color .3s;position:relative;white-space:nowrap}
-  .nav-links a:hover{color:var(--cream)}
-  .nav-links a.current{color:var(--cream)}
-  .nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--brass);transition:width .3s}
-  .nav-links a:hover::after{width:100%}
-  .nav-toggle{display:none;background:none;border:none;color:var(--cream);font-size:26px;cursor:pointer}
-  .lang{display:flex;gap:6px;border-left:0.5px solid var(--line);padding-left:16px;margin-left:10px}
-  .lang button{background:none;border:0.5px solid transparent;color:var(--muted);font-size:12px;font-weight:500;letter-spacing:1px;padding:5px 10px;border-radius:2px;cursor:pointer;transition:all .3s}
-  .lang button.active{color:var(--brass);border-color:var(--brass)}
-  .lang button:hover{color:var(--cream)}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem var(--pad-x);display:flex;justify-content:space-between;align-items:center;background:rgba(13,30,53,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.05);}
+.nav__brand{display:flex;align-items:center;gap:.85rem;color:#fff;text-decoration:none;}
+.nav__brand-logo{background:#fff;padding:6px;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.25);flex-shrink:0;}
+.nav__brand-logo img{height:36px;width:36px;object-fit:contain;}
+.nav__brand-text{font-family:var(--f-mono);font-size:1rem;letter-spacing:.35em;}
+.nav__brand-text small{display:block;font-family:var(--f-body);font-size:.55rem;letter-spacing:.4em;color:var(--gold-2);margin-top:2px;font-weight:400;}
+.nav__lang{display:flex;gap:.4rem;align-items:center;font-family:var(--f-body);font-size:.7rem;letter-spacing:.2em;color:rgba(255,255,255,.55);}
+.nav__lang button{padding:.3rem .55rem;color:rgba(255,255,255,.55);transition:color .2s;}
+.nav__lang button.active{color:var(--gold-2);}
+.nav__lang button:hover{color:#fff;}
 
-  /* SHARED */
-  section{position:relative;z-index:1;padding:100px 5vw}
-  .wrap-narrow{max-width:680px;margin:0 auto}
-  .sec-label{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--brass);margin-bottom:14px}
-  .sec-label::before{content:'';width:28px;height:0.5px;background:var(--brass)}
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-  .reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}
-  .reveal.in{opacity:1;transform:none}
-  .btn{font-size:14px;font-weight:500;letter-spacing:.3px;padding:15px 34px;border-radius:2px;cursor:pointer;text-decoration:none;transition:all .35s cubic-bezier(.16,1,.3,1);display:inline-flex;align-items:center;gap:10px;background:var(--brass);color:var(--forest);border:1px solid var(--brass)}
-  .btn:hover{background:var(--brass-deep);transform:translateY(-2px)}
+/* CONTACT */
+.contact{background:var(--navy);color:#fff;padding:6rem var(--pad-x);min-height:calc(100vh - 80px);display:flex;align-items:center;margin-top:80px;}
+.contact__inner{max-width:680px;margin:0 auto;width:100%;}
+.contact__head{text-align:center;margin-bottom:3rem;}
+.contact__h{font-family:var(--f-display);font-weight:500;font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.1;color:#fff;margin:1rem 0;}
+.contact__h em{font-style:italic;color:var(--gold-2);}
+.contact__sub{color:rgba(255,255,255,.6);font-size:.95rem;max-width:50ch;margin:0 auto;}
+.form{display:flex;flex-direction:column;gap:1.25rem;}
+.field{display:flex;flex-direction:column;gap:.5rem;}
+.field label{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);font-weight:500;}
+.field input,.field textarea,.field select{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.15);color:#fff;padding:1rem 1.1rem;font-size:1rem;font-weight:300;transition:border-color .25s,background .25s;border-radius:0;width:100%;}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.07);}
+.field textarea{min-height:140px;resize:vertical;}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.3);}
+.form__actions{margin-top:1rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+.form__legal{font-size:.7rem;color:rgba(255,255,255,.45);max-width:32ch;}
+.form__msg{margin-top:1rem;padding:1rem 1.2rem;font-size:.88rem;display:none;border-left:3px solid;}
+.form__msg.ok{display:block;background:rgba(184,150,62,.1);border-color:var(--gold);color:var(--gold-2);}
+.form__msg.err{display:block;background:rgba(192,41,43,.1);border-color:var(--red);color:var(--red-2);}
+.contact__direct{margin-top:3rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,.1);display:grid;grid-template-columns:1fr;gap:1.5rem;text-align:center;}
+@media(min-width:600px){.contact__direct{grid-template-columns:1fr 1fr;text-align:left;}}
+.contact__direct-label{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.4rem;}
+.contact__direct-val{font-family:var(--f-display);font-size:1.15rem;color:#fff;}
+.contact__direct-val a:hover{color:var(--gold-2);}
 
-  /* CONTACT */
-  .lextom-contact{background:var(--forest-deep);padding:120px 5vw 80px;min-height:100vh;display:flex;align-items:center}
-  .contact-inner{max-width:680px;margin:0 auto;width:100%}
-  .contact-head{text-align:center;margin-bottom:40px}
-  .contact-h{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(28px,4vw,44px);line-height:1.15;color:var(--cream);margin:14px 0}
-  .contact-h em{font-style:italic;color:var(--brass)}
-  .contact-sub{color:var(--muted);font-size:15px;max-width:50ch;margin:0 auto;line-height:1.6}
-  .contact-form{display:flex;flex-direction:column;gap:18px}
-  .cfield{display:flex;flex-direction:column;gap:7px}
-  .cfield label{font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--brass);font-weight:600}
-  .cfield input,.cfield textarea{background:rgba(255,255,255,0.04);border:0.5px solid var(--line);color:var(--cream);padding:14px 16px;font-size:15px;font-family:'Manrope',sans-serif;font-weight:300;transition:border-color .25s,background .25s;border-radius:4px;width:100%}
-  .cfield input:focus,.cfield textarea:focus{outline:none;border-color:var(--brass);background:rgba(255,255,255,0.07)}
-  .cfield textarea{min-height:140px;resize:vertical}
-  .cfield input::placeholder,.cfield textarea::placeholder{color:rgba(244,241,234,0.25)}
-  .contact-actions{margin-top:14px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-  .contact-legal{font-size:11.5px;color:var(--muted);max-width:34ch;line-height:1.5}
-  .contact-msg{margin-top:14px;padding:14px 18px;font-size:14px;display:none;border-left:3px solid;border-radius:4px}
-  .contact-msg.ok{display:block;background:rgba(212,180,131,0.1);border-color:var(--brass);color:var(--brass)}
-  .contact-msg.err{display:block;background:rgba(226,35,26,0.1);border-color:var(--red);color:var(--red)}
-  .contact-direct{margin-top:40px;padding-top:30px;border-top:0.5px solid var(--line);display:grid;grid-template-columns:1fr;gap:20px;text-align:center}
-  @media(min-width:600px){.contact-direct{grid-template-columns:1fr 1fr;text-align:left}}
-  .contact-direct-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-  .contact-direct-val{font-family:'Fraunces',serif;font-size:18px;color:var(--cream)}
-  .contact-direct-val a:hover{color:var(--brass)}
+.btn{display:inline-flex;align-items:center;gap:.85rem;padding:1.05rem 1.85rem;font-family:var(--f-body);font-size:.74rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;transition:all .35s ease;cursor:pointer;border:none;}
+.btn--primary{background:var(--red);color:#fff;}
+.btn--primary:hover{background:var(--red-2);transform:translateY(-2px);box-shadow:0 12px 30px rgba(192,41,43,.35);}
+.btn__arrow{transition:transform .35s;display:inline-block;}
+.btn:hover .btn__arrow{transform:translateX(5px);}
 
-  /* FOOTER */
-  footer{position:relative;z-index:1;background:#0a110e;padding:54px 5vw 30px;border-top:0.5px solid var(--line)}
-  footer .fwrap{max-width:1140px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;align-items:flex-start}
-  footer .fcol .flogo{height:42px;background:var(--cream);padding:7px 11px;border-radius:3px;margin-bottom:16px;display:block}
-  footer .fcol p{font-size:13px;line-height:1.7;color:var(--muted);max-width:280px}
-  footer .fcol h4{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
-  footer .fcol a{display:block;font-size:13px;color:var(--sage);text-decoration:none;margin-bottom:10px;transition:color .3s}
-  footer .fcol a:hover{color:var(--cream)}
-  .fbottom{max-width:1140px;margin:40px auto 0;padding-top:24px;border-top:0.5px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);letter-spacing:.4px}
-
-  @keyframes rise{to{opacity:1;transform:none}}
-
-  @media(max-width:860px){
-    .nav-links{position:fixed;top:0;right:-100%;height:100vh;width:75%;max-width:320px;flex-direction:column;background:var(--forest);padding:90px 36px;gap:22px;align-items:flex-start;transition:right .4s;border-left:0.5px solid var(--line)}
-    .nav-links.open{right:0}
-    .nav-toggle{display:block;z-index:101}
-    .lang{border-left:none;padding-left:0;margin-left:0;margin-top:14px}
-  }
+/* FOOTER */
+.footer{background:var(--dark);color:rgba(255,255,255,.5);padding:2.5rem var(--pad-x);}
+.footer__inner{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;align-items:center;font-size:.75rem;letter-spacing:.05em;}
+.footer__brand{display:flex;align-items:center;gap:.75rem;color:#fff;}
+.footer__brand-logo{background:#fff;padding:4px;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;}
+.footer__brand-logo img{width:28px;height:28px;object-fit:contain;}
+.footer__brand-text{font-family:var(--f-mono);letter-spacing:.3em;font-size:.85rem;}
+.footer__legal{font-size:.7rem;color:rgba(255,255,255,.35);}
 </style>
 </head>
 <body>
 
-<div class="watermark"></div>
-
-<nav id="nav">
-  <div class="nav-logo"><img src="images/lextom-logo.png" alt="LeXtom s.r.o."></div>
-  <div class="nav-links" id="navlinks">
-    <a href="kto-sme.html" data-sk="Kto sme" data-en="Who We Are">Kto sme</a>
-    <a href="odborny-personal.html" data-sk="Odborný personál" data-en="Professional Staff">Odborný personál</a>
-    <a href="vip-care-technology.html" data-sk="VIP Care Technology" data-en="VIP Care Technology">VIP Care Technology</a>
-    <a href="distribucia-produktov.html" data-sk="Distribúcia produktov" data-en="Product Distribution">Distribúcia produktov</a>
-    <a href="development.html" data-sk="Development" data-en="Development">Development</a>
-    <a href="contact.html" class="current" data-sk="Kontakt" data-en="Contact">Kontakt</a>
-    <div class="lang"><button class="active" data-lang="sk">SK</button><button data-lang="en">EN</button></div>
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav__brand">
+    <span class="nav__brand-logo"><img src="images/logo.png" alt="LeXtom s.r.o." /></span>
+    <span class="nav__brand-text">VIP CARE TECH<small data-sk="OD LEXTOM S.R.O." data-en="BY LEXTOM S.R.O.">BY LEXTOM S.R.O.</small></span>
+  </a>
+  <div class="nav__lang">
+    <button data-lang="sk" id="navLangSk">SK</button>
+    <span style="opacity:.3">&middot;</span>
+    <button data-lang="en" id="navLangEn" class="active">EN</button>
   </div>
-  <button class="nav-toggle" id="navtoggle" aria-label="Menu">&#9776;</button>
 </nav>
 
 <!-- CONTACT -->
-<section class="lextom-contact">
-  <div class="contact-inner">
-    <div class="contact-head">
-      <div class="sec-label reveal" style="justify-content:center" data-sk="Kontakt" data-en="Contact">Kontakt</div>
-      <h2 class="contact-h reveal" data-sk="Začnite konverzáciu." data-en="Begin the conversation.">Začnite <em>konverzáciu.</em></h2>
-      <p class="contact-sub reveal d1" data-sk="Tri polia. Bez zbytočností. Odpovieme do jedného pracovného dňa s ďalšími krokmi." data-en="Three fields. No friction. We respond within one business day with the next steps.">Tri polia. Bez zbytočností. Odpovieme do jedného pracovného dňa s ďalšími krokmi.</p>
+<section class="contact" id="contact">
+  <div class="contact__inner">
+    <div class="contact__head">
+      <div class="eyebrow eyebrow--light" style="justify-content:center" data-sk="KONTAKT" data-en="CONTACT">CONTACT</div>
+      <h2 class="contact__h"><span data-sk="Začnite" data-en="Begin the">Begin the</span> <em data-sk="konverzáciu." data-en="conversation.">conversation.</em></h2>
+      <p class="contact__sub" data-sk="Tri polia. Bez zbytočností. Odpovieme do jedného pracovného dňa s ďalšími krokmi." data-en="Three fields. No friction. We respond within one business day with the next steps.">Three fields. No friction. We respond within one business day with the next steps.</p>
     </div>
-    <form class="contact-form reveal d2" id="contactForm" novalidate>
-      <div class="cfield">
-        <label for="cName" data-sk="Meno" data-en="Name">Meno</label>
-        <input id="cName" name="name" type="text" required autocomplete="name" />
+    <form class="form" id="contactForm" novalidate>
+      <div class="field"><label for="cName" data-sk="Meno" data-en="Name">Name</label><input id="cName" name="name" type="text" required autocomplete="name" /></div>
+      <div class="field"><label for="cEmail" data-sk="Email" data-en="Email">Email</label><input id="cEmail" name="email" type="email" required autocomplete="email" /></div>
+      <div class="field"><label for="cMsg" data-sk="Správa" data-en="Message">Message</label><textarea id="cMsg" name="message" required></textarea></div>
+      <div class="form__actions">
+        <p class="form__legal" data-sk="Odoslaním súhlasíte s prijímaním dôverných investičných materiálov. Vaše kontaktné údaje nezdieľame s tretími stranami." data-en="By submitting, you agree to receive confidential investment materials. We do not share contact data with third parties.">By submitting, you agree to receive confidential investment materials. We do not share contact data with third parties.</p>
+        <button type="submit" class="btn btn--primary"><span data-sk="Odoslať požiadavku" data-en="Send request">Send request</span> <span class="btn__arrow">&rarr;</span></button>
       </div>
-      <div class="cfield">
-        <label for="cEmail" data-sk="Email" data-en="Email">Email</label>
-        <input id="cEmail" name="email" type="email" required autocomplete="email" />
-      </div>
-      <div class="cfield">
-        <label for="cMsg" data-sk="Správa" data-en="Message">Správa</label>
-        <textarea id="cMsg" name="message" required></textarea>
-      </div>
-      <div class="contact-actions">
-        <p class="contact-legal" data-sk="Odoslaním súhlasíte s prijímaním dôverných materiálov. Vaše kontaktné údaje nezdieľame s tretími stranami." data-en="By submitting, you agree to receive confidential materials. We do not share contact data with third parties.">Odoslaním súhlasíte s prijímaním dôverných materiálov. Vaše kontaktné údaje nezdieľame s tretími stranami.</p>
-        <button type="submit" class="btn" data-sk="Odoslať požiadavku →" data-en="Send request →">Odoslať požiadavku →</button>
-      </div>
-      <div class="contact-msg" id="formMsg"></div>
+      <div class="form__msg" id="formMsg"></div>
     </form>
-    <div class="contact-direct reveal d3">
-      <div>
-        <div class="contact-direct-label" data-sk="Priamy kontakt" data-en="Direct contact">Priamy kontakt</div>
-        <div class="contact-direct-val"><a href="mailto:info@lextom.sk">info@lextom.sk</a></div>
-      </div>
-      <div>
-        <div class="contact-direct-label" data-sk="Tento projekt" data-en="This project">Tento projekt</div>
-        <div class="contact-direct-val"><a href="/development">www.lextom.sk/development</a></div>
-      </div>
+    <div class="contact__direct">
+      <div><div class="contact__direct-label" data-sk="Priamy kontakt" data-en="Direct contact">Direct contact</div><div class="contact__direct-val"><a href="mailto:info@lextom.sk">info@lextom.sk</a></div></div>
+      <div><div class="contact__direct-label" data-sk="Tento projekt" data-en="This project">This project</div><div class="contact__direct-val"><a href="/development">www.lextom.sk/development</a></div></div>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="fwrap">
-    <div class="fcol">
-      <img class="flogo" src="images/lextom-logo.png" alt="LeXtom s.r.o.">
-      <p data-sk="Slovenská spoločnosť prepájajúca sociálny dopad, inovácie a praktické riešenia do funkčných celkov." data-en="A Slovak company connecting social impact, innovation and practical solutions into functional units.">Slovenská spoločnosť prepájajúca sociálny dopad, inovácie a praktické riešenia do funkčných celkov.</p>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="footer__brand-logo"><img src="images/logo.png" alt="LeXtom s.r.o." /></span>
+      <span class="footer__brand-text">VIP CARE TECH</span>
     </div>
-    <div class="fcol">
-      <h4>Menu</h4>
-      <a href="kto-sme.html" data-sk="Kto sme" data-en="Who We Are">Kto sme</a>
-      <a href="odborny-personal.html" data-sk="Odborný personál" data-en="Professional Staff">Odborný personál</a>
-      <a href="vip-care-technology.html" data-sk="VIP Care Technology" data-en="VIP Care Technology">VIP Care Technology</a>
-      <a href="distribucia-produktov.html" data-sk="Distribúcia produktov" data-en="Product Distribution">Distribúcia produktov</a>
-      <a href="development.html" data-sk="Development" data-en="Development">Development</a>
-      <a href="contact.html" data-sk="Kontakt" data-en="Contact">Kontakt</a>
-    </div>
-    <div class="fcol">
-      <h4 data-sk="Kontakt" data-en="Contact">Kontakt</h4>
-      <a href="mailto:info@lextom.sk">info@lextom.sk</a>
-      <a href="#" onclick="return false">www.lextom.sk</a>
-    </div>
-  </div>
-  <div class="fbottom">
-    <span>&copy; 2026 LeXtom s.r.o. &middot; I&#268;O 50251015</span>
-    <span data-sk="Slovensko · od 2016" data-en="Slovakia · since 2016">Slovensko &middot; od 2016</span>
+    <div class="footer__legal">&copy; 2026 LeXtom s.r.o. &middot; Liptovsk&yacute; Mikul&aacute;&scaron;, Slovak Republic &middot; <span data-sk="Investorsk&yacute; n&aacute;hľad &middot; D&ocirc;vern&eacute;" data-en="Investor preview &middot; Confidential">Investor preview &middot; Confidential</span></div>
   </div>
 </footer>
 
 <script>
-  var nav=document.getElementById('nav');
-  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>40)});
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.12});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-  var tg=document.getElementById('navtoggle'),nl=document.getElementById('navlinks');
-  tg.addEventListener('click',function(){nl.classList.toggle('open')});
+var currentLang = 'en';
 
-  function setLang(lang){
-    document.documentElement.lang=lang;
-    document.querySelectorAll('[data-sk]').forEach(function(el){
-      var t=el.getAttribute('data-'+lang);
-      if(t!==null&&t!==undefined&&t!=='') el.textContent=t;
-    });
-    document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active',b.dataset.lang===lang)});
-    try{localStorage.setItem('lextom_lang',lang)}catch(e){}
-  }
-  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang)})});
-  try{var sv=localStorage.getItem('lextom_lang'); if(sv&&sv!=='sk') setLang(sv);}catch(e){}
-
-  /* Contact form */
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var f = e.target;
-    var msg = document.getElementById('formMsg');
-    msg.className = 'contact-msg'; msg.textContent = '';
-    var lang = localStorage.getItem('lextom_lang') || 'sk';
-    var data = { name: f.name.value.trim(), email: f.email.value.trim(), message: f.message.value.trim() };
-    if (!data.name || !data.email || !data.message) {
-      msg.className = 'contact-msg err';
-      msg.textContent = lang === 'sk' ? 'Prosím vyplňte všetky tri polia.' : 'Please fill in all three fields.';
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-      msg.className = 'contact-msg err';
-      msg.textContent = lang === 'sk' ? 'Neplatný email.' : 'Invalid email.';
-      return;
-    }
-    fetch('/development/contact.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(function(r) { return r.ok ? r.json().catch(function() { return {}; }) : Promise.reject(); })
-    .then(function() {
-      msg.className = 'contact-msg ok';
-      msg.textContent = lang === 'sk' ? 'Ďakujeme. Odpovieme do jedného pracovného dňa.' : 'Thank you. We will respond within one business day.';
-      f.reset();
-    })
-    .catch(function() {
-      msg.className = 'contact-msg ok';
-      msg.textContent = lang === 'sk' ? 'Ďakujeme. Vaša požiadavka bola zaznamenaná.' : 'Thank you. Your request has been recorded.';
-      f.reset();
-    });
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-sk]').forEach(function(el) {
+    var t = el.getAttribute('data-' + lang);
+    if (t !== null && t !== undefined && t !== '') el.textContent = t;
   });
+  document.querySelectorAll('.nav__lang button').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  try { localStorage.setItem('lextom_lang', lang); } catch(e) {}
+}
+
+document.querySelectorAll('.nav__lang button').forEach(function(b) {
+  b.addEventListener('click', function() { setLang(b.dataset.lang); });
+});
+try { var sv = localStorage.getItem('lextom_lang'); if (sv) setLang(sv); } catch(e) {}
+
+/* Contact form */
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var f = e.target;
+  var msg = document.getElementById('formMsg');
+  msg.className = 'form__msg'; msg.textContent = '';
+  var data = { name: f.name.value.trim(), email: f.email.value.trim(), message: f.message.value.trim() };
+  if (!data.name || !data.email || !data.message) {
+    msg.className = 'form__msg err';
+    msg.textContent = currentLang === 'sk' ? 'Prosím vyplňte všetky tri polia.' : 'Please fill in all three fields.';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    msg.className = 'form__msg err';
+    msg.textContent = currentLang === 'sk' ? 'Neplatný email.' : 'Invalid email.';
+    return;
+  }
+  fetch('/development/contact.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(function(r) { return r.ok ? r.json().catch(function() { return {}; }) : Promise.reject(); })
+  .then(function() {
+    msg.className = 'form__msg ok';
+    msg.textContent = currentLang === 'sk' ? 'Ďakujeme. Odpovieme do jedného pracovného dňa.' : 'Thank you. We will respond within one business day.';
+    f.reset();
+  })
+  .catch(function() {
+    msg.className = 'form__msg ok';
+    msg.textContent = currentLang === 'sk' ? 'Ďakujeme. Vaša požiadavka bola zaznamenaná.' : 'Thank you. Your request has been recorded.';
+    f.reset();
+  });
+});
 </script>
 </body>
 </html>
