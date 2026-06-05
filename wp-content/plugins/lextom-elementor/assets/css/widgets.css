@@ -1,0 +1,1002 @@
+/**
+ * LeXtom Elementor Widgets — Styles
+ * Matches the original HTML design system.
+ */
+
+/* ============ HERO WIDGET ============ */
+.lextom-hero {
+  position: relative;
+  min-height: 62vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 5vw 70px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.lextom-hero--tall { min-height: 78vh; }
+.lextom-hero--full { min-height: 100vh; }
+
+.lextom-hero--left {
+  text-align: left;
+  justify-content: flex-start;
+  padding: 150px 5vw 80px;
+}
+
+.lextom-hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.lextom-hero .hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lextom-hero .hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14,23,20,0.82) 0%, rgba(14,23,20,0.68) 45%, rgba(14,23,20,0.96) 100%);
+}
+
+.lextom-hero--left .hero-bg::after {
+  background: linear-gradient(100deg, rgba(14,23,20,0.96) 0%, rgba(14,23,20,0.82) 45%, rgba(14,23,20,0.5) 100%);
+}
+
+.lextom-hero .hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+}
+
+.lextom-hero--left .hero-inner { max-width: 760px; }
+
+.lextom-hero .eyebrow .dot { opacity: 0.5; margin: 0 8px; }
+
+.lextom-hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(30px, 4.6vw, 52px);
+  line-height: 1.12;
+  letter-spacing: -0.5px;
+  color: #fff;
+  margin-bottom: 22px;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+}
+
+.lextom-hero h1 .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: rise 1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+.lextom-hero h1 .accent { font-style: italic; color: var(--brass); }
+
+.lextom-hero .hero-sub {
+  font-size: clamp(14px, 1.5vw, 17px);
+  line-height: 1.7;
+  color: #e8ece9;
+  max-width: 540px;
+  margin: 0 auto 30px;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.3);
+}
+
+.lextom-hero--left .hero-sub { margin: 0 0 28px; max-width: 600px; }
+
+.lextom-hero .hero-tag {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(16px, 2vw, 22px);
+  color: var(--brass);
+  margin-bottom: 26px;
+}
+
+.lextom-hero .hero-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 620px;
+}
+
+.lextom-hero .hero-list span {
+  font-size: 12.5px;
+  color: var(--cream);
+  background: rgba(212,180,131,0.1);
+  border: 0.5px solid var(--line);
+  padding: 7px 14px;
+  border-radius: 30px;
+}
+
+.lextom-hero .hero-scroll a {
+  color: var(--brass);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.lextom-hero .hero-scroll .ln {
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(var(--brass), transparent);
+  animation: scrollLine 2s infinite;
+}
+
+/* ============ VIP CARE HERO (ecosystem) ============ */
+.lextom-hero--ecosystem {
+  background: radial-gradient(ellipse at 50% 40%, #0e2230 0%, #0c1a1f 50%, var(--forest-deep) 100%);
+  min-height: 100vh;
+}
+
+.lextom-hero--ecosystem::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(95,184,201,0.04) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(95,184,201,0.04) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(ellipse at center, #000 20%, transparent 70%);
+  z-index: 1;
+}
+
+.hero-crestbg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(86vw, 720px);
+  height: min(86vw, 720px);
+  z-index: 0;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.hero-crestbg img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 80px rgba(212,160,80,0.4));
+}
+
+.hero-crestbg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 35%, rgba(12,26,31,0.75) 68%, var(--forest-deep) 100%);
+}
+
+.ecosystem-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  border: 0.5px solid rgba(95,184,201,0.3);
+  padding: 8px 18px;
+  border-radius: 30px;
+  margin-bottom: 30px;
+  background: rgba(95,184,201,0.05);
+}
+
+.ecosystem-badge .pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 0 0 rgba(95,184,201,0.6);
+  animation: pulse 2s infinite;
+}
+
+.lextom-hero--ecosystem h1 {
+  font-size: clamp(36px, 6vw, 76px);
+  line-height: 1.05;
+  letter-spacing: -1px;
+}
+
+.lextom-hero--ecosystem h1 .accent {
+  background: linear-gradient(120deg, var(--brass), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============ COMPANY SECTION ============ */
+.lextom-company {
+  background: var(--forest);
+}
+
+.lextom-company .wrap { max-width: 860px; margin: 0 auto; }
+
+.lextom-company h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(26px, 3.4vw, 42px);
+  line-height: 1.2;
+  color: var(--cream);
+  letter-spacing: -0.3px;
+  margin-bottom: 30px;
+}
+
+.lextom-company p {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.85;
+  color: var(--sage);
+  margin-bottom: 22px;
+}
+
+.lextom-company p strong { color: var(--cream); font-weight: 500; }
+
+/* ============ MANAGER SECTION ============ */
+.lextom-manager {
+  background: var(--forest-deep);
+}
+
+.lextom-manager .wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.lextom-manager .photo { position: relative; }
+
+.lextom-manager .photo img {
+  width: 100%;
+  border-radius: 6px;
+  display: block;
+  filter: saturate(0.92);
+}
+
+.lextom-manager .photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  transform: translate(14px, 14px);
+  z-index: -1;
+}
+
+.lextom-manager .badge {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  background: rgba(14,23,20,0.86);
+  backdrop-filter: blur(8px);
+  padding: 14px 20px;
+  border-radius: 4px;
+  border-left: 2px solid var(--brass);
+}
+
+.lextom-manager .badge .nm {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  color: var(--cream);
+}
+
+.lextom-manager .badge .rl {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-top: 4px;
+}
+
+.lextom-manager h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.2;
+  color: var(--cream);
+  margin-bottom: 26px;
+  letter-spacing: -0.3px;
+}
+
+.lextom-manager p {
+  font-size: clamp(14px, 1.35vw, 16px);
+  line-height: 1.85;
+  color: var(--sage);
+  margin-bottom: 18px;
+}
+
+.lextom-manager p strong { color: var(--cream); font-weight: 500; }
+
+@media (max-width: 860px) {
+  .lextom-manager .wrap {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .lextom-manager .photo {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+}
+
+/* ============ VISION SECTION ============ */
+.lextom-vision {
+  background: var(--forest);
+  position: relative;
+  overflow: hidden;
+}
+
+.lextom-vision::before {
+  content: '';
+  position: absolute;
+  top: -15%;
+  right: -8%;
+  width: 55%;
+  height: 130%;
+  background: radial-gradient(circle, rgba(212,180,131,0.06), transparent 60%);
+}
+
+.lextom-vision .wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.lextom-vision .bigq {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(24px, 3.6vw, 42px);
+  line-height: 1.3;
+  color: var(--cream);
+  letter-spacing: -0.4px;
+  margin-bottom: 36px;
+}
+
+.lextom-vision .bigq em { font-style: italic; color: var(--brass); }
+
+.lextom-vision p {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.85;
+  color: var(--sage);
+  margin-bottom: 22px;
+}
+
+.lextom-vision p strong { color: var(--cream); font-weight: 500; }
+
+/* ============ INFOGRAPHIC ============ */
+.lextom-infographic {
+  background: var(--forest-deep);
+  text-align: center;
+}
+
+.lextom-infographic .wrap { max-width: 1100px; margin: 0 auto; }
+
+.lextom-infographic .frame {
+  border: 0.5px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0a110e;
+}
+
+.lextom-infographic img { width: 100%; display: block; }
+
+.lextom-infographic .cap {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 20px;
+  letter-spacing: 0.4px;
+}
+
+/* ============ WHY US ============ */
+.lextom-why-us {
+  background: var(--forest);
+}
+
+.lextom-why-us p {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.8;
+  color: var(--sage);
+  margin-bottom: 22px;
+}
+
+.lextom-why-us p strong { color: var(--cream); font-weight: 500; }
+
+.lextom-why-us .steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 0.5px solid var(--line);
+  margin-top: 36px;
+}
+
+.lextom-why-us .step {
+  background: var(--forest);
+  padding: 30px 26px;
+}
+
+.lextom-why-us .step .n {
+  font-family: 'Fraunces', serif;
+  font-size: 30px;
+  color: var(--brass);
+  opacity: 0.5;
+  margin-bottom: 12px;
+}
+
+.lextom-why-us .step p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--cream);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .lextom-why-us .steps { grid-template-columns: 1fr; }
+}
+
+/* ============ PROCESS STEPS ============ */
+.lextom-process {
+  background: var(--forest-deep);
+}
+
+.lextom-process .proc {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 30px;
+  padding: 34px 0;
+  border-bottom: 0.5px solid var(--line);
+}
+
+.lextom-process .proc:last-child { border-bottom: none; }
+
+.lextom-process .proc .pn {
+  font-family: 'Fraunces', serif;
+  font-size: 46px;
+  color: var(--brass);
+  opacity: 0.35;
+  line-height: 1;
+}
+
+.lextom-process .proc h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 21px;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+
+.lextom-process .proc .intro {
+  font-size: 14.5px;
+  color: var(--sage);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.lextom-process .proc .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.lextom-process .proc .tags span {
+  font-size: 12.5px;
+  color: var(--sage);
+  background: rgba(212,180,131,0.07);
+  border: 0.5px solid var(--line);
+  padding: 6px 13px;
+  border-radius: 30px;
+}
+
+@media (max-width: 768px) {
+  .lextom-process .proc {
+    grid-template-columns: 60px 1fr;
+    gap: 20px;
+  }
+  .lextom-process .proc .pn { font-size: 32px; }
+}
+
+/* ============ BENEFITS GRID ============ */
+.lextom-benefits {
+  background: var(--forest-deep);
+}
+
+.lextom-benefits .ben-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.lextom-benefits .ben {
+  background: var(--forest);
+  border: 0.5px solid var(--line);
+  border-radius: 6px;
+  padding: 30px 26px;
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.lextom-benefits .ben:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212,180,131,0.4);
+  background: #1a2a24;
+}
+
+.lextom-benefits .ben .bico {
+  font-size: 24px;
+  color: var(--brass);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.lextom-benefits .ben h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 19px;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+
+.lextom-benefits .ben p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ============ SPLIT SECTION ============ */
+.lextom-split {
+  background: var(--forest);
+}
+
+.lextom-split .wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.lextom-split .ph {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 0.5px solid var(--line);
+}
+
+.lextom-split .ph img { width: 100%; display: block; }
+
+.lextom-split p {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.8;
+  color: var(--sage);
+  margin-bottom: 20px;
+}
+
+.lextom-split p strong { color: var(--cream); font-weight: 500; }
+
+.lextom-split ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.lextom-split ul li {
+  font-size: 15px;
+  color: var(--sage);
+  padding: 10px 0 10px 28px;
+  position: relative;
+  border-bottom: 0.5px solid rgba(212,180,131,0.08);
+}
+
+.lextom-split ul li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: var(--brass);
+}
+
+@media (max-width: 860px) {
+  .lextom-split .wrap {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+/* ============ STRATEGIC QUOTE ============ */
+.lextom-quote {
+  background: var(--forest-deep);
+  text-align: center;
+}
+
+.lextom-quote .mark {
+  font-size: 60px;
+  font-family: 'Fraunces', serif;
+  color: var(--brass);
+  opacity: 0.3;
+  line-height: 0.5;
+  margin-bottom: 10px;
+}
+
+.lextom-quote .pre {
+  font-size: 14px;
+  color: var(--sage);
+  margin-bottom: 26px;
+  line-height: 1.7;
+}
+
+.lextom-quote .quote-text {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(22px, 3.2vw, 38px);
+  line-height: 1.35;
+  color: var(--cream);
+  letter-spacing: -0.3px;
+}
+
+.lextom-quote .quote-text em { font-style: italic; color: var(--brass); }
+
+/* ============ CTA SECTION ============ */
+.lextom-cta {
+  background: var(--forest);
+  text-align: center;
+}
+
+.lextom-cta h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(24px, 3vw, 38px);
+  color: var(--cream);
+  margin-bottom: 18px;
+}
+
+.lextom-cta p {
+  font-size: 15px;
+  color: var(--sage);
+  margin-bottom: 30px;
+}
+
+/* ============ PRODUCT CATALOG ============ */
+.lextom-catalog {
+  background: var(--forest-deep);
+}
+
+.lextom-catalog .intro p {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.85;
+  color: var(--sage);
+  max-width: 780px;
+  margin-bottom: 22px;
+}
+
+.lextom-catalog .intro p strong { color: var(--cream); font-weight: 500; }
+
+.lextom-catalog .modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.lextom-catalog .mode {
+  background: var(--forest);
+  border: 0.5px solid var(--line);
+  border-radius: 8px;
+  padding: 24px 22px;
+}
+
+.lextom-catalog .mode .mi {
+  font-size: 20px;
+  color: var(--brass);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.lextom-catalog .mode p {
+  font-size: 14px;
+  color: var(--sage);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.lextom-catalog .pgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.lextom-catalog .pcard {
+  display: block;
+  background: var(--forest);
+  border: 0.5px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.lextom-catalog .pcard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212,180,131,0.4);
+  box-shadow: 0 20px 60px -30px rgba(0,0,0,0.6);
+}
+
+.lextom-catalog .pcard .pimg {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+
+.lextom-catalog .pcard .pimg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lextom-catalog .pcard .pbody { padding: 22px 24px; }
+
+.lextom-catalog .pcard .pbody h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+
+.lextom-catalog .pcard .pbody p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+
+.lextom-catalog .pcard.coming-soon {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.lextom-catalog .pcard.coming-soon .pimg {
+  background: var(--forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .lextom-catalog .modes { grid-template-columns: 1fr; }
+}
+
+/* ============ PRODUCT DETAIL ============ */
+.lextom-product {
+  position: relative;
+  z-index: 1;
+}
+
+.lextom-product .breadcrumb {
+  padding: 120px 5vw 0;
+  max-width: 1240px;
+  margin: 0 auto;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.lextom-product .breadcrumb a {
+  color: var(--sage);
+  text-decoration: none;
+}
+
+.lextom-product .ptop {
+  padding: 30px 5vw 70px;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+}
+
+.lextom-product .gallery .main {
+  aspect-ratio: 4/3;
+  border: 0.5px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #1a2a24, #0e1714);
+  margin-bottom: 14px;
+}
+
+.lextom-product .gallery .main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lextom-product .gallery .thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.lextom-product .gallery .thumbs .t {
+  aspect-ratio: 1;
+  border: 0.5px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all 0.3s;
+  background: #1a2a24;
+}
+
+.lextom-product .gallery .thumbs .t img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lextom-product .gallery .thumbs .t.active,
+.lextom-product .gallery .thumbs .t:hover {
+  opacity: 1;
+  border-color: var(--brass);
+}
+
+.lextom-product .pinfo .pcat {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 14px;
+}
+
+.lextom-product .pinfo h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.15;
+  color: #fff;
+  letter-spacing: -0.5px;
+  margin-bottom: 18px;
+  text-shadow: none;
+}
+
+.lextom-product .pinfo .tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(16px, 1.9vw, 21px);
+  color: var(--brass);
+  margin-bottom: 24px;
+}
+
+.lextom-product .pinfo .pdesc {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--sage);
+  margin-bottom: 28px;
+}
+
+.lextom-product .quickspecs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 0.5px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.lextom-product .quickspecs .qs {
+  background: var(--forest);
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.lextom-product .quickspecs .qs .v {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  color: var(--brass);
+  line-height: 1;
+}
+
+.lextom-product .quickspecs .qs .l {
+  font-size: 11.5px;
+  color: var(--sage);
+  margin-top: 8px;
+  letter-spacing: 0.3px;
+}
+
+.lextom-product .pcta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 860px) {
+  .lextom-product .ptop {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+/* ============ DEVELOPMENT HUB ============ */
+.lextom-devhub .intro {
+  background: var(--forest);
+}
+
+.lextom-devhub .intro p {
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.85;
+  color: var(--sage);
+  max-width: 780px;
+  margin-bottom: 22px;
+}
+
+.lextom-devhub .intro p strong { color: var(--cream); font-weight: 500; }
+
+.lextom-devhub .project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.lextom-devhub .project-card {
+  background: var(--forest);
+  border: 0.5px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.lextom-devhub .project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212,180,131,0.4);
+  box-shadow: 0 20px 60px -30px rgba(0,0,0,0.6);
+}
+
+.lextom-devhub .project-card .card-body { padding: 28px 30px; }
+
+.lextom-devhub .project-card h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+
+.lextom-devhub .project-card p {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--sage);
+}
+
+/* ============ GRAPHIC (language-switchable images) ============ */
+.lextom-graphic {
+  background: var(--forest);
+}
+
+.lextom-graphic .frame {
+  border: 0.5px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0a110e;
+  box-shadow: 0 30px 80px -40px rgba(0,0,0,0.7);
+}
+
+.lextom-graphic img { width: 100%; display: block; }
+.lextom-graphic .langimg { display: none; }
+.lextom-graphic .langimg.show { display: block; }
+
+.lextom-graphic .hint {
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 18px;
+  letter-spacing: 0.3px;
+}

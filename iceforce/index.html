@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="sk" data-lang="sk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<meta name="referrer" content="no-referrer"/>
+<title>ICE FORCE — Next Generation Soldiers | Lextom Development</title>
+<meta name="description" content="ICE FORCE — Next Generation Soldiers. Investičná príležitosť: prvé environmentálne simulačné centrum ľudskej výkonnosti pre špeciálne sily."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Spectral:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="icon" href="assets/img/lextom_logo.png">
+</head>
+<body>
+
+<!-- ================= GATE ================= -->
+<div id="gate">
+  <div class="gate-snow">❄</div>
+  <img class="gate-logo" src="assets/img/lextom_logo.png" alt="Lextom"/>
+  <h1>ICE FORCE</h1>
+  <div class="sub">NEXT GENERATION SOLDIERS</div>
+  <div class="gate-box">
+    <p data-t="gate_p">Toto je dôverná investorská zóna. Pre vstup zadajte prístupový kód.</p>
+    <input id="pw" type="password" autocomplete="off" data-ph="gate_ph" placeholder="Prístupový kód"/>
+    <button class="gate-btn" onclick="tryGate()" data-t="gate_btn">Vstúpiť</button>
+    <div class="gate-err" id="gateErr"></div>
+  </div>
+  <div class="gate-langs">
+    <button onclick="setLang('sk')" class="on" data-l="sk">SK</button>
+    <button onclick="setLang('en')" data-l="en">EN</button>
+  </div>
+</div>
+
+<!-- ================= SITE ================= -->
+<div id="site">
+
+<nav>
+  <div class="wrap">
+    <div class="nav-brand">
+      <img src="assets/img/lextom_logo.png" alt="Lextom"/>
+      <div class="nm">ICE FORCE<small>NEXT GENERATION SOLDIERS</small></div>
+    </div>
+    <div class="nav-links">
+      <a href="/" data-t="nav_home" style="color:#5fb8c9; font-weight:600;">← Späť na web</a>
+      <a href="#concept" data-t="nav_concept">Koncept</a>
+      <a href="#hpp" data-t="nav_hpp">Human Performance</a>
+      <a href="#modules" data-t="nav_modules">Moduly</a>
+      <a href="#investor" data-t="nav_investor">Investícia</a>
+      <a href="#exit" data-t="nav_exit">Exit</a>
+      <a href="#deck" data-t="nav_deck">Prezentácia</a>
+      <div class="nav-lang">
+        <button onclick="setLang('sk')" data-l="sk" class="on">SK</button>
+        <button onclick="setLang('en')" data-l="en">EN</button>
+      </div>
+    </div>
+    <button class="burger" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-bg" style="background-image:url(assets/img/building_wide.jpg)"></div>
+  <div class="wrap hero-in">
+    <div class="eyebrow"><span class="dot"></span><span data-t="hero_eyebrow">Lextom Development · Dôverná investičná zóna</span></div>
+    <h1><span data-t="hero_h1a">Budujeme</span> <span class="grad" data-t="hero_h1b">vojaka novej generácie</span></h1>
+    <div class="tag" data-t="hero_tag">ICE FORCE — Next Generation Soldiers</div>
+    <p class="lead" data-t="hero_lead">Prvé environmentálne simulačné centrum ľudskej výkonnosti pre špeciálne sily. Jeden priestor, ktorý plynule prechádza z +40 °C do −40 °C, simuluje výšku do 4 000 m a spája bojový výcvik, fyzickú prípravu a kognitívnu obnovu do merateľného systému.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="assets/ICE_FORCE_deck.pdf" target="_blank" rel="noopener"><span>▣</span> <span data-t="hero_cta1">Otvoriť prezentáciu</span></a>
+      <a class="btn btn-ghost" href="#investor"><span data-t="hero_cta2">Investičný program</span> →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="st"><div class="n">+40<span>/</span>−40</div><div class="l" data-t="hs1">°C riadené prostredie</div></div>
+      <div class="st"><div class="n">4 000<span> m</span></div><div class="l" data-t="hs2">simulácia výšky</div></div>
+      <div class="st"><div class="n">1,73<span>×</span></div><div class="l" data-t="hs3">MOIC · bázový scenár</div></div>
+      <div class="st"><div class="n">6 <span data-t="hs4y">rokov</span></div><div class="l" data-t="hs4">horizont k exitu</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONCEPT ================= -->
+<section class="sec" id="concept">
+  <div class="wrap">
+    <div class="sec-tag reveal" data-t="t_concept">Koncept</div>
+    <h2 class="reveal" data-t="concept_h">Prvé centrum svojho druhu na svete</h2>
+    <p class="intro reveal" data-t="concept_intro">ICE FORCE nie je telocvičňa ani klimatická komora. Je to integrované prostredie, kde sa pripravuje kompletný operátor — a kde každý tréning generuje dáta.</p>
+    <div class="grid g3">
+      <div class="card reveal"><span class="ico">🌐</span><h3 data-t="c1h">Jedno integrované prostredie</h3><p data-t="c1p">Arktída, púšť aj vysoká výška v jednom priestore.</p></div>
+      <div class="card reveal"><span class="ico">🎯</span><h3 data-t="c2h">Výcvik + výkon + dáta</h3><p data-t="c2p">Bojový dril, fyzická príprava a kognitívna obnova spojené jedným dátovým modelom.</p></div>
+      <div class="card reveal"><span class="ico">🧠</span><h3 data-t="c3h">AI prediktivita</h3><p data-t="c3p">Profil každého operátora podľa odbornosti — EOD, sniper, medik, ženista, veliteľ.</p></div>
+    </div>
+    <div class="slide-embed reveal">
+      <img class="zoomable" src="assets/img/slide_matrix_environment.jpg" data-full="assets/img/slide_matrix_environment.jpg" alt="Environmental value matrix"/>
+      <div class="cap" data-t="concept_cap">Matica environmentálnej hodnoty</div>
+    </div>
+    <div class="slide-embed reveal" style="margin-top:20px">
+      <img class="zoomable" src="assets/img/slide_scenarios.jpg" data-full="assets/img/slide_scenarios.jpg" alt="Scenarios"/>
+      <div class="cap" data-t="scenarios_cap">Spektrum scenárov</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ================= HPP ================= -->
+<section class="sec" id="hpp">
+  <div class="wrap">
+    <div class="sec-tag reveal" data-t="t_hpp">Human Performance Program</div>
+    <h2 class="reveal" data-t="hpp_h">Centrum, ktoré drží vojaka v službe dlhšie</h2>
+    <p class="intro reveal" data-t="hpp_intro">ICE FORCE je fyzickým jadrom dlhodobého programu ľudskej výkonnosti — v duchu US Army H2F a SOCOM POTFF.</p>
+    <div class="hpp">
+      <div class="hpp-list reveal">
+        <div class="hpp-item"><div class="ic">❤</div><div><h4 data-t="h1h">Životnosť operátora</h4><p data-t="h1p">Riadená regenerácia, prevencia zranení a kognitívna obnova predlžujú operačnú kariéru.</p></div></div>
+        <div class="hpp-item"><div class="ic">👥</div><div><h4 data-t="h2h">Stabilizácia personálu</h4><p data-t="h2p">Nižšia miera zranení a vyhorenia = vyššia retencia. Menej nákladných náhrad.</p></div></div>
+        <div class="hpp-item"><div class="ic">📈</div><div><h4 data-t="h3h">Dáta naprieč kariérou</h4><p data-t="h3p">Dlhodobý profil každého operátora od selekcie po veterána.</p></div></div>
+        <div class="hpp-item"><div class="ic">♾</div><div><h4 data-t="h4h">Životnosť programu 20+ rokov</h4><p data-t="h4p">HPP nie je projekt na roky, ale trvalý systém bežiaci počas celej kariéry operátora.</p></div></div>
+      </div>
+      <div class="hpp-card reveal">
+        <div class="lab" data-t="hpp_card_lab">Dôkaz zo SOCOM POTFF</div>
+        <div class="age">
+          <div><div class="big old">35</div><div class="lab" data-t="hpp_old">kedysi</div></div>
+          <div class="arr">→</div>
+          <div><div class="big new">50</div><div class="lab" data-t="hpp_new">s programom</div></div>
+        </div>
+        <p style="color:var(--mut);font-size:14px" data-t="hpp_card_p">Vek, do ktorého operátori aktívne plnia misie.</p>
+        <div class="quote" data-t="hpp_quote">„Ľudia sú dôležitejší ako technika — a ich kvalita je dôležitejšia ako ich počet.“</div>
+      </div>
+    </div>
+    <div class="slide-embed reveal" style="margin-top:46px">
+      <img class="zoomable" src="assets/img/slide_hpp.jpg" data-full="assets/img/slide_hpp.jpg" alt="HPP slide"/>
+      <div class="cap" data-t="hpp_data_cap">Dátový a AI systém — profil podľa odbornosti aj úlohy</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ================= MODULES ================= -->
+<section class="sec" id="modules">
+  <div class="wrap">
+    <div class="sec-tag reveal" data-t="t_modules">Modulárne škálovanie</div>
+    <h2 class="reveal" data-t="mod_h">Štyri konfigurácie — od jednotky po národný hub</h2>
+    <p class="intro reveal" data-t="mod_intro">ICE FORCE sa škáluje od kompaktného modulu pre jednu jednotku až po rezidenčný národný hub NATO.</p>
+    <div class="modules-grid">
+      <div class="module-card reveal"><div class="badge"></div><div class="nm" data-t="m1n">FROST</div><div class="sz" data-t="m1s">500 m²</div><div class="cap" data-t="m1c">Čata / tím</div><p data-t="m1p">Predvýcvik a aklimatizácia jednej jednotky.</p></div>
+      <div class="module-card deep reveal"><div class="badge"></div><div class="nm" data-t="m2n">BLIZZARD</div><div class="sz" data-t="m2s">1 500 m²</div><div class="cap" data-t="m2c">Rota</div><p data-t="m2p">Plný výcvik boja v chlade pre rotu.</p></div>
+      <div class="module-card amber proto reveal"><div class="badge"></div><div class="nm" data-t="m3n">GLACIER</div><div class="sz" data-t="m3s">3 000 m²</div><div class="cap" data-t="m3c">Prápor — SK prototyp</div><p data-t="m3p">Vlajkový slovenský prototyp.</p><div class="proto-tag" data-t="m3tag">SK PROTOTYP</div></div>
+      <div class="module-card green reveal"><div class="badge"></div><div class="nm" data-t="m4n">VANGUARD</div><div class="sz" data-t="m4s">6 000 m²</div><div class="cap" data-t="m4c">Národný hub NATO</div><p data-t="m4p">Rezidenčné národné centrum výkonnosti SOF.</p></div>
+    </div>
+
+    <h3 class="reveal" style="font-family:var(--f-disp);font-size:22px;margin:54px 0 14px" data-t="pricing_h">Koncové ceny modulov</h3>
+    <p class="reveal" style="color:var(--mut);font-size:15px;margin-bottom:14px" data-t="pricing_intro">Jednotkové náklady: stavba 10 000 €/m² · technológia 5 000 €/m² · vybavenie 3 000 €/m² = 18 000 €/m².</p>
+
+    <div class="pricing reveal">
+      <table>
+        <thead>
+          <tr>
+            <th data-t="th_module">Modul</th>
+            <th data-t="th_area">Plocha</th>
+            <th data-t="th_build">Stavba</th>
+            <th data-t="th_tech">Technológia</th>
+            <th data-t="th_eq">Vybavenie</th>
+            <th data-t="th_total">Spolu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="nm">FROST</td><td>500 m²</td><td>5,0 M €</td><td>2,5 M €</td><td>1,5 M €</td><td class="tot">9,0 M €</td></tr>
+          <tr><td class="nm">BLIZZARD</td><td>1 500 m²</td><td>15,0 M €</td><td>7,5 M €</td><td>4,5 M €</td><td class="tot">27,0 M €</td></tr>
+          <tr class="proto"><td class="nm">GLACIER <span class="proto-mark">◂ PROTO</span></td><td>3 000 m²</td><td>30,0 M €</td><td>15,0 M €</td><td>9,0 M €</td><td class="tot">54,0 M €</td></tr>
+          <tr><td class="nm">VANGUARD</td><td>6 000 m²</td><td>60,0 M €</td><td>30,0 M €</td><td>18,0 M €</td><td class="tot">108,0 M €</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="slide-embed reveal" style="margin-top:46px">
+      <img class="zoomable" src="assets/img/slide_energy.jpg" data-full="assets/img/slide_energy.jpg" alt="Energy"/>
+      <div class="cap" data-t="energy_cap">Energetika prevádzky · priemerný príkon ±20 %</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ================= INVESTOR ================= -->
+<section class="sec inv" id="investor">
+  <div class="wrap">
+    <div class="sec-tag reveal" data-t="t_inv">Investičný program</div>
+    <h2 class="reveal" data-t="inv_h">Prevádzkované aktívum, nie dotácia</h2>
+    <p class="intro reveal" data-t="inv_intro">Investor vkladá kapitál do vybudovania prototypu GLACIER (3 000 m²) na Slovensku.</p>
+    <div class="kpi-row reveal" style="margin-bottom:40px">
+      <div class="kpi"><div class="v">54 M €</div><div class="k" data-t="k1">Vstupná investícia (CAPEX)</div></div>
+      <div class="kpi"><div class="v">9,3 M €</div><div class="k" data-t="k2">Ročný príjem (3 prúdy)</div></div>
+      <div class="kpi"><div class="v">6,2 M €</div><div class="k" data-t="k3">EBITDA / rok (67 % marža)</div></div>
+      <div class="kpi"><div class="v">500</div><div class="k" data-t="k4">operátorov ročne</div></div>
+    </div>
+    <h3 style="font-family:var(--f-disp);font-size:22px;margin-bottom:20px" class="reveal" data-t="inv_streams_h">Tri nezávislé príjmové prúdy</h3>
+    <div class="grid g3">
+      <div class="card reveal"><span class="ico">🎯</span><h3 data-t="s1h">Výcvikové poplatky · ~6,0 M €</h3><p data-t="s1p">500 operátorov × prístup k protokolom, prostrediu a dátam.</p></div>
+      <div class="card amber reveal"><span class="ico">🌐</span><h3 data-t="s2h">Exportné royalty · ~2,5 M €</h3><p data-t="s2p">Licenčný príjem z predaja modulov partnerom NATO.</p></div>
+      <div class="card green reveal"><span class="ico">🔬</span><h3 data-t="s3h">Výskum, granty, dáta · ~0,8 M €</h3><p data-t="s3p">Unikátne dáta o výkone v extréme. Granty a publikácie zvyšujú IP hodnotu.</p></div>
+    </div>
+    <div class="slide-embed reveal" style="margin-top:46px">
+      <img class="zoomable" src="assets/img/slide_investor_case.jpg" data-full="assets/img/slide_investor_case.jpg" alt="Investor case"/>
+      <div class="cap" data-t="invcase_cap">Náklady na prípravu špecialistov SOF</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ================= EXIT ================= -->
+<section class="sec" id="exit">
+  <div class="wrap">
+    <div class="sec-tag reveal" data-t="t_exit">Exit & výnos</div>
+    <h2 class="reveal" data-t="exit_h">Čo investor získa pri exite po 6 rokoch</h2>
+    <p class="intro reveal" data-t="exit_intro">Počas 6 rokov investor inkasuje EBITDA, na konci predáva overený asset + IP portfólio.</p>
+    <div class="inv-hero">
+      <div class="inv-box reveal"><div class="scn" style="color:var(--mut)" data-t="sc1n">Konzervatívny</div><div class="profit" style="color:var(--white)">+15,6 M €</div><div class="meta">MOIC <b>1,29×</b> · IRR <b>5,0 %</b></div><p data-t="sc1p">EBITDA ~5,0 M/rok · exit ×7 + IP.</p></div>
+      <div class="inv-box base reveal"><div class="scn" style="color:var(--ice)" data-t="sc2n">Bázový · referenčný</div><div class="profit" style="color:var(--ice)">+39,3 M €</div><div class="meta">MOIC <b>1,73×</b> · IRR <b>11,1 %</b></div><p data-t="sc2p">EBITDA ~6,2 M/rok · exit ×8 + IP 12 M = 62 M €.</p></div>
+      <div class="inv-box reveal"><div class="scn" style="color:var(--green)" data-t="sc3n">Optimistický</div><div class="profit" style="color:var(--green)">+108,9 M €</div><div class="meta">MOIC <b>3,02×</b> · IRR <b>23,9 %</b></div><p data-t="sc3p">EBITDA ~9,6 M/rok · exit ×10 + IP.</p></div>
+    </div>
+    <div class="slide-embed reveal" style="margin-top:30px">
+      <img class="zoomable" src="assets/img/slide_roi_chart.jpg" data-full="assets/img/slide_roi_chart.jpg" alt="ROI chart"/>
+      <div class="cap" data-t="exit_chart_cap">Kumulatívny čistý prínos · break-even rok 7 · exit rok 8</div>
+    </div>
+    <div class="tl reveal" style="margin-top:46px">
+      <div class="tl-step"><div class="yr" data-t="tl1y">Rok 1–2</div><h4 data-t="tl1h">Výstavba prototypu</h4><p data-t="tl1p">Stavba GLACIER 3 000 m² na Slovensku.</p></div>
+      <div class="tl-step"><div class="yr" data-t="tl2y">Rok 3–4</div><h4 data-t="tl2h">Pilotáž & stabilizácia</h4><p data-t="tl2p">Zber dát, validácia protokolov, prvé exportné rokovania NATO.</p></div>
+      <div class="tl-step"><div class="yr" data-t="tl3y">Rok 5–6</div><h4 data-t="tl3h">Škálovanie partnerstiev</h4><p data-t="tl3p">Export modulov partnerom, stabilizované partnerstvá.</p></div>
+      <div class="tl-step"><div class="yr" data-t="tl4y">Rok 6+</div><h4 data-t="tl4h">EXIT</h4><p data-t="tl4p">Predaj overeného projektu — technológia, partnerská sieť, dáta a IP.</p></div>
+    </div>
+    <div class="benefit reveal">
+      <div class="ic">★</div>
+      <h3 data-t="benefit_h">Najväčší benefit pre investora</h3>
+      <p data-t="benefit_p">Vstupuje do overeného konceptu, nie do rizika nuly. Na konci predáva fungujúci prototyp, partnerskú sieť NATO, dátové portfólio a licenčné práva na 4 moduly.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ================= GALLERY ================= -->
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <div class="sec-tag reveal" data-t="t_gallery">Galéria</div>
+    <h2 class="reveal" data-t="gal_h">Vizualizácia prostredia</h2>
+    <p class="intro reveal" data-t="gal_intro">Tréningové scenáre, taktické rozhrania a riadené prostredie ICE FORCE.</p>
+    <div class="gallery">
+      <div class="gal-item reveal zoomable" data-full="assets/img/building_aerial.jpg"><img src="assets/img/building_aerial.jpg" alt=""><div class="cap" data-t="gal1">Hlavná taktická plocha — chladová zóna</div></div>
+      <div class="gal-item reveal zoomable" data-full="assets/img/scene_vr.jpg"><img src="assets/img/scene_vr.jpg" alt=""><div class="cap" data-t="gal2">Bojová simulácia & CQB</div></div>
+      <div class="gal-item reveal zoomable" data-full="assets/img/slide_modules.jpg"><img src="assets/img/slide_modules.jpg" alt=""><div class="cap" data-t="gal3">Štyri moduly v jednotnej architektúre</div></div>
+      <div class="gal-item reveal zoomable" data-full="assets/img/slide_stabilizacny_plan.jpg"><img src="assets/img/slide_stabilizacny_plan.jpg" alt=""><div class="cap" data-t="gal4">Stabilizačný a exit plán</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DECK CTA ================= -->
+<section class="sec" id="deck">
+  <div class="wrap">
+    <div class="deck" style="background-image:url(assets/img/building_aerial.jpg)">
+      <h3 data-t="deck_h">Kompletná investičná prezentácia</h3>
+      <p data-t="deck_p">29 slidov: architektúra, modulárne škálovanie, energetika, ekonomika a exit model.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-primary" href="assets/ICE_FORCE_deck.pdf" target="_blank" rel="noopener"><span>▣</span> <span data-t="deck_btn">Otvoriť prezentáciu (PDF)</span></a>
+        <a class="btn btn-ghost" href="assets/ICE_FORCE_deck.pptx" download><span data-t="deck_btn2">Stiahnuť PPTX</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/img/lextom_logo.png" alt="Lextom"/>
+        <p data-t="foot_about">ICE FORCE — Next Generation Soldiers je rozvojový projekt spoločnosti Lextom s.r.o.</p>
+      </div>
+      <div>
+        <h5 data-t="foot_nav">Navigácia</h5>
+        <ul>
+          <li><a href="#concept" data-t="nav_concept">Koncept</a></li>
+          <li><a href="#hpp" data-t="nav_hpp">Human Performance</a></li>
+          <li><a href="#modules" data-t="nav_modules">Moduly</a></li>
+          <li><a href="#investor" data-t="nav_investor">Investícia</a></li>
+          <li><a href="#exit" data-t="nav_exit">Exit</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 data-t="foot_contact">Kontakt</h5>
+        <ul>
+          <li><span>Lextom s.r.o.</span></li>
+          <li><span data-t="foot_loc">Slovensko</span></li>
+          <li><a href="https://lextom.sk">lextom.sk</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Lextom s.r.o. <span data-t="foot_rights">Všetky práva vyhradené.</span></p>
+      <span class="confidential">🔒 <span data-t="foot_conf">DÔVERNÉ · Výhradné vlastníctvo Lextom s.r.o. · šírenie zakázané</span></span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /site -->
+
+<!-- ================= LIGHTBOX ================= -->
+<div id="lightbox">
+  <button class="lb-close">×</button>
+  <img id="lbImg" src="" alt=""/>
+</div>
+
+<script src="assets/js/translations.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

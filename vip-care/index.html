@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VIP Care Tech — LeXtom Development</title>
+<meta name="description" content="Europe's first patented platform for semi-autonomous senior care facilities." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<!-- jsPDF for client-side NDA PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+/* ================================================================
+   VIP CARE TECH · INVESTOR ONE-PAGE v4
+================================================================ */
+:root{
+  --navy: #0D1E35; --navy-2: #16304F; --navy-soft: #1A3658;
+  --red: #C0292B; --red-2: #E8393C;
+  --gold: #B8963E; --gold-2: #D4AF55;
+  --silver: #9AAFC0; --light: #F3F6F9; --cream: #ECE5D5;
+  --white: #FFFFFF; --dark: #060F1A;
+  --text: #1A2B3C; --muted: #5A7089; --border: #D8E3EC;
+  --ok: #2E7D5B;
+  --f-display: 'Cormorant Garamond', Georgia, serif;
+  --f-body: 'Outfit', system-ui, sans-serif;
+  --f-mono: 'Bebas Neue', 'Outfit', sans-serif;
+  --pad-x: clamp(1.25rem, 5vw, 4.5rem);
+  --maxw: 1360px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--f-body);background:var(--white);color:var(--text);line-height:1.7;font-weight:300;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+input,textarea,select{font-family:inherit;}
+.container{max-width:var(--maxw);margin:0 auto;}
+.eyebrow{display:inline-flex;align-items:center;gap:.85rem;font-family:var(--f-body);font-weight:500;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--red);}
+.eyebrow::before{content:'';width:2.5rem;height:1px;background:var(--red);}
+.eyebrow--light{color:var(--gold-2);}
+.eyebrow--light::before{background:var(--gold);}
+
+/* ============ LANGUAGE GATE ============ */
+.lang-gate{position:fixed;inset:0;z-index:1000;background:radial-gradient(ellipse at 20% 30%, #1a2e50 0%, #0D1E35 40%, #060F1A 100%);display:grid;place-items:center;padding:var(--pad-x);transition:opacity .7s ease, visibility .7s ease;}
+.lang-gate.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+.lang-gate::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 85%, rgba(192,41,43,0.12) 0%, transparent 45%),radial-gradient(circle at 85% 15%, rgba(184,150,62,0.10) 0%, transparent 40%);}
+.lang-gate__inner{position:relative;z-index:2;max-width:680px;text-align:center;}
+.lang-gate__mark{font-family:var(--f-mono);font-size:1.1rem;letter-spacing:.5em;color:rgba(255,255,255,.7);margin-bottom:.5rem;}
+.lang-gate__mark span{color:var(--red-2);}
+.lang-gate__divider{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);margin:1.5rem auto 2.25rem;}
+.lang-gate__title{font-family:var(--f-display);font-weight:500;font-size:clamp(1.6rem, 3.2vw, 2.4rem);line-height:1.25;color:#fff;margin-bottom:.6rem;}
+.lang-gate__title em{font-style:italic;color:var(--gold-2);}
+.lang-gate__sub{font-size:.85rem;color:rgba(255,255,255,.5);letter-spacing:.2em;text-transform:uppercase;margin-bottom:2.75rem;}
+.lang-gate__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);}
+@media (max-width:540px){.lang-gate__grid{grid-template-columns:repeat(2,1fr);}}
+.lang-gate__btn{background:rgba(13,30,53,.85);padding:1.5rem 1rem;font-family:var(--f-body);font-weight:400;color:#fff;letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;display:flex;flex-direction:column;gap:.35rem;align-items:center;transition:background .3s, color .3s;position:relative;}
+.lang-gate__btn:not(:disabled):hover{background:var(--red);color:#fff;}
+.lang-gate__btn:disabled{opacity:.45;cursor:not-allowed;}
+.lang-gate__btn span{font-size:.62rem;opacity:.55;letter-spacing:.25em;}
+.lang-gate__btn small{position:absolute;top:.5rem;right:.5rem;font-size:.5rem;letter-spacing:.2em;color:var(--gold-2);background:rgba(184,150,62,.15);padding:.15rem .35rem;}
+
+/* ============ NAV ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem var(--pad-x);display:flex;justify-content:space-between;align-items:center;background:rgba(13,30,53,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.05);}
+.nav__brand{display:flex;align-items:center;gap:.85rem;color:#fff;}
+.nav__brand-logo{background:#fff;padding:6px;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.25);flex-shrink:0;}
+.nav__brand-logo img{height:36px;width:36px;object-fit:contain;}
+.nav__brand-text{font-family:var(--f-mono);font-size:1rem;letter-spacing:.35em;}
+.nav__brand-text small{display:block;font-family:var(--f-body);font-size:.55rem;letter-spacing:.4em;color:var(--gold-2);margin-top:2px;font-weight:400;}
+.nav__lang{display:flex;gap:.4rem;align-items:center;font-family:var(--f-body);font-size:.7rem;letter-spacing:.2em;color:rgba(255,255,255,.55);}
+.nav__lang button{padding:.3rem .55rem;color:rgba(255,255,255,.55);transition:color .2s;}
+.nav__lang button.active{color:var(--gold-2);}
+.nav__lang button:hover{color:#fff;}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100vh;color:#fff;overflow:hidden;display:flex;align-items:flex-end;padding:7rem var(--pad-x) 4rem;}
+.hero__bg{position:absolute;inset:0;z-index:0;background:url('assets/img/hero-campus.png') center/cover no-repeat;}
+.hero__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(13,30,53,.55) 0%, rgba(13,30,53,.35) 40%, rgba(6,15,26,.85) 100%),linear-gradient(90deg, rgba(13,30,53,.6) 0%, transparent 60%);}
+.hero__grid{position:absolute;inset:0;z-index:1;opacity:.04;background-image:linear-gradient(rgba(255,255,255,.8) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.8) 1px,transparent 1px);background-size:60px 60px;}
+.hero__inner{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr;gap:3rem;}
+@media (min-width:960px){.hero__inner{grid-template-columns:1.5fr 1fr;align-items:end;gap:5rem;}}
+.hero__company{font-family:var(--f-body);font-weight:400;font-size:.72rem;letter-spacing:.35em;color:rgba(255,255,255,.5);margin-bottom:1.5rem;}
+.hero__company span{color:var(--red-2);margin:0 .75rem;}
+.hero__title{font-family:var(--f-mono);font-weight:400;font-size:clamp(3rem, 8vw, 6.4rem);line-height:.95;letter-spacing:.04em;margin-bottom:1.5rem;color:#fff;text-shadow:0 4px 40px rgba(0,0,0,.4);}
+.hero__title span{display:block;background:linear-gradient(135deg,var(--gold-2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero__lede{font-family:var(--f-display);font-style:italic;font-size:clamp(1.1rem, 1.6vw, 1.4rem);max-width:50ch;color:rgba(255,255,255,.85);margin-bottom:2rem;line-height:1.5;}
+.hero__notice{display:inline-flex;align-items:center;gap:.6rem;font-size:.7rem;color:var(--gold-2);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;padding:.4rem .85rem;border:1px solid rgba(184,150,62,.35);background:rgba(184,150,62,.08);}
+.hero__notice::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold-2);box-shadow:0 0 12px var(--gold-2);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:.5;}50%{opacity:1;}}
+.hero__metrics{background:rgba(13,30,53,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:2rem;}
+.hero__metrics-label{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-2);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.1);}
+.hero__metric{display:flex;justify-content:space-between;align-items:baseline;padding:.95rem 0;border-bottom:1px solid rgba(255,255,255,.08);}
+.hero__metric:last-child{border-bottom:none;padding-bottom:0;}
+.hero__metric-k{font-size:.72rem;color:rgba(255,255,255,.55);letter-spacing:.1em;text-transform:uppercase;}
+.hero__metric-v{font-family:var(--f-mono);font-size:1.6rem;color:#fff;letter-spacing:.05em;}
+.hero__metric-v small{font-family:var(--f-body);font-size:.6rem;color:var(--gold-2);margin-left:.4rem;letter-spacing:.2em;font-weight:500;}
+
+/* ============ GATEWAYS ============ */
+.gateways{background:linear-gradient(180deg, var(--dark) 0%, var(--navy) 100%);color:#fff;padding:6rem var(--pad-x);}
+.gateways__head{max-width:var(--maxw);margin:0 auto 3rem;text-align:center;}
+.gateways__title{font-family:var(--f-display);font-weight:500;font-size:clamp(1.9rem, 4vw, 3rem);line-height:1.1;margin:1.25rem 0 1rem;color:#fff;}
+.gateways__title em{font-style:italic;color:var(--gold-2);}
+.gateways__lede{font-size:1rem;color:rgba(255,255,255,.65);max-width:60ch;margin:0 auto;}
+.gateways__grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr;gap:1.5rem;}
+@media (min-width:820px){.gateways__grid{grid-template-columns:1fr 1fr;}}
+.gateway{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:transform .4s ease, background .4s, border-color .4s;cursor:pointer;}
+.gateway:hover{transform:translateY(-6px);background:rgba(255,255,255,.07);border-color:rgba(184,150,62,.4);}
+.gateway::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .5s;}
+.gateway:hover::before{transform:scaleX(1);}
+.gateway--A::before{background:var(--gold);}
+.gateway--B::before{background:var(--red);}
+.gateway__lock{position:absolute;top:1.5rem;right:1.5rem;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:.4rem;}
+.gateway__lock::before{content:'🔒';font-size:.75rem;}
+.gateway__label{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.28em;margin-bottom:.8rem;}
+.gateway--A .gateway__label{color:var(--gold-2);}
+.gateway--B .gateway__label{color:var(--red-2);}
+.gateway__title{font-family:var(--f-display);font-weight:600;font-size:2.2rem;line-height:1;color:#fff;margin-bottom:.5rem;}
+.gateway__horizon{font-family:var(--f-display);font-style:italic;font-size:1rem;color:rgba(255,255,255,.6);margin-bottom:1.5rem;}
+.gateway__metrics{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);margin-bottom:1.5rem;}
+.gateway__metric{background:rgba(13,30,53,.6);padding:1.1rem 1rem;}
+.gateway__metric-k{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.4rem;}
+.gateway__metric-v{font-family:var(--f-mono);font-size:1.3rem;color:#fff;letter-spacing:.04em;}
+.gateway--A .gateway__metric-v{color:var(--gold-2);}
+.gateway--B .gateway__metric-v{color:var(--red-2);}
+.gateway__teaser{font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:1.5rem;}
+.gateway__cta{display:flex;justify-content:space-between;align-items:center;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.1);font-family:var(--f-body);font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;}
+.gateway--A .gateway__cta{color:var(--gold-2);}
+.gateway--B .gateway__cta{color:var(--red-2);}
+.gateway__arrow{transition:transform .35s;display:inline-block;}
+.gateway:hover .gateway__arrow{transform:translateX(6px);}
+.gateways__access{max-width:var(--maxw);margin:3rem auto 0;text-align:center;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,.08);}
+.gateways__access-label{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1rem;}
+.gateways__access-btn{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--f-body);font-size:.78rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2);padding:.6rem 0;border-bottom:1px solid rgba(184,150,62,.4);transition:color .25s, border-color .25s;}
+.gateways__access-btn:hover{color:#fff;border-color:#fff;}
+
+/* ============ LOCKED CONTENT ============ */
+.locked-content{display:none;}
+.locked-content.is-unlocked{display:block;animation:reveal .8s ease;}
+@keyframes reveal{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+.unlocked-banner{background:linear-gradient(90deg, rgba(46,125,91,.15), rgba(46,125,91,.05));border-top:1px solid rgba(46,125,91,.3);border-bottom:1px solid rgba(46,125,91,.3);padding:1rem var(--pad-x);text-align:center;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ok);}
+.unlocked-banner::before{content:'✓';margin-right:.6rem;font-weight:700;}
+
+/* ============ SECTIONS ============ */
+.section{padding:6.5rem var(--pad-x);position:relative;}
+.section--dark{background:var(--navy);color:#fff;}
+.section--darker{background:linear-gradient(180deg,var(--navy) 0%, var(--dark) 100%);color:#fff;}
+.section--cream{background:var(--light);}
+.section__head{display:grid;grid-template-columns:1fr;gap:2rem;margin-bottom:4rem;max-width:var(--maxw);margin-left:auto;margin-right:auto;}
+@media (min-width:820px){.section__head{grid-template-columns:.8fr 1.8fr;gap:5rem;}}
+.section__index{font-family:var(--f-mono);font-size:1.4rem;color:var(--red);letter-spacing:.25em;}
+.section--dark .section__index, .section--darker .section__index{color:var(--gold-2);}
+.section__index small{display:block;font-family:var(--f-body);font-size:.65rem;color:var(--muted);letter-spacing:.25em;text-transform:uppercase;margin-top:.5rem;font-weight:400;}
+.section--dark .section__index small, .section--darker .section__index small{color:rgba(255,255,255,.4);}
+.section__title{font-family:var(--f-display);font-weight:500;font-size:clamp(2.2rem, 4.8vw, 3.6rem);line-height:1.05;letter-spacing:-.01em;}
+.section__title em{font-style:italic;color:var(--red);}
+.section--dark .section__title em, .section--darker .section__title em{color:var(--gold-2);}
+.section__lede{margin-top:1.5rem;max-width:62ch;font-size:1.05rem;color:var(--muted);}
+.section--dark .section__lede, .section--darker .section__lede{color:rgba(255,255,255,.7);}
+
+.forces{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr;gap:1px;background:var(--border);border:1px solid var(--border);}
+@media (min-width:720px){.forces{grid-template-columns:repeat(2,1fr);}}
+@media (min-width:1100px){.forces{grid-template-columns:repeat(4,1fr);}}
+.force{background:#fff;padding:2.5rem 2rem;display:flex;flex-direction:column;gap:.75rem;min-height:280px;transition:background .3s;}
+.force:hover{background:var(--light);}
+.force__num{font-family:var(--f-mono);font-size:3.2rem;line-height:1;color:var(--navy);letter-spacing:.02em;}
+.force__num span{color:var(--red);}
+.force__h{font-family:var(--f-display);font-weight:600;font-size:1.25rem;color:var(--navy);margin-top:auto;}
+.force__p{font-size:.9rem;color:var(--muted);line-height:1.6;}
+.force__src{margin-top:.5rem;font-size:.68rem;color:var(--silver);letter-spacing:.05em;font-style:italic;}
+
+.problem{background:var(--navy);color:#fff;display:grid;grid-template-columns:1fr;padding:0;}
+@media (min-width:960px){.problem{grid-template-columns:1fr 1fr;min-height:90vh;}}
+.problem__visual{position:relative;min-height:60vh;background:url('assets/img/problem-corridor.png') center/cover no-repeat;}
+.problem__visual::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg, rgba(13,30,53,.2) 0%, rgba(13,30,53,.5) 100%);}
+.problem__visual-tag{position:absolute;top:2rem;left:2rem;z-index:2;font-family:var(--f-mono);font-size:.85rem;letter-spacing:.3em;color:#fff;background:rgba(192,41,43,.85);padding:.55rem 1rem;}
+.problem__content{padding:5rem var(--pad-x);display:flex;flex-direction:column;justify-content:center;}
+.problem__list{list-style:none;display:flex;flex-direction:column;gap:2rem;margin-top:2.5rem;}
+.problem__item{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:start;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.08);}
+.problem__item:last-child{border-bottom:none;padding-bottom:0;}
+.problem__num{font-family:var(--f-mono);font-size:1.8rem;color:var(--gold-2);line-height:1;letter-spacing:.05em;padding-top:.3rem;}
+.problem__h{font-family:var(--f-display);font-weight:600;font-size:1.35rem;color:#fff;margin-bottom:.6rem;}
+.problem__p{font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.7;}
+.problem__quote{margin-top:3rem;padding:1.5rem 0 0;border-top:1px solid rgba(184,150,62,.3);font-family:var(--f-display);font-style:italic;font-size:1.25rem;color:var(--gold-2);line-height:1.5;}
+
+.solution__hero{position:relative;margin-bottom:4rem;max-width:var(--maxw);margin-left:auto;margin-right:auto;}
+.solution__hero img{width:100%;height:auto;border:1px solid var(--border);}
+.solution__hero-tag{position:absolute;bottom:1.5rem;left:1.5rem;background:rgba(13,30,53,.92);color:#fff;padding:.8rem 1.25rem;font-family:var(--f-mono);font-size:.85rem;letter-spacing:.25em;}
+.solution__hero-tag span{color:var(--gold-2);margin-left:.5rem;}
+.layers{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr;gap:1.25rem;}
+@media (min-width:720px){.layers{grid-template-columns:repeat(2,1fr);}}
+@media (min-width:1100px){.layers{grid-template-columns:repeat(5,1fr);gap:1rem;}}
+.layer{background:#fff;border:1px solid var(--border);padding:2rem 1.5rem;display:flex;flex-direction:column;gap:1rem;position:relative;overflow:hidden;transition:transform .4s ease, border-color .3s, box-shadow .4s;}
+.layer:hover{transform:translateY(-6px);border-color:var(--red);box-shadow:0 18px 40px rgba(13,30,53,.08);}
+.layer__index{font-family:var(--f-mono);font-size:1.1rem;color:var(--red);letter-spacing:.15em;}
+.layer__h{font-family:var(--f-display);font-weight:600;font-size:1.1rem;color:var(--navy);min-height:3rem;}
+.layer__p{font-size:.82rem;color:var(--muted);line-height:1.6;flex-grow:1;}
+.layer__fte{margin-top:.5rem;padding-top:1rem;border-top:1px solid var(--border);font-family:var(--f-mono);font-size:1.3rem;color:var(--navy);letter-spacing:.05em;}
+.layer__fte small{display:block;font-family:var(--f-body);font-size:.6rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-top:.2rem;font-weight:500;}
+.solution__summary{max-width:var(--maxw);margin:3rem auto 0;background:var(--navy);color:#fff;padding:2.25rem 2.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.5rem;align-items:center;}
+.solution__summary-h{font-family:var(--f-display);font-style:italic;font-size:1.15rem;color:var(--gold-2);}
+.solution__summary-stats{display:flex;gap:2.5rem;flex-wrap:wrap;}
+.solution__stat{font-family:var(--f-mono);font-size:1.4rem;color:#fff;letter-spacing:.04em;}
+.solution__stat small{display:block;font-family:var(--f-body);font-size:.6rem;color:rgba(255,255,255,.6);letter-spacing:.2em;text-transform:uppercase;margin-top:.25rem;font-weight:400;}
+
+.econ{display:grid;grid-template-columns:1fr;gap:0;max-width:var(--maxw);margin:0 auto;}
+@media (min-width:960px){.econ{grid-template-columns:1.1fr .9fr;}}
+.econ__compare{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);}
+.econ__col{background:var(--navy-2);padding:2rem 1.75rem;display:flex;flex-direction:column;}
+.econ__col--vct{background:linear-gradient(180deg, var(--navy-soft) 0%, var(--navy) 100%);border-left:3px solid var(--red);}
+.econ__col-label{font-family:var(--f-mono);font-size:.85rem;letter-spacing:.25em;color:rgba(255,255,255,.55);margin-bottom:1.75rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.1);}
+.econ__col--vct .econ__col-label{color:var(--gold-2);}
+.econ__row{display:flex;justify-content:space-between;align-items:baseline;padding:.85rem 0;border-bottom:1px dashed rgba(255,255,255,.08);}
+.econ__row:last-child{border-bottom:none;}
+.econ__row-k{font-size:.78rem;color:rgba(255,255,255,.6);letter-spacing:.05em;}
+.econ__row-v{font-family:var(--f-mono);font-size:1.05rem;color:#fff;letter-spacing:.04em;}
+.econ__col--vct .econ__row-v{color:var(--gold-2);}
+.econ__visual{position:relative;background:url('assets/img/economics-desk.png') center/cover no-repeat;min-height:480px;display:flex;align-items:flex-end;}
+.econ__visual-banner{background:linear-gradient(90deg, rgba(13,30,53,.95) 0%, rgba(13,30,53,.7) 100%);padding:1.75rem 2rem;width:100%;}
+.econ__banner-h{font-family:var(--f-display);font-style:italic;font-size:1.4rem;color:#fff;line-height:1.3;}
+.econ__banner-h em{color:var(--red-2);font-style:normal;font-weight:600;}
+
+.rollout{position:relative;}
+.rollout__bg{position:absolute;top:0;left:0;right:0;height:60%;z-index:0;background:url('assets/img/network-night.png') center/cover no-repeat;opacity:.4;}
+.rollout__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(13,30,53,.4) 0%, var(--navy) 100%);}
+.rollout > *{position:relative;z-index:1;}
+.phases{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr;gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);}
+@media (min-width:720px){.phases{grid-template-columns:repeat(2,1fr);}}
+@media (min-width:1100px){.phases{grid-template-columns:repeat(4,1fr);}}
+.phase{background:rgba(13,30,53,.85);padding:2.5rem 1.85rem;display:flex;flex-direction:column;gap:.8rem;position:relative;transition:background .35s;}
+.phase:hover{background:rgba(22,48,79,.95);}
+.phase::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s;}
+.phase:hover::before{transform:scaleX(1);}
+.phase__roman{font-family:var(--f-mono);font-size:1.4rem;color:var(--gold-2);letter-spacing:.15em;}
+.phase__name{font-family:var(--f-display);font-weight:600;font-size:1.4rem;color:#fff;}
+.phase__years{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.8rem;}
+.phase__stat{font-family:var(--f-mono);font-size:2.2rem;color:#fff;letter-spacing:.02em;line-height:1;}
+.phase__stat small{display:block;font-family:var(--f-body);font-size:.6rem;color:rgba(255,255,255,.5);letter-spacing:.2em;text-transform:uppercase;margin-top:.35rem;font-weight:500;}
+.phase__divider{height:1px;background:rgba(255,255,255,.1);margin:.5rem 0;}
+.rollout__summary{max-width:var(--maxw);margin:3rem auto 0;background:linear-gradient(135deg, var(--red) 0%, #8B1A1C 100%);color:#fff;padding:2.5rem 2.5rem;text-align:center;}
+.rollout__summary-label{font-family:var(--f-mono);font-size:.85rem;letter-spacing:.35em;color:rgba(255,255,255,.85);margin-bottom:1rem;}
+.rollout__summary-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;font-family:var(--f-display);font-style:italic;font-size:1.35rem;}
+.rollout__summary-stats span{color:#fff;font-weight:600;}
+
+.why-sk{display:grid;grid-template-columns:1fr;gap:0;}
+@media (min-width:960px){.why-sk{grid-template-columns:1.2fr .8fr;}}
+.why-sk__image{position:relative;background:url('assets/img/stupava-pilot.png') center/cover no-repeat;min-height:480px;}
+.why-sk__image-tag{position:absolute;top:1.5rem;left:1.5rem;background:rgba(13,30,53,.92);color:#fff;padding:.75rem 1.1rem;font-family:var(--f-mono);font-size:.78rem;letter-spacing:.25em;}
+.why-sk__image-tag span{color:var(--gold-2);}
+.why-sk__points{background:var(--navy);color:#fff;padding:3.5rem var(--pad-x);}
+.why-sk__head{font-family:var(--f-display);font-weight:500;font-size:1.85rem;line-height:1.2;margin-bottom:.5rem;}
+.why-sk__head em{font-style:italic;color:var(--gold-2);}
+.why-sk__sub{color:rgba(255,255,255,.55);font-size:.85rem;letter-spacing:.1em;margin-bottom:2rem;}
+.why-sk__list{list-style:none;display:flex;flex-direction:column;gap:1.4rem;}
+.why-sk__row{display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start;padding-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,.08);}
+.why-sk__row:last-child{border-bottom:none;padding-bottom:0;}
+.why-sk__dot{width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:.5rem;box-shadow:0 0 0 4px rgba(192,41,43,.18);}
+.why-sk__row-h{font-family:var(--f-display);font-weight:600;font-size:1.1rem;color:#fff;margin-bottom:.25rem;}
+.why-sk__row-p{font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.6;}
+
+.options{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr;gap:1.5rem;}
+@media (min-width:820px){.options{grid-template-columns:1fr 1fr;}}
+.option{background:#fff;border:1px solid var(--border);padding:2.75rem 2.25rem;position:relative;overflow:hidden;transition:transform .4s ease, box-shadow .4s;}
+.option:hover{transform:translateY(-4px);box-shadow:0 24px 50px rgba(13,30,53,.12);}
+.option::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+.option--A::before{background:var(--gold);}
+.option--B::before{background:var(--red);}
+.option__head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.75rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+.option__label{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.28em;}
+.option--A .option__label{color:var(--gold);}
+.option--B .option__label{color:var(--red);}
+.option__horizon{font-family:var(--f-display);font-style:italic;font-size:.95rem;color:var(--muted);}
+.option__title{font-family:var(--f-display);font-weight:600;font-size:2.4rem;color:var(--navy);line-height:1;margin-bottom:.5rem;}
+.option__sub{font-size:.75rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.75rem;}
+.option__irr{display:inline-block;padding:.5rem 1rem;font-family:var(--f-mono);font-size:1rem;letter-spacing:.1em;margin-bottom:1.75rem;}
+.option--A .option__irr{background:rgba(184,150,62,.15);color:var(--gold);}
+.option--B .option__irr{background:rgba(192,41,43,.1);color:var(--red);}
+.option__list{list-style:none;display:flex;flex-direction:column;gap:.85rem;}
+.option__list li{font-size:.92rem;color:var(--text);padding-left:1.5rem;position:relative;line-height:1.6;}
+.option__list li::before{content:'◆';position:absolute;left:0;top:.1rem;font-size:.7rem;}
+.option--A .option__list li::before{color:var(--gold);}
+.option--B .option__list li::before{color:var(--red);}
+
+.invite{position:relative;background:url('assets/img/invitation-door.png') center/cover no-repeat;color:#fff;padding:7rem var(--pad-x);overflow:hidden;}
+.invite::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(13,30,53,.7) 0%, rgba(6,15,26,.85) 100%);}
+.invite__inner{position:relative;z-index:2;max-width:780px;margin:0 auto;text-align:center;}
+.invite__index{font-family:var(--f-mono);font-size:1rem;color:var(--gold-2);letter-spacing:.35em;margin-bottom:.5rem;}
+.invite__index small{display:block;font-family:var(--f-body);font-size:.6rem;color:rgba(255,255,255,.5);letter-spacing:.25em;margin-top:.4rem;text-transform:uppercase;}
+.invite__title{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem, 5.5vw, 4.2rem);line-height:1.05;margin:2rem 0 1.5rem;}
+.invite__title em{font-style:italic;color:var(--gold-2);}
+.invite__lede{font-family:var(--f-display);font-style:italic;font-size:1.2rem;color:rgba(255,255,255,.8);max-width:58ch;margin:0 auto 3rem;line-height:1.55;}
+
+.btn{display:inline-flex;align-items:center;gap:.85rem;padding:1.05rem 1.85rem;font-family:var(--f-body);font-size:.74rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;transition:all .35s ease;cursor:pointer;border:none;}
+.btn--primary{background:var(--red);color:#fff;}
+.btn--primary:hover{background:var(--red-2);transform:translateY(-2px);box-shadow:0 12px 30px rgba(192,41,43,.35);}
+.btn--gold{background:var(--gold);color:var(--navy);}
+.btn--gold:hover{background:var(--gold-2);}
+.btn--full{width:100%;justify-content:center;}
+.btn__arrow{transition:transform .35s;display:inline-block;}
+.btn:hover .btn__arrow{transform:translateX(5px);}
+
+/* ============ CONTACT ============ */
+.contact{background:var(--navy);color:#fff;padding:6rem var(--pad-x);}
+.contact__inner{max-width:680px;margin:0 auto;}
+.contact__head{text-align:center;margin-bottom:3rem;}
+.contact__h{font-family:var(--f-display);font-weight:500;font-size:clamp(1.8rem, 3.5vw, 2.8rem);line-height:1.1;color:#fff;margin:1rem 0;}
+.contact__h em{font-style:italic;color:var(--gold-2);}
+.contact__sub{color:rgba(255,255,255,.6);font-size:.95rem;max-width:50ch;margin:0 auto;}
+.form{display:flex;flex-direction:column;gap:1.25rem;}
+.field{display:flex;flex-direction:column;gap:.5rem;}
+.field label{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);font-weight:500;}
+.field input, .field textarea, .field select{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.15);color:#fff;padding:1rem 1.1rem;font-size:1rem;font-weight:300;transition:border-color .25s, background .25s;border-radius:0;width:100%;}
+.field input:focus, .field textarea:focus, .field select:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.07);}
+.field textarea{min-height:140px;resize:vertical;}
+.field input::placeholder, .field textarea::placeholder{color:rgba(255,255,255,.3);}
+.form__actions{margin-top:1rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+.form__legal{font-size:.7rem;color:rgba(255,255,255,.45);max-width:32ch;}
+.form__msg{margin-top:1rem;padding:1rem 1.2rem;font-size:.88rem;display:none;border-left:3px solid;}
+.form__msg.ok{display:block;background:rgba(184,150,62,.1);border-color:var(--gold);color:var(--gold-2);}
+.form__msg.err{display:block;background:rgba(192,41,43,.1);border-color:var(--red);color:var(--red-2);}
+.contact__direct{margin-top:3rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,.1);display:grid;grid-template-columns:1fr;gap:1.5rem;text-align:center;}
+@media (min-width:600px){.contact__direct{grid-template-columns:1fr 1fr;text-align:left;}}
+.contact__direct-label{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.4rem;}
+.contact__direct-val{font-family:var(--f-display);font-size:1.15rem;color:#fff;}
+.contact__direct-val a:hover{color:var(--gold-2);}
+
+/* ============ FOOTER ============ */
+.footer{background:var(--dark);color:rgba(255,255,255,.5);padding:2.5rem var(--pad-x);}
+.footer__inner{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;align-items:center;font-size:.75rem;letter-spacing:.05em;}
+.footer__brand{display:flex;align-items:center;gap:.75rem;color:#fff;}
+.footer__brand-logo{background:#fff;padding:4px;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;}
+.footer__brand-logo img{width:28px;height:28px;object-fit:contain;}
+.footer__brand-text{font-family:var(--f-mono);letter-spacing:.3em;font-size:.85rem;}
+.footer__legal{font-size:.7rem;color:rgba(255,255,255,.35);}
+
+/* ============ MODAL ============ */
+.modal{position:fixed;inset:0;z-index:2000;background:rgba(6,15,26,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:2rem 1rem;overflow-y:auto;}
+.modal.is-open{display:flex;animation:fadeIn .4s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.modal__box{background:var(--navy);color:#fff;max-width:680px;width:100%;border:1px solid rgba(184,150,62,.25);position:relative;animation:slideUp .5s cubic-bezier(.2,.7,.2,1);margin:auto;}
+.modal__box--wide{max-width:880px;}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:none;}}
+.modal__close{position:absolute;top:1rem;right:1rem;z-index:10;width:36px;height:36px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:rgba(255,255,255,.6);transition:background .2s, color .2s;}
+.modal__close:hover{background:var(--red);color:#fff;}
+.modal__head{padding:2.25rem 2.25rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.08);}
+.modal__eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.3em;color:var(--gold-2);margin-bottom:.75rem;}
+.modal__title{font-family:var(--f-display);font-weight:500;font-size:1.85rem;line-height:1.15;}
+.modal__title em{font-style:italic;color:var(--gold-2);}
+.modal__sub{margin-top:.85rem;font-size:.92rem;color:rgba(255,255,255,.65);line-height:1.6;}
+.modal__body{padding:1.5rem 2.25rem 2.25rem;}
+.modal__tabs{display:flex;gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);margin-bottom:1.75rem;}
+.modal__tab{flex:1;background:rgba(13,30,53,.5);padding:.95rem 1rem;font-family:var(--f-body);font-weight:500;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);transition:background .25s, color .25s;}
+.modal__tab.active{background:var(--navy-soft);color:var(--gold-2);}
+.modal__tab:hover:not(.active){color:#fff;}
+.modal__pane{display:none;animation:fadeIn .4s ease;}
+.modal__pane.active{display:block;}
+.modal__field{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1rem;}
+.modal__field label{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);font-weight:500;}
+.modal__field input, .modal__field textarea, .modal__field select{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.15);color:#fff;padding:.85rem 1rem;font-size:.95rem;font-weight:300;border-radius:0;width:100%;transition:border-color .25s, background .25s;}
+.modal__field input:focus, .modal__field textarea:focus, .modal__field select:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.07);}
+.modal__field input::placeholder, .modal__field textarea::placeholder{color:rgba(255,255,255,.3);}
+.modal__row{display:grid;grid-template-columns:1fr;gap:1rem;}
+@media (min-width:540px){.modal__row{grid-template-columns:1fr 1fr;}}
+.modal__check{display:flex;gap:.75rem;align-items:flex-start;font-size:.78rem;color:rgba(255,255,255,.65);line-height:1.5;margin:1rem 0;cursor:pointer;}
+.modal__check input{margin-top:.25rem;width:1rem;height:1rem;accent-color:var(--gold);}
+.modal__msg{margin-top:1rem;padding:.85rem 1rem;font-size:.85rem;display:none;border-left:3px solid;}
+.modal__msg.ok{display:block;background:rgba(184,150,62,.1);border-color:var(--gold);color:var(--gold-2);}
+.modal__msg.err{display:block;background:rgba(192,41,43,.1);border-color:var(--red);color:var(--red-2);}
+.access-code{background:rgba(184,150,62,.06);border:1px solid rgba(184,150,62,.2);padding:1.25rem;margin-bottom:1rem;}
+.access-code__field{display:flex;flex-direction:column;gap:.45rem;}
+.access-code__field input{background:rgba(13,30,53,.6) !important;border-color:rgba(184,150,62,.3) !important;font-family:var(--f-mono);font-size:1.1rem !important;letter-spacing:.15em !important;text-align:center;}
+.nda-doc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);padding:1.5rem 1.75rem;max-height:300px;overflow-y:auto;font-size:.78rem;line-height:1.65;color:rgba(255,255,255,.78);margin-bottom:1.25rem;}
+.nda-doc h4{font-family:var(--f-display);font-size:1.05rem;color:var(--gold-2);margin:1.1rem 0 .5rem;font-weight:600;}
+.nda-doc h4:first-child{margin-top:0;}
+.nda-doc p{margin-bottom:.7rem;}
+.nda-doc strong{color:#fff;font-weight:500;}
+.nda-doc ol{padding-left:1.25rem;margin-bottom:.7rem;}
+.nda-doc ol li{margin-bottom:.4rem;}
+.sig-pad{border:1px solid rgba(184,150,62,.3);background:#fff;border-radius:0;height:140px;cursor:crosshair;display:block;width:100%;touch-action:none;}
+.sig-row{display:flex;justify-content:space-between;align-items:center;margin-top:.5rem;gap:1rem;flex-wrap:wrap;}
+.sig-clear{font-family:var(--f-body);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:.4rem .8rem;border:1px solid rgba(255,255,255,.15);transition:all .2s;}
+.sig-clear:hover{color:#fff;border-color:#fff;}
+.sig-hint{font-size:.72rem;color:rgba(255,255,255,.4);}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s ease, transform 1s ease;}
+.reveal.is-in{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+.hero__company, .hero__title, .hero__lede, .hero__notice, .hero__metrics{opacity:0;transform:translateY(20px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;}
+.hero__company{animation-delay:.1s;}
+.hero__notice{animation-delay:.2s;}
+.hero__title{animation-delay:.3s;}
+.hero__lede{animation-delay:.55s;}
+.hero__metrics{animation-delay:.75s;}
+@keyframes rise{to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<!-- ========== LANGUAGE GATE ========== -->
+<div class="lang-gate" id="langGate" role="dialog" aria-label="Select language">
+  <div class="lang-gate__inner">
+    <div class="lang-gate__mark">VIP <span>·</span> CARE <span>·</span> TECH</div>
+    <div class="lang-gate__divider"></div>
+    <h1 class="lang-gate__title">Select your language before entering the <em>investor presentation</em></h1>
+    <div class="lang-gate__sub">LeXtom s.r.o. · Slovak Republic</div>
+    <div class="lang-gate__grid">
+      <button class="lang-gate__btn" data-lang="sk">Slovensky <span>SK</span></button>
+      <button class="lang-gate__btn" data-lang="en">English <span>EN</span></button>
+      <button class="lang-gate__btn" data-lang="de" disabled>Deutsch <span>DE</span><small>SOON</small></button>
+      <button class="lang-gate__btn" data-lang="pl" disabled>Polski <span>PL</span><small>SOON</small></button>
+      <button class="lang-gate__btn" data-lang="ar" disabled>العربية <span>AR</span><small>SOON</small></button>
+      <button class="lang-gate__btn" data-lang="zh" disabled>中文 <span>ZH</span><small>SOON</small></button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== NAV ========== -->
+<nav class="nav">
+  <a href="#top" class="nav__brand">
+    <span class="nav__brand-logo"><img src="assets/img/logo.png" alt="LeXtom s.r.o." /></span>
+    <span class="nav__brand-text">VIP CARE TECH<small data-i18n="brand.tagline">BY LEXTOM S.R.O.</small></span>
+  </a>
+  <div style="display:flex; align-items:center; gap:2rem;">
+    <a href="/" data-i18n="nav.home" style="font-family:var(--f-mono); font-size:.85rem; letter-spacing:.2em; color:var(--gold-2); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--gold-2)'">← BACK TO WEBSITE</a>
+    <div class="nav__lang">
+      <button data-set-lang="sk" id="navLangSk">SK</button>
+      <span style="opacity:.3">·</span>
+      <button data-set-lang="en" id="navLangEn">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<header class="hero" id="top">
+  <div class="hero__bg"></div>
+  <div class="hero__grid"></div>
+  <div class="hero__inner">
+    <div class="hero__content">
+      <div class="hero__company">LEXTOM S.R.O. <span>·</span> SLOVAK REPUBLIC <span>·</span> <span data-i18n="hero.eyebrow">INVESTOR DECK · 2026</span></div>
+      <div class="hero__notice" data-i18n="hero.notice">Confidential investor preview</div>
+      <h1 class="hero__title">VIP Care Tech<span data-i18n="hero.titleSpan">Europe's first.</span></h1>
+      <p class="hero__lede" data-i18n="hero.lede">A patented platform for semi-autonomous senior care facilities — not a care operator with technology added on. A technology platform with senior care as the application layer.</p>
+    </div>
+    <aside class="hero__metrics">
+      <div class="hero__metrics-label" data-i18n="hero.metricsLabel">Opportunity profile</div>
+      <div class="hero__metric"><span class="hero__metric-k" data-i18n="hero.m1">Target capital</span><span class="hero__metric-v">€85<small>M</small></span></div>
+      <div class="hero__metric"><span class="hero__metric-k" data-i18n="hero.m2">Facilities by year 8</span><span class="hero__metric-v">16</span></div>
+      <div class="hero__metric"><span class="hero__metric-k" data-i18n="hero.m3">Target IRR</span><span class="hero__metric-v">14–18<small>%</small></span></div>
+      <div class="hero__metric"><span class="hero__metric-k" data-i18n="hero.m4">Network beds (Y8)</span><span class="hero__metric-v">2,160</span></div>
+    </aside>
+  </div>
+</header>
+
+<!-- ========== GATEWAYS ========== -->
+<section class="gateways" id="gateways">
+  <div class="gateways__head">
+    <div class="eyebrow eyebrow--light" style="justify-content:center" data-i18n="gw.eyebrow">Choose your investor profile</div>
+    <h2 class="gateways__title"><span data-i18n="gw.titleA">Two paths.</span> <em data-i18n="gw.titleB">One project.</em></h2>
+    <p class="gateways__lede" data-i18n="gw.lede">Full materials — financial model, feasibility study, technical documentation — are released after a brief registration. Select the path that matches your mandate.</p>
+  </div>
+  <div class="gateways__grid">
+    <article class="gateway gateway--A" data-option="A">
+      <div class="gateway__lock" data-i18n="gw.lock">Locked</div>
+      <div class="gateway__label" data-i18n="gw.A.label">OPTION A · PASSIVE MAJORITY</div>
+      <h3 class="gateway__title" data-i18n="gw.A.title">Long-horizon stability</h3>
+      <div class="gateway__horizon" data-i18n="gw.A.horizon">12-year horizon · ŠFRB-backed structure</div>
+      <div class="gateway__metrics">
+        <div class="gateway__metric"><div class="gateway__metric-k" data-i18n="gw.A.k1">Target capital</div><div class="gateway__metric-v">€85M</div></div>
+        <div class="gateway__metric"><div class="gateway__metric-k" data-i18n="gw.A.k2">Target IRR</div><div class="gateway__metric-v">10.5–13.5%</div></div>
+      </div>
+      <p class="gateway__teaser" data-i18n="gw.A.teaser">Equity + preferred debt with priority dividend. State-backed (1% / 40y ŠFRB instrument). Stable cash flow from Year 3 onward.</p>
+      <div class="gateway__cta"><span data-i18n="gw.A.cta">Access full details</span><span class="gateway__arrow">→</span></div>
+    </article>
+    <article class="gateway gateway--B" data-option="B">
+      <div class="gateway__lock" data-i18n="gw.lock2">Locked</div>
+      <div class="gateway__label" data-i18n="gw.B.label">OPTION B · STRATEGIC EXIT</div>
+      <h3 class="gateway__title" data-i18n="gw.B.title">Maximum capital appreciation</h3>
+      <div class="gateway__horizon" data-i18n="gw.B.horizon">6-year horizon · Pure equity</div>
+      <div class="gateway__metrics">
+        <div class="gateway__metric"><div class="gateway__metric-k" data-i18n="gw.B.k1">Target capital</div><div class="gateway__metric-v">€80M</div></div>
+        <div class="gateway__metric"><div class="gateway__metric-k" data-i18n="gw.B.k2">Target IRR</div><div class="gateway__metric-v">14–18%</div></div>
+      </div>
+      <p class="gateway__teaser" data-i18n="gw.B.teaser">49% equity + 30% call option after Year 6. Strategic exit at 7–9× EBITDA multiple. Buyer pool: REITs, healthcare PE, Korian-class consolidators.</p>
+      <div class="gateway__cta"><span data-i18n="gw.B.cta">Access full details</span><span class="gateway__arrow">→</span></div>
+    </article>
+  </div>
+  <div class="gateways__access">
+    <div class="gateways__access-label" data-i18n="gw.haveCode">Already have an access code?</div>
+    <button class="gateways__access-btn" id="openAccessCode"><span data-i18n="gw.enterCode">Enter access code</span> →</button>
+  </div>
+</section>
+
+<!-- ========== LOCKED CONTENT ========== -->
+<div class="locked-content" id="lockedContent">
+  <div class="unlocked-banner"><span data-i18n="locked.banner">Access granted · Full investor presentation</span></div>
+
+  <section class="section" id="why-now">
+    <div class="section__head reveal">
+      <div class="section__index">01<small data-i18n="s1.idx">Why now</small></div>
+      <div>
+        <div class="eyebrow" data-i18n="s1.eb">A 36–48 month window</div>
+        <h2 class="section__title" style="margin-top:1.25rem"><span data-i18n="s1.titleA">Four forces are converging in 2026 —</span> <em data-i18n="s1.titleB">they won't repeat.</em></h2>
+        <p class="section__lede" data-i18n="s1.lede">Demographic pressure, DACH price arbitrage, a uniquely favorable Slovak state housing instrument, and the absence of tech-integrated competitors create a window that closes before global consolidators enter the region.</p>
+      </div>
+    </div>
+    <div class="forces reveal">
+      <div class="force"><div class="force__num">+4.8<span>pp</span></div><div class="force__h" data-i18n="s1.f1.h">Slovakia's 65+ growth over one decade</div><div class="force__p" data-i18n="s1.f1.p">Second fastest aging country in the European Union — structural, irreversible demand.</div><div class="force__src">Eurostat EUROPOP2025</div></div>
+      <div class="force"><div class="force__num">60–70<span>%</span></div><div class="force__h" data-i18n="s1.f2.h">DACH price arbitrage at equivalent quality</div><div class="force__p" data-i18n="s1.f2.p">AT/DE pricing €5,400–7,200 vs. Slovakia €2,400–3,200 for matched service.</div><div class="force__src" data-i18n="s1.f2.src">Internal market analysis · 2025</div></div>
+      <div class="force"><div class="force__num">1<span>% / 40y</span></div><div class="force__h" data-i18n="s1.f3.h">Slovak state housing loan (ŠFRB)</div><div class="force__p" data-i18n="s1.f3.p">One of the European Union's most favorable financing instruments — €2.73M per facility.</div><div class="force__src" data-i18n="s1.f3.src">Slovak State Housing Fund (ŠFRB)</div></div>
+      <div class="force"><div class="force__num">0</div><div class="force__h" data-i18n="s1.f4.h">Direct competitors in region</div><div class="force__p" data-i18n="s1.f4.p">No tech-integrated DLC platform exists in Central Europe. We define the category.</div><div class="force__src">Competitor scan</div></div>
+    </div>
+  </section>
+
+  <section class="problem" id="problem">
+    <div class="problem__visual"><div class="problem__visual-tag">02 · <span data-i18n="s2.tag">THE PROBLEM</span></div></div>
+    <div class="problem__content">
+      <div class="eyebrow eyebrow--light" data-i18n="s2.eb">Structural, not cyclical</div>
+      <h2 class="section__title" style="margin-top:1rem;font-size:clamp(1.9rem, 3.5vw, 2.6rem)"><span data-i18n="s2.titleA">Senior care in Central Europe is</span> <em data-i18n="s2.titleB">structurally broken.</em></h2>
+      <ul class="problem__list">
+        <li class="problem__item"><span class="problem__num">01</span><div><h3 class="problem__h" data-i18n="s2.p1.h">Acute staff shortage</h3><p class="problem__p" data-i18n="s2.p1.p">Slovakia is short 14,000 nurses; the median age in care is 51. Existing facilities cannot scale because they cannot hire.</p></div></li>
+        <li class="problem__item"><span class="problem__num">02</span><div><h3 class="problem__h" data-i18n="s2.p2.h">OPEX trapped in personnel</h3><p class="problem__p" data-i18n="s2.p2.p">Traditional facilities run 60–65% of operating cost on labor and another 15–22% on energy — leaving no capital for quality, technology, or growth.</p></div></li>
+        <li class="problem__item"><span class="problem__num">03</span><div><h3 class="problem__h" data-i18n="s2.p3.h">DACH demand has nowhere to go</h3><p class="problem__p" data-i18n="s2.p3.p">Austrian and German seniors face waitlists of 18+ months and prices of €5,400–8,800 per month, with no nearby quality alternatives.</p></div></li>
+      </ul>
+      <p class="problem__quote" data-i18n="s2.quote">The market is asking for a different operating model — not just more beds.</p>
+    </div>
+  </section>
+
+  <section class="section section--cream" id="solution">
+    <div class="section__head reveal">
+      <div class="section__index">03<small data-i18n="s3.idx">Our solution</small></div>
+      <div>
+        <div class="eyebrow" data-i18n="s3.eb">A patented operating model</div>
+        <h2 class="section__title" style="margin-top:1.25rem"><span data-i18n="s3.titleA">A senior care platform built as</span> <em data-i18n="s3.titleB">technology</em><span data-i18n="s3.titleC">, with operations as the application layer.</span></h2>
+        <p class="section__lede" data-i18n="s3.lede">Five integrated layers replace the labor-heavy model. Combined effect per facility: −24 FTE (50% reduction), −56% energy, and +18–20% wages for remaining staff.</p>
+      </div>
+    </div>
+    <div class="solution__hero reveal">
+      <img src="assets/img/solution-interior.png" alt="VIP Care Tech residential interior" />
+      <div class="solution__hero-tag" data-i18n="s3.tag">Common space · <span>Stupava pilot · 140 beds</span></div>
+    </div>
+    <div class="layers reveal">
+      <div class="layer"><div class="layer__index">01</div><h3 class="layer__h" data-i18n="s3.l1.h">IoT sensorics</h3><p class="layer__p" data-i18n="s3.l1.p">Bed-integrated breathing & heart-rate sensors, fall detection, microclimate, room presence — 24/7 oversight without bedside staff.</p><div class="layer__fte">−8 FTE<small data-i18n="s3.perFac">Per facility</small></div></div>
+      <div class="layer"><div class="layer__index">02</div><h3 class="layer__h" data-i18n="s3.l2.h">Robotic logistics</h3><p class="layer__p" data-i18n="s3.l2.p">AGV robots for meal, medication, and linen distribution; automated waste handling — eliminates 70% of internal transport tasks.</p><div class="layer__fte">−6 FTE<small data-i18n="s3.perFac2">Per facility</small></div></div>
+      <div class="layer"><div class="layer__index">03</div><h3 class="layer__h" data-i18n="s3.l3.h">Automated support services</h3><p class="layer__p" data-i18n="s3.l3.p">Industrial automation for kitchen, laundry, sterilization, with central dispensing robots.</p><div class="layer__fte">−4 FTE<small data-i18n="s3.perFac3">Per facility</small></div></div>
+      <div class="layer"><div class="layer__index">04</div><h3 class="layer__h" data-i18n="s3.l4.h">SCCL cognitive oversight</h3><p class="layer__p" data-i18n="s3.l4.p">Proprietary AI layer analyzing sensor data, predictive models for 24–72h deterioration, automated escalation protocols.</p><div class="layer__fte">−4 FTE<small data-i18n="s3.perFac4">Per facility</small></div></div>
+      <div class="layer"><div class="layer__index">05</div><h3 class="layer__h" data-i18n="s3.l5.h">Telemedicine</h3><p class="layer__p" data-i18n="s3.l5.p">Remote physician access, EHR integration, continuous vital signs monitoring, ePrescription.</p><div class="layer__fte">−2 FTE<small data-i18n="s3.perFac5">Per facility</small></div></div>
+    </div>
+    <div class="solution__summary reveal">
+      <div class="solution__summary-h" data-i18n="s3.sum">Combined effect, per facility</div>
+      <div class="solution__summary-stats">
+        <div class="solution__stat">−24<small data-i18n="s3.fte">FTE</small></div>
+        <div class="solution__stat">−56%<small data-i18n="s3.energy">Energy</small></div>
+        <div class="solution__stat">+20%<small data-i18n="s3.wages">Wages</small></div>
+        <div class="solution__stat">4–6<small data-i18n="s3.patents">Patent families</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--darker" id="economics">
+    <div class="section__head reveal">
+      <div class="section__index">04<small data-i18n="s4.idx">Unit economics</small></div>
+      <div>
+        <div class="eyebrow eyebrow--light" data-i18n="s4.eb">Single facility · 140 beds</div>
+        <h2 class="section__title" style="margin-top:1.25rem"><span data-i18n="s4.titleA">Traditional facility vs.</span> <em data-i18n="s4.titleB">VIP Care Tech.</em></h2>
+        <p class="section__lede" data-i18n="s4.lede">Side-by-side P&L. Same bed count, same service level — different operating physics. The technology layer is not a feature; it is the cost structure.</p>
+      </div>
+    </div>
+    <div class="econ reveal">
+      <div class="econ__compare">
+        <div class="econ__col">
+          <div class="econ__col-label" data-i18n="s4.trad">Traditional</div>
+          <div class="econ__row"><span class="econ__row-k" data-i18n="s4.r1">Total OPEX</span><span class="econ__row-v">€4.00M</span></div>
+          <div class="econ__row"><span class="econ__row-k" data-i18n="s4.r2">Personnel (62%)</span><span class="econ__row-v">€2.48M</span></div>
+          <div class="econ__row"><span class="econ__row-k" data-i18n="s4.r3">Energy + utilities (21%)</span><span class="econ__row-v">€0.66M</span></div>
+          <div class="econ__row"><span class="econ__row-k" data-i18n="s4.r4">FTE count</span><span class="econ__row-v">65.5</span></div>
+          <div class="econ__row"><span class="econ__row-k" data-i18n="s4.r5">Avg. nurse wage</span><span class="econ__row-v">€2,250</span></div>
+          <div class="econ__row"><span class="econ__row-k" data-i18n="s4.r6">EBITDA margin</span><span class="econ__row-v">18–24%</span></div>
+        </div>
+        <div class="econ__col econ__col--vct">
+          <div class="econ__col-label">VIP Care Tech</div>
+          <div class="econ__row"><span class="econ__row-k" data-i18n="s4.r1b">Total OPEX</span><span class="econ__row-v">€3.48M</span></div>
+          <div class="econ__row"><span class="econ__row-k" data-i18n="s4.r2b">Personnel (52%)</span><span class="econ__row-v">€1.73M</span></div>
+          <div class="econ__row"><span class="econ__row-k" data-i18n="s4.r3b">Energy + utilities (8%)</span><span class="econ__row-v">€0.25M</span></div>
+          <div class="econ__row"><span class="econ__row-k" data-i18n="s4.r4b">FTE count</span><span class="econ__row-v">40.5</span></div>
+          <div class="econ__row"><span class="econ__row-k" data-i18n="s4.r5b">Avg. nurse wage</span><span class="econ__row-v">€2,720</span></div>
+          <div class="econ__row"><span class="econ__row-k" data-i18n="s4.r6b">EBITDA margin</span><span class="econ__row-v">40–44%</span></div>
+        </div>
+      </div>
+      <div class="econ__visual"><div class="econ__visual-banner"><h3 class="econ__banner-h" data-i18n="s4.banner">−13% OPEX · −38% headcount · +21% wages · <em>2× EBITDA margin.</em></h3></div></div>
+    </div>
+  </section>
+
+  <section class="section section--dark rollout" id="rollout">
+    <div class="rollout__bg"></div>
+    <div class="section__head reveal">
+      <div class="section__index">05<small data-i18n="s5.idx">Rollout plan</small></div>
+      <div>
+        <div class="eyebrow eyebrow--light" data-i18n="s5.eb">Four phases · 2 years × 4 facilities</div>
+        <h2 class="section__title" style="margin-top:1.25rem"><span data-i18n="s5.titleA">16 facilities by year 8 —</span> <em data-i18n="s5.titleB">disciplined, not opportunistic.</em></h2>
+        <p class="section__lede" data-i18n="s5.lede">Each phase validates the previous. Capital deployment is sequenced, not front-loaded. Year 8 network reaches 2,160 beds, €67.8M revenue and €25M EBITDA at a 37% margin.</p>
+      </div>
+    </div>
+    <div class="phases reveal">
+      <article class="phase"><div class="phase__roman">PHASE I</div><h3 class="phase__name" data-i18n="s5.ph1">Pilot</h3><div class="phase__years" data-i18n="s5.y1">Years 0–2</div><div class="phase__divider"></div><div class="phase__stat">+4<small data-i18n="s5.new">New facilities</small></div><div class="phase__stat">€20M<small data-i18n="s5.cap">Capital deployed</small></div></article>
+      <article class="phase"><div class="phase__roman">PHASE II</div><h3 class="phase__name" data-i18n="s5.ph2">Validation</h3><div class="phase__years" data-i18n="s5.y2">Years 2–4</div><div class="phase__divider"></div><div class="phase__stat">+4<small data-i18n="s5.new2">New facilities</small></div><div class="phase__stat">€20M<small data-i18n="s5.cap2">Capital deployed</small></div></article>
+      <article class="phase"><div class="phase__roman">PHASE III</div><h3 class="phase__name" data-i18n="s5.ph3">Acceleration</h3><div class="phase__years" data-i18n="s5.y3">Years 4–6</div><div class="phase__divider"></div><div class="phase__stat">+4<small data-i18n="s5.new3">New facilities</small></div><div class="phase__stat">€22M<small data-i18n="s5.cap3">Capital deployed</small></div></article>
+      <article class="phase"><div class="phase__roman">PHASE IV</div><h3 class="phase__name" data-i18n="s5.ph4">Consolidation</h3><div class="phase__years" data-i18n="s5.y4">Years 6–8</div><div class="phase__divider"></div><div class="phase__stat">+4<small data-i18n="s5.new4">New facilities</small></div><div class="phase__stat">€23M<small data-i18n="s5.cap4">Capital deployed</small></div></article>
+    </div>
+    <div class="rollout__summary reveal">
+      <div class="rollout__summary-label" data-i18n="s5.y8">YEAR 8 NETWORK</div>
+      <div class="rollout__summary-stats"><span data-i18n="s5.s1">16 facilities</span> · <span data-i18n="s5.s2">2,160 beds</span> · <span data-i18n="s5.s3">€67.8M revenue</span> · <span data-i18n="s5.s4">€25M EBITDA</span> · <span data-i18n="s5.s5">37% margin</span></div>
+    </div>
+  </section>
+
+  <section class="why-sk">
+    <div class="why-sk__image"><div class="why-sk__image-tag">06 · <span data-i18n="s6.tag">WHY SLOVAKIA</span></div></div>
+    <div class="why-sk__points">
+      <div class="eyebrow eyebrow--light" style="margin-bottom:1rem" data-i18n="s6.eb">Pilot · Stupava</div>
+      <h2 class="why-sk__head"><span data-i18n="s6.titleA">Five-factor combination</span> <em data-i18n="s6.titleB">unique in the EU.</em></h2>
+      <div class="why-sk__sub" data-i18n="s6.sub">BRATISLAVA · 65 KM TO VIENNA · 470 KM TO MUNICH</div>
+      <ul class="why-sk__list">
+        <li class="why-sk__row"><span class="why-sk__dot"></span><div><div class="why-sk__row-h" data-i18n="s6.f1.h">Demographic pressure</div><div class="why-sk__row-p" data-i18n="s6.f1.p">+4.8 pp 65+ growth in one decade</div></div></li>
+        <li class="why-sk__row"><span class="why-sk__dot"></span><div><div class="why-sk__row-h" data-i18n="s6.f2.h">DACH proximity</div><div class="why-sk__row-p" data-i18n="s6.f2.p">Vienna in 60 min · Munich in 4 hours</div></div></li>
+        <li class="why-sk__row"><span class="why-sk__dot"></span><div><div class="why-sk__row-h" data-i18n="s6.f3.h">ŠFRB instrument</div><div class="why-sk__row-p" data-i18n="s6.f3.p">1% / 40 years state housing loan</div></div></li>
+        <li class="why-sk__row"><span class="why-sk__dot"></span><div><div class="why-sk__row-h" data-i18n="s6.f4.h">Cost arbitrage</div><div class="why-sk__row-p" data-i18n="s6.f4.p">60% of Austrian construction cost</div></div></li>
+        <li class="why-sk__row"><span class="why-sk__dot"></span><div><div class="why-sk__row-h" data-i18n="s6.f5.h">EU + Schengen + Euro</div><div class="why-sk__row-p" data-i18n="s6.f5.p">Full regulatory compatibility</div></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="invite" id="invitation">
+    <div class="invite__inner reveal">
+      <div class="invite__index">07<small data-i18n="s7.idx">The invitation</small></div>
+      <h2 class="invite__title"><span data-i18n="s7.titleA">Be present at the</span><br><em data-i18n="s7.titleB">founding of a category.</em></h2>
+      <p class="invite__lede" data-i18n="s7.lede">VIP Care Tech is not a senior care operator with technology added on. It is a technology platform with senior care as the application layer — the first of its kind in Europe.</p>
+      <a href="#contact" class="btn btn--gold"><span data-i18n="s7.cta">Begin the conversation</span> <span class="btn__arrow">→</span></a>
+    </div>
+  </section>
+</div>
+
+<!-- ========== CONTACT ========== -->
+<section class="contact" id="contact">
+  <div class="contact__inner">
+    <div class="contact__head">
+      <div class="eyebrow eyebrow--light" style="justify-content:center" data-i18n="c.idx">CONTACT</div>
+      <h2 class="contact__h"><span data-i18n="c.titleA">Begin the</span> <em data-i18n="c.titleB">conversation.</em></h2>
+      <p class="contact__sub" data-i18n="c.sub">Three fields. No friction. We respond within one business day with the next steps.</p>
+    </div>
+    <form class="form" id="contactForm" novalidate>
+      <div class="field"><label for="cName" data-i18n="c.name">Name</label><input id="cName" name="name" type="text" required autocomplete="name" /></div>
+      <div class="field"><label for="cEmail" data-i18n="c.email">Email</label><input id="cEmail" name="email" type="email" required autocomplete="email" /></div>
+      <div class="field"><label for="cMsg" data-i18n="c.msg">Message</label><textarea id="cMsg" name="message" required></textarea></div>
+      <div class="form__actions">
+        <p class="form__legal" data-i18n="c.legal">By submitting, you agree to receive confidential investment materials. We do not share contact data with third parties.</p>
+        <button type="submit" class="btn btn--primary"><span data-i18n="c.send">Send request</span> <span class="btn__arrow">→</span></button>
+      </div>
+      <div class="form__msg" id="formMsg"></div>
+    </form>
+    <div class="contact__direct">
+      <div><div class="contact__direct-label" data-i18n="c.direct">Direct contact</div><div class="contact__direct-val"><a href="mailto:info@lextom.sk">info@lextom.sk</a></div></div>
+      <div><div class="contact__direct-label" data-i18n="c.project">This project</div><div class="contact__direct-val"><a href="/development">www.lextom.sk/development</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="footer__brand-logo"><img src="assets/img/logo.png" alt="LeXtom s.r.o." /></span>
+      <span class="footer__brand-text">VIP CARE TECH</span>
+    </div>
+    <div class="footer__legal">© 2026 LeXtom s.r.o. · Liptovský Mikuláš, Slovak Republic · <span data-i18n="f.confidential">Investor preview · Confidential</span></div>
+  </div>
+</footer>
+
+<!-- ========== MODAL: REGISTRATION + ACCESS CODE ========== -->
+<div class="modal" id="regModal" role="dialog">
+  <div class="modal__box">
+    <button class="modal__close" data-close>×</button>
+    <div class="modal__head">
+      <div class="modal__eyebrow" data-i18n="reg.eyebrow">CONFIDENTIAL ACCESS</div>
+      <h2 class="modal__title"><span data-i18n="reg.titleA">Access the</span> <em data-i18n="reg.titleB">full investor presentation</em></h2>
+      <p class="modal__sub" data-i18n="reg.sub">Two ways forward. Sign a brief NDA to receive full access, or enter an access code if one was shared with you directly.</p>
+    </div>
+    <div class="modal__body">
+      <div class="modal__tabs">
+        <button class="modal__tab active" data-tab="register" data-i18n="reg.tab1">Register &amp; sign NDA</button>
+        <button class="modal__tab" data-tab="code" data-i18n="reg.tab2">I have a code</button>
+      </div>
+      <div class="modal__pane active" data-pane="register">
+        <form id="regForm" novalidate>
+          <div class="modal__row">
+            <div class="modal__field"><label data-i18n="reg.firstName">First name</label><input name="firstName" type="text" required /></div>
+            <div class="modal__field"><label data-i18n="reg.lastName">Last name</label><input name="lastName" type="text" required /></div>
+          </div>
+          <div class="modal__row">
+            <div class="modal__field"><label data-i18n="reg.email">Email</label><input name="email" type="email" required /></div>
+            <div class="modal__field"><label data-i18n="reg.phone">Phone</label><input name="phone" type="tel" required placeholder="+421…" /></div>
+          </div>
+          <div class="modal__row">
+            <div class="modal__field"><label data-i18n="reg.company">Company / Fund (optional)</label><input name="company" type="text" /></div>
+            <div class="modal__field"><label data-i18n="reg.profile">Investor profile</label>
+              <select name="profile" required>
+                <option value="" data-i18n="reg.profile.0">Please select…</option>
+                <option value="angel" data-i18n="reg.profile.1">Angel investor</option>
+                <option value="vc" data-i18n="reg.profile.2">Venture capital</option>
+                <option value="pe" data-i18n="reg.profile.3">Private equity</option>
+                <option value="family" data-i18n="reg.profile.4">Family office</option>
+                <option value="strategic" data-i18n="reg.profile.5">Strategic investor</option>
+                <option value="other" data-i18n="reg.profile.6">Other</option>
+              </select>
+            </div>
+          </div>
+          <label class="modal__check"><input type="checkbox" id="regGdpr" required /><span data-i18n="reg.gdpr">I consent to the processing of my personal data by LeXtom s.r.o. for the purpose of investor relations, in accordance with Regulation (EU) 2016/679 (GDPR).</span></label>
+          <button type="submit" class="btn btn--gold btn--full" style="margin-top:.5rem"><span data-i18n="reg.continue">Continue to NDA</span> <span class="btn__arrow">→</span></button>
+          <div class="modal__msg" id="regMsg"></div>
+        </form>
+      </div>
+      <div class="modal__pane" data-pane="code">
+        <p class="modal__sub" style="margin:0 0 1rem" data-i18n="reg.codeSub">If you received a direct access code from LeXtom s.r.o., enter it below.</p>
+        <form id="codeForm" novalidate>
+          <div class="access-code"><div class="access-code__field"><label data-i18n="reg.codeLabel">Access code</label><input name="code" type="text" required autocomplete="off" placeholder="LeXtomVIP2026" /></div></div>
+          <button type="submit" class="btn btn--gold btn--full"><span data-i18n="reg.unlock">Unlock full presentation</span> <span class="btn__arrow">→</span></button>
+          <div class="modal__msg" id="codeMsg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MODAL: NDA ========== -->
+<div class="modal" id="ndaModal" role="dialog">
+  <div class="modal__box modal__box--wide">
+    <button class="modal__close" data-close>×</button>
+    <div class="modal__head">
+      <div class="modal__eyebrow" data-i18n="nda.eyebrow">NON-DISCLOSURE AGREEMENT · EU GDPR-COMPLIANT</div>
+      <h2 class="modal__title"><span data-i18n="nda.titleA">Confidentiality</span> <em data-i18n="nda.titleB">Agreement</em></h2>
+      <p class="modal__sub" data-i18n="nda.sub">Please review and sign electronically. A signed PDF copy will be generated and emailed to info@lextom.sk and to you.</p>
+    </div>
+    <div class="modal__body">
+      <div class="modal__field"><label data-i18n="nda.langLabel">Language of the agreement</label>
+        <select id="ndaLang"><option value="en">English</option><option value="sk">Slovenčina</option></select>
+      </div>
+      <div class="nda-doc" id="ndaDoc"></div>
+      <div class="modal__row">
+        <div class="modal__field"><label data-i18n="nda.fullName">Full name of signing party</label><input id="ndaName" type="text" required readonly /></div>
+        <div class="modal__field"><label data-i18n="nda.email2">Email</label><input id="ndaEmail" type="email" required readonly /></div>
+      </div>
+      <div class="modal__row">
+        <div class="modal__field"><label data-i18n="nda.company2">Company / Fund (if applicable)</label><input id="ndaCompany" type="text" /></div>
+        <div class="modal__field"><label data-i18n="nda.date">Date</label><input id="ndaDate" type="text" readonly /></div>
+      </div>
+      <div class="modal__field" style="margin-top:.75rem">
+        <label data-i18n="nda.sigLabel">Electronic signature (draw with mouse / finger)</label>
+        <canvas class="sig-pad" id="sigPad" width="800" height="140"></canvas>
+        <div class="sig-row">
+          <span class="sig-hint" data-i18n="nda.sigHint">Your signature constitutes electronic acceptance of this agreement.</span>
+          <button type="button" class="sig-clear" id="sigClear" data-i18n="nda.sigClear">Clear</button>
+        </div>
+      </div>
+      <label class="modal__check"><input type="checkbox" id="ndaAgree" required /><span data-i18n="nda.agree">I have read and agree to be bound by the terms of this Non-Disclosure Agreement, and I confirm the signature above is my electronic signature.</span></label>
+      <button type="button" id="ndaSubmit" class="btn btn--gold btn--full" style="margin-top:.5rem"><span data-i18n="nda.submit">Sign, generate PDF &amp; unlock presentation</span> <span class="btn__arrow">→</span></button>
+      <div class="modal__msg" id="ndaMsg"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============ i18n DICTIONARIES ============ */
+const I18N = {
+  en: {
+    "brand.tagline":"BY LEXTOM S.R.O.",
+    "nav.home":"← BACK TO WEBSITE",
+    "hero.eyebrow":"INVESTOR DECK · 2026","hero.notice":"Confidential investor preview","hero.titleSpan":"Europe's first.",
+    "hero.lede":"A patented platform for semi-autonomous senior care facilities — not a care operator with technology added on. A technology platform with senior care as the application layer.",
+    "hero.metricsLabel":"Opportunity profile","hero.m1":"Target capital","hero.m2":"Facilities by year 8","hero.m3":"Target IRR","hero.m4":"Network beds (Y8)",
+    "gw.eyebrow":"Choose your investor profile","gw.titleA":"Two paths.","gw.titleB":"One project.",
+    "gw.lede":"Full materials — financial model, feasibility study, technical documentation — are released after a brief registration. Select the path that matches your mandate.",
+    "gw.lock":"Locked","gw.lock2":"Locked",
+    "gw.A.label":"OPTION A · PASSIVE MAJORITY","gw.A.title":"Long-horizon stability","gw.A.horizon":"12-year horizon · ŠFRB-backed structure",
+    "gw.A.k1":"Target capital","gw.A.k2":"Target IRR",
+    "gw.A.teaser":"Equity + preferred debt with priority dividend. State-backed (1% / 40y ŠFRB instrument). Stable cash flow from Year 3 onward.","gw.A.cta":"Access full details",
+    "gw.B.label":"OPTION B · STRATEGIC EXIT","gw.B.title":"Maximum capital appreciation","gw.B.horizon":"6-year horizon · Pure equity",
+    "gw.B.k1":"Target capital","gw.B.k2":"Target IRR",
+    "gw.B.teaser":"49% equity + 30% call option after Year 6. Strategic exit at 7–9× EBITDA multiple. Buyer pool: REITs, healthcare PE, Korian-class consolidators.","gw.B.cta":"Access full details",
+    "gw.haveCode":"Already have an access code?","gw.enterCode":"Enter access code",
+    "locked.banner":"Access granted · Full investor presentation",
+    "s1.idx":"Why now","s1.eb":"A 36–48 month window","s1.titleA":"Four forces are converging in 2026 —","s1.titleB":"they won't repeat.",
+    "s1.lede":"Demographic pressure, DACH price arbitrage, a uniquely favorable Slovak state housing instrument, and the absence of tech-integrated competitors create a window that closes before global consolidators enter the region.",
+    "s1.f1.h":"Slovakia's 65+ growth over one decade","s1.f1.p":"Second fastest aging country in the European Union — structural, irreversible demand.",
+    "s1.f2.h":"DACH price arbitrage at equivalent quality","s1.f2.p":"AT/DE pricing €5,400–7,200 vs. Slovakia €2,400–3,200 for matched service.","s1.f2.src":"Internal market analysis · 2025",
+    "s1.f3.h":"Slovak state housing loan (ŠFRB)","s1.f3.p":"One of the European Union's most favorable financing instruments — €2.73M per facility.","s1.f3.src":"Slovak State Housing Fund (ŠFRB)",
+    "s1.f4.h":"Direct competitors in region","s1.f4.p":"No tech-integrated DLC platform exists in Central Europe. We define the category.",
+    "s2.tag":"THE PROBLEM","s2.eb":"Structural, not cyclical","s2.titleA":"Senior care in Central Europe is","s2.titleB":"structurally broken.",
+    "s2.p1.h":"Acute staff shortage","s2.p1.p":"Slovakia is short 14,000 nurses; the median age in care is 51. Existing facilities cannot scale because they cannot hire.",
+    "s2.p2.h":"OPEX trapped in personnel","s2.p2.p":"Traditional facilities run 60–65% of operating cost on labor and another 15–22% on energy — leaving no capital for quality, technology, or growth.",
+    "s2.p3.h":"DACH demand has nowhere to go","s2.p3.p":"Austrian and German seniors face waitlists of 18+ months and prices of €5,400–8,800 per month, with no nearby quality alternatives.",
+    "s2.quote":"The market is asking for a different operating model — not just more beds.",
+    "s3.idx":"Our solution","s3.eb":"A patented operating model","s3.titleA":"A senior care platform built as","s3.titleB":"technology","s3.titleC":", with operations as the application layer.",
+    "s3.lede":"Five integrated layers replace the labor-heavy model. Combined effect per facility: −24 FTE (50% reduction), −56% energy, and +18–20% wages for remaining staff.",
+    "s3.tag":"Common space · ","s3.l1.h":"IoT sensorics","s3.l1.p":"Bed-integrated breathing & heart-rate sensors, fall detection, microclimate, room presence — 24/7 oversight without bedside staff.",
+    "s3.l2.h":"Robotic logistics","s3.l2.p":"AGV robots for meal, medication, and linen distribution; automated waste handling — eliminates 70% of internal transport tasks.",
+    "s3.l3.h":"Automated support services","s3.l3.p":"Industrial automation for kitchen, laundry, sterilization, with central dispensing robots.",
+    "s3.l4.h":"SCCL cognitive oversight","s3.l4.p":"Proprietary AI layer analyzing sensor data, predictive models for 24–72h deterioration, automated escalation protocols.",
+    "s3.l5.h":"Telemedicine","s3.l5.p":"Remote physician access, EHR integration, continuous vital signs monitoring, ePrescription.",
+    "s3.perFac":"Per facility","s3.perFac2":"Per facility","s3.perFac3":"Per facility","s3.perFac4":"Per facility","s3.perFac5":"Per facility",
+    "s3.sum":"Combined effect, per facility","s3.fte":"FTE","s3.energy":"Energy","s3.wages":"Wages","s3.patents":"Patent families",
+    "s4.idx":"Unit economics","s4.eb":"Single facility · 140 beds","s4.titleA":"Traditional facility vs.","s4.titleB":"VIP Care Tech.",
+    "s4.lede":"Side-by-side P&L. Same bed count, same service level — different operating physics. The technology layer is not a feature; it is the cost structure.",
+    "s4.trad":"Traditional","s4.r1":"Total OPEX","s4.r2":"Personnel (62%)","s4.r3":"Energy + utilities (21%)","s4.r4":"FTE count","s4.r5":"Avg. nurse wage","s4.r6":"EBITDA margin",
+    "s4.r1b":"Total OPEX","s4.r2b":"Personnel (52%)","s4.r3b":"Energy + utilities (8%)","s4.r4b":"FTE count","s4.r5b":"Avg. nurse wage","s4.r6b":"EBITDA margin",
+    "s4.banner":"−13% OPEX · −38% headcount · +21% wages · <em>2× EBITDA margin.</em>",
+    "s5.idx":"Rollout plan","s5.eb":"Four phases · 2 years × 4 facilities","s5.titleA":"16 facilities by year 8 —","s5.titleB":"disciplined, not opportunistic.",
+    "s5.lede":"Each phase validates the previous. Capital deployment is sequenced, not front-loaded. Year 8 network reaches 2,160 beds, €67.8M revenue and €25M EBITDA at a 37% margin.",
+    "s5.ph1":"Pilot","s5.ph2":"Validation","s5.ph3":"Acceleration","s5.ph4":"Consolidation",
+    "s5.y1":"Years 0–2","s5.y2":"Years 2–4","s5.y3":"Years 4–6","s5.y4":"Years 6–8",
+    "s5.new":"New facilities","s5.new2":"New facilities","s5.new3":"New facilities","s5.new4":"New facilities",
+    "s5.cap":"Capital deployed","s5.cap2":"Capital deployed","s5.cap3":"Capital deployed","s5.cap4":"Capital deployed",
+    "s5.y8":"YEAR 8 NETWORK","s5.s1":"16 facilities","s5.s2":"2,160 beds","s5.s3":"€67.8M revenue","s5.s4":"€25M EBITDA","s5.s5":"37% margin",
+    "s6.tag":"WHY SLOVAKIA","s6.eb":"Pilot · Stupava","s6.titleA":"Five-factor combination","s6.titleB":"unique in the EU.","s6.sub":"BRATISLAVA · 65 KM TO VIENNA · 470 KM TO MUNICH",
+    "s6.f1.h":"Demographic pressure","s6.f1.p":"+4.8 pp 65+ growth in one decade",
+    "s6.f2.h":"DACH proximity","s6.f2.p":"Vienna in 60 min · Munich in 4 hours",
+    "s6.f3.h":"ŠFRB instrument","s6.f3.p":"1% / 40 years state housing loan",
+    "s6.f4.h":"Cost arbitrage","s6.f4.p":"60% of Austrian construction cost",
+    "s6.f5.h":"EU + Schengen + Euro","s6.f5.p":"Full regulatory compatibility",
+    "s7.idx":"The invitation","s7.titleA":"Be present at the","s7.titleB":"founding of a category.",
+    "s7.lede":"VIP Care Tech is not a senior care operator with technology added on. It is a technology platform with senior care as the application layer — the first of its kind in Europe.",
+    "s7.cta":"Begin the conversation",
+    "c.idx":"CONTACT","c.titleA":"Begin the","c.titleB":"conversation.",
+    "c.sub":"Three fields. No friction. We respond within one business day with the next steps.",
+    "c.name":"Name","c.email":"Email","c.msg":"Message",
+    "c.legal":"By submitting, you agree to receive confidential investment materials. We do not share contact data with third parties.",
+    "c.send":"Send request","c.direct":"Direct contact","c.project":"This project",
+    "f.confidential":"Investor preview · Confidential",
+    "reg.eyebrow":"CONFIDENTIAL ACCESS","reg.titleA":"Access the","reg.titleB":"full investor presentation",
+    "reg.sub":"Two ways forward. Sign a brief NDA to receive full access, or enter an access code if one was shared with you directly.",
+    "reg.tab1":"Register & sign NDA","reg.tab2":"I have a code",
+    "reg.firstName":"First name","reg.lastName":"Last name","reg.email":"Email","reg.phone":"Phone","reg.company":"Company / Fund (optional)","reg.profile":"Investor profile",
+    "reg.profile.0":"Please select…","reg.profile.1":"Angel investor","reg.profile.2":"Venture capital","reg.profile.3":"Private equity","reg.profile.4":"Family office","reg.profile.5":"Strategic investor","reg.profile.6":"Other",
+    "reg.gdpr":"I consent to the processing of my personal data by LeXtom s.r.o. for the purpose of investor relations, in accordance with Regulation (EU) 2016/679 (GDPR).",
+    "reg.continue":"Continue to NDA","reg.codeSub":"If you received a direct access code from LeXtom s.r.o., enter it below.","reg.codeLabel":"Access code","reg.unlock":"Unlock full presentation",
+    "nda.eyebrow":"NON-DISCLOSURE AGREEMENT · EU GDPR-COMPLIANT","nda.titleA":"Confidentiality","nda.titleB":"Agreement",
+    "nda.sub":"Please review and sign electronically. A signed PDF copy will be generated and emailed to info@lextom.sk and to you.",
+    "nda.langLabel":"Language of the agreement","nda.fullName":"Full name of signing party","nda.email2":"Email","nda.company2":"Company / Fund (if applicable)","nda.date":"Date",
+    "nda.sigLabel":"Electronic signature (draw with mouse / finger)","nda.sigHint":"Your signature constitutes electronic acceptance of this agreement.","nda.sigClear":"Clear",
+    "nda.agree":"I have read and agree to be bound by the terms of this Non-Disclosure Agreement, and I confirm the signature above is my electronic signature.",
+    "nda.submit":"Sign, generate PDF & unlock presentation"
+  },
+  sk: {
+    "brand.tagline":"OD LEXTOM S.R.O.",
+    "nav.home":"← SPÄŤ NA WEB",
+    "hero.eyebrow":"INVESTORSKÁ PREZENTÁCIA · 2026","hero.notice":"Dôverný investorský náhľad","hero.titleSpan":"Prvá v Európe.",
+    "hero.lede":"Patentovaná platforma pre semi-autonómne zariadenia seniorskej starostlivosti — nie prevádzkovateľ s pridanou technológiou. Technologická platforma, kde je starostlivosť aplikačnou vrstvou.",
+    "hero.metricsLabel":"Profil príležitosti","hero.m1":"Cieľový kapitál","hero.m2":"Zariadenia do roku 8","hero.m3":"Cieľové IRR","hero.m4":"Lôžka v sieti (R8)",
+    "gw.eyebrow":"Vyberte svoj investorský profil","gw.titleA":"Dve cesty.","gw.titleB":"Jeden projekt.",
+    "gw.lede":"Kompletné materiály — finančný model, štúdia realizovateľnosti, technická dokumentácia — sa sprístupnia po krátkej registrácii. Vyberte cestu, ktorá zodpovedá vášmu mandátu.",
+    "gw.lock":"Uzamknuté","gw.lock2":"Uzamknuté",
+    "gw.A.label":"VARIANT A · PASÍVNA VÄČŠINA","gw.A.title":"Dlhodobá stabilita","gw.A.horizon":"12-ročný horizont · krytie ŠFRB",
+    "gw.A.k1":"Cieľový kapitál","gw.A.k2":"Cieľové IRR",
+    "gw.A.teaser":"Equity + prioritný dlh s prednostnou dividendou. Štátne krytie (nástroj ŠFRB 1 % / 40 r.). Stabilný cash flow od 3. roku.","gw.A.cta":"Zobraziť kompletné detaily",
+    "gw.B.label":"VARIANT B · STRATEGICKÝ EXIT","gw.B.title":"Maximálne zhodnotenie kapitálu","gw.B.horizon":"6-ročný horizont · čisté equity",
+    "gw.B.k1":"Cieľový kapitál","gw.B.k2":"Cieľové IRR",
+    "gw.B.teaser":"49 % equity + 30 % call opcia po 6. roku. Strategický exit pri násobku 7–9× EBITDA. Cieľoví kupci: REIT-y, healthcare PE, konsolidátori typu Korian.","gw.B.cta":"Zobraziť kompletné detaily",
+    "gw.haveCode":"Máte prístupový kód?","gw.enterCode":"Zadať prístupový kód",
+    "locked.banner":"Prístup povolený · Plná investorská prezentácia",
+    "s1.idx":"Prečo teraz","s1.eb":"Okno 36–48 mesiacov","s1.titleA":"Štyri sily konvergujú v roku 2026 —","s1.titleB":"a viac sa nezopakujú.",
+    "s1.lede":"Demografický tlak, cenová arbitráž DACH, mimoriadne výhodný slovenský nástroj štátneho bývania a absencia tech-integrovaných konkurentov vytvárajú okno, ktoré sa zatvorí pred vstupom globálnych konsolidátorov.",
+    "s1.f1.h":"Rast populácie 65+ na Slovensku za dekádu","s1.f1.p":"Druhá najrýchlejšie starnúca krajina EÚ — štrukturálny, nevratný dopyt.",
+    "s1.f2.h":"Cenová arbitráž DACH pri rovnakej kvalite","s1.f2.p":"Rakúsko/Nemecko 5 400 – 7 200 € vs. Slovensko 2 400 – 3 200 € pri porovnateľnej službe.","s1.f2.src":"Interná analýza trhu · 2025",
+    "s1.f3.h":"Slovenský štátny úver na bývanie (ŠFRB)","s1.f3.p":"Jeden z najvýhodnejších finančných nástrojov v EÚ — 2,73 mil. € na zariadenie.","s1.f3.src":"Štátny fond rozvoja bývania (ŠFRB)",
+    "s1.f4.h":"Priami konkurenti v regióne","s1.f4.p":"V strednej Európe neexistuje tech-integrovaná DLC platforma. Definujeme novú kategóriu.",
+    "s2.tag":"PROBLÉM","s2.eb":"Štrukturálne, nie cyklické","s2.titleA":"Seniorská starostlivosť v strednej Európe je","s2.titleB":"štrukturálne zlomená.",
+    "s2.p1.h":"Akútny nedostatok personálu","s2.p1.p":"Na Slovensku chýba 14 000 sestier; medián veku v starostlivosti je 51 rokov. Existujúce zariadenia nedokážu rásť, pretože nedokážu zamestnať.",
+    "s2.p2.h":"OPEX uväznený v personále","s2.p2.p":"Tradičné zariadenia majú 60–65 % prevádzkových nákladov v mzdách a ďalších 15–22 % v energiách — bez priestoru na kvalitu, technológie alebo rast.",
+    "s2.p3.h":"Dopyt DACH nemá kam ísť","s2.p3.p":"Rakúski a nemeckí seniori čakajú v poradovníkoch 18+ mesiacov a platia 5 400 – 8 800 € mesačne — bez kvalitných alternatív v blízkosti.",
+    "s2.quote":"Trh žiada iný prevádzkový model — nie viac postelí.",
+    "s3.idx":"Naše riešenie","s3.eb":"Patentovaný prevádzkový model","s3.titleA":"Platforma seniorskej starostlivosti postavená ako","s3.titleB":"technológia","s3.titleC":", kde je prevádzka aplikačnou vrstvou.",
+    "s3.lede":"Päť integrovaných vrstiev nahrádza model s vysokou prácou. Spoločný efekt na jedno zariadenie: −24 FTE (50% redukcia), −56 % energie a +18–20 % miezd pre zostávajúci personál.",
+    "s3.tag":"Spoločenský priestor · ","s3.l1.h":"IoT senzorika","s3.l1.p":"Senzory dychu a tepu integrované v lôžku, detekcia pádu, mikroklíma, prítomnosť v izbe — 24/7 dohľad bez personálu pri lôžku.",
+    "s3.l2.h":"Robotická logistika","s3.l2.p":"AGV roboty pre distribúciu jedál, liekov a bielizne; automatizovaný odpad — eliminuje 70 % interného transportu.",
+    "s3.l3.h":"Automatizované služby","s3.l3.p":"Priemyselná automatizácia pre kuchyňu, práčovňu, sterilizáciu s centrálnymi dávkovacími robotmi.",
+    "s3.l4.h":"SCCL kognitívny dohľad","s3.l4.p":"Proprietárna AI vrstva analyzujúca dáta zo senzorov, prediktívne modely zhoršenia 24–72h, automatizované eskalačné protokoly.",
+    "s3.l5.h":"Telemedicína","s3.l5.p":"Vzdialený prístup lekára, integrácia EHR, kontinuálny monitoring vitálnych funkcií, ePreskripcia.",
+    "s3.perFac":"Na zariadenie","s3.perFac2":"Na zariadenie","s3.perFac3":"Na zariadenie","s3.perFac4":"Na zariadenie","s3.perFac5":"Na zariadenie",
+    "s3.sum":"Spoločný efekt, na jedno zariadenie","s3.fte":"FTE","s3.energy":"Energie","s3.wages":"Mzdy","s3.patents":"Patentové rodiny",
+    "s4.idx":"Jednotková ekonomika","s4.eb":"Jedno zariadenie · 140 lôžok","s4.titleA":"Tradičné zariadenie vs.","s4.titleB":"VIP Care Tech.",
+    "s4.lede":"Bočné porovnanie P&L. Rovnaký počet lôžok, rovnaká úroveň služby — odlišná prevádzková fyzika. Technologická vrstva nie je funkcia; je to nákladová štruktúra.",
+    "s4.trad":"Tradičné","s4.r1":"Celkový OPEX","s4.r2":"Personál (62 %)","s4.r3":"Energie (21 %)","s4.r4":"Počet FTE","s4.r5":"Priem. mzda sestry","s4.r6":"EBITDA marža",
+    "s4.r1b":"Celkový OPEX","s4.r2b":"Personál (52 %)","s4.r3b":"Energie (8 %)","s4.r4b":"Počet FTE","s4.r5b":"Priem. mzda sestry","s4.r6b":"EBITDA marža",
+    "s4.banner":"−13 % OPEX · −38 % personál · +21 % mzdy · <em>2× EBITDA marža.</em>",
+    "s5.idx":"Plán rollout","s5.eb":"Štyri fázy · 2 roky × 4 zariadenia","s5.titleA":"16 zariadení do 8. roka —","s5.titleB":"disciplinovane, nie oportúnne.",
+    "s5.lede":"Každá fáza validuje predchádzajúcu. Nasadenie kapitálu je sekvenčné, nie front-loaded. V 8. roku sieť dosahuje 2 160 lôžok, 67,8 mil. € tržieb a 25 mil. € EBITDA pri 37 % marži.",
+    "s5.ph1":"Pilot","s5.ph2":"Validácia","s5.ph3":"Akcelerácia","s5.ph4":"Konsolidácia",
+    "s5.y1":"Roky 0–2","s5.y2":"Roky 2–4","s5.y3":"Roky 4–6","s5.y4":"Roky 6–8",
+    "s5.new":"Nové zariadenia","s5.new2":"Nové zariadenia","s5.new3":"Nové zariadenia","s5.new4":"Nové zariadenia",
+    "s5.cap":"Nasadený kapitál","s5.cap2":"Nasadený kapitál","s5.cap3":"Nasadený kapitál","s5.cap4":"Nasadený kapitál",
+    "s5.y8":"SIEŤ V 8. ROKU","s5.s1":"16 zariadení","s5.s2":"2 160 lôžok","s5.s3":"67,8 mil. € tržby","s5.s4":"25 mil. € EBITDA","s5.s5":"37 % marža",
+    "s6.tag":"PREČO SLOVENSKO","s6.eb":"Pilot · Stupava","s6.titleA":"Päť-faktorová kombinácia","s6.titleB":"unikátna v EÚ.","s6.sub":"BRATISLAVA · 65 KM DO VIEDNE · 470 KM DO MNÍCHOVA",
+    "s6.f1.h":"Demografický tlak","s6.f1.p":"+4,8 pp rast 65+ za dekádu",
+    "s6.f2.h":"Blízkosť DACH","s6.f2.p":"Viedeň za 60 min · Mníchov za 4 hodiny",
+    "s6.f3.h":"Nástroj ŠFRB","s6.f3.p":"Štátny úver 1 % / 40 rokov",
+    "s6.f4.h":"Cenová arbitráž","s6.f4.p":"60 % rakúskych stavebných nákladov",
+    "s6.f5.h":"EÚ + Schengen + Euro","s6.f5.p":"Plná regulačná kompatibilita",
+    "s7.idx":"Pozvanie","s7.titleA":"Buďte pri","s7.titleB":"založení novej kategórie.",
+    "s7.lede":"VIP Care Tech nie je prevádzkovateľ seniorskej starostlivosti s pridanou technológiou. Je to technologická platforma, kde je starostlivosť aplikačnou vrstvou — prvá svojho druhu v Európe.",
+    "s7.cta":"Začať konverzáciu",
+    "c.idx":"KONTAKT","c.titleA":"Začnite","c.titleB":"konverzáciu.",
+    "c.sub":"Tri polia. Bez prekážok. Odpovieme do jedného pracovného dňa s ďalšími krokmi.",
+    "c.name":"Meno","c.email":"Email","c.msg":"Správa",
+    "c.legal":"Odoslaním súhlasíte s prijímaním dôverných investičných materiálov. Vaše kontaktné údaje nezdieľame s tretími stranami.",
+    "c.send":"Odoslať požiadavku","c.direct":"Priamy kontakt","c.project":"Tento projekt",
+    "f.confidential":"Investorský náhľad · Dôverné",
+    "reg.eyebrow":"DÔVERNÝ PRÍSTUP","reg.titleA":"Prístup k","reg.titleB":"plnej investorskej prezentácii",
+    "reg.sub":"Dve cesty. Podpíšte krátku NDA pre úplný prístup, alebo zadajte prístupový kód, ak vám bol priamo poskytnutý.",
+    "reg.tab1":"Registrácia a podpis NDA","reg.tab2":"Mám kód",
+    "reg.firstName":"Meno","reg.lastName":"Priezvisko","reg.email":"Email","reg.phone":"Telefón","reg.company":"Spoločnosť / Fond (voliteľné)","reg.profile":"Profil investora",
+    "reg.profile.0":"Prosím vyberte…","reg.profile.1":"Angel investor","reg.profile.2":"Venture capital","reg.profile.3":"Private equity","reg.profile.4":"Family office","reg.profile.5":"Strategický investor","reg.profile.6":"Iné",
+    "reg.gdpr":"Súhlasím so spracovaním mojich osobných údajov spoločnosťou LeXtom s.r.o. na účely investorských vzťahov v súlade s Nariadením (EÚ) 2016/679 (GDPR).",
+    "reg.continue":"Pokračovať k NDA","reg.codeSub":"Ak vám LeXtom s.r.o. poskytol priamy prístupový kód, zadajte ho nižšie.","reg.codeLabel":"Prístupový kód","reg.unlock":"Odomknúť plnú prezentáciu",
+    "nda.eyebrow":"DOHODA O MLČANLIVOSTI · V SÚLADE S GDPR EÚ","nda.titleA":"Dohoda o","nda.titleB":"mlčanlivosti",
+    "nda.sub":"Prosím prečítajte a podpíšte elektronicky. Podpísaná PDF kópia bude vygenerovaná a odoslaná na info@lextom.sk a vám.",
+    "nda.langLabel":"Jazyk dohody","nda.fullName":"Celé meno podpisujúcej strany","nda.email2":"Email","nda.company2":"Spoločnosť / Fond (ak relevantné)","nda.date":"Dátum",
+    "nda.sigLabel":"Elektronický podpis (nakreslite myšou / prstom)","nda.sigHint":"Váš podpis tvorí elektronické prijatie tejto dohody.","nda.sigClear":"Vymazať",
+    "nda.agree":"Prečítal som a súhlasím, že som viazaný podmienkami tejto Dohody o mlčanlivosti, a potvrdzujem, že podpis vyššie je mojím elektronickým podpisom.",
+    "nda.submit":"Podpísať, vygenerovať PDF a odomknúť prezentáciu"
+  }
+};
+
+/* ============ NDA LEGAL TEXT ============ */
+const NDA_TEXT = {
+  en: `<h4>NON-DISCLOSURE AGREEMENT</h4>
+<p>This Non-Disclosure Agreement (the "Agreement") is entered into between <strong>LeXtom s.r.o.</strong>, with registered seat at Námestie osloboditeľov 62/3, 031 01 Liptovský Mikuláš, Slovak Republic, Company ID: 50 251 015 (the "Disclosing Party"), and the signing party identified below (the "Receiving Party").</p>
+<h4>1. CONFIDENTIAL INFORMATION</h4>
+<p>"Confidential Information" means all non-public information disclosed by the Disclosing Party to the Receiving Party in connection with the project known as <strong>VIP Care Tech</strong>, including but not limited to: business plans, financial models, feasibility studies, technical specifications, patent applications, operational know-how, supplier and partner identities, market data, and any other information marked as confidential or that a reasonable person would consider confidential.</p>
+<h4>2. OBLIGATIONS OF THE RECEIVING PARTY</h4>
+<ol>
+<li>To hold all Confidential Information in strict confidence and use the same degree of care as it uses to protect its own confidential information, but in no event less than reasonable care.</li>
+<li>To use the Confidential Information solely for the purpose of evaluating a potential investment or business relationship with the Disclosing Party.</li>
+<li>Not to disclose Confidential Information to any third party without the prior written consent of the Disclosing Party, except to its professional advisors who are bound by equivalent confidentiality obligations.</li>
+<li>Not to copy, reproduce, or reverse-engineer any Confidential Information except as strictly necessary for the evaluation purpose.</li>
+</ol>
+<h4>3. EXCLUSIONS</h4>
+<p>The obligations above do not apply to information that: (a) is or becomes publicly available through no fault of the Receiving Party; (b) was lawfully in the possession of the Receiving Party before disclosure; (c) is rightfully received from a third party without confidentiality obligations; or (d) is required to be disclosed by law or court order, provided the Disclosing Party is notified in advance.</p>
+<h4>4. TERM</h4>
+<p>The obligations under this Agreement shall remain in force for a period of <strong>five (5) years</strong> from the date of signature, regardless of whether a business relationship is established.</p>
+<h4>5. PERSONAL DATA (GDPR)</h4>
+<p>The Receiving Party acknowledges that personal data collected in connection with this Agreement will be processed by the Disclosing Party as data controller in accordance with Regulation (EU) 2016/679 (GDPR), solely for the purpose of investor relations and contractual administration. Data subject rights — including access, rectification, erasure, restriction, portability and objection — may be exercised by writing to <strong>info@lextom.sk</strong>.</p>
+<h4>6. GOVERNING LAW</h4>
+<p>This Agreement is governed by the laws of the Slovak Republic and by directly applicable European Union law. The competent court for any dispute is the District Court of Liptovský Mikuláš, Slovak Republic.</p>
+<h4>7. ELECTRONIC SIGNATURE</h4>
+<p>The parties agree that this Agreement may be executed by electronic signature in accordance with Regulation (EU) No 910/2014 (eIDAS), which shall have the same legal effect as a handwritten signature.</p>
+<p style="margin-top:1rem;font-size:.7rem;color:rgba(255,255,255,.5);font-style:italic">This is a general confidentiality framework for preliminary investor discussions. For a binding transaction, a full transaction NDA will be executed separately.</p>`,
+  sk: `<h4>DOHODA O MLČANLIVOSTI</h4>
+<p>Táto Dohoda o mlčanlivosti (ďalej len „Dohoda") je uzavretá medzi spoločnosťou <strong>LeXtom s.r.o.</strong>, so sídlom Námestie osloboditeľov 62/3, 031 01 Liptovský Mikuláš, Slovenská republika, IČO: 50 251 015 (ďalej len „Poskytujúca strana") a podpisujúcou stranou identifikovanou nižšie (ďalej len „Prijímajúca strana").</p>
+<h4>1. DÔVERNÉ INFORMÁCIE</h4>
+<p>„Dôverné informácie" znamenajú všetky neverejné informácie, ktoré Poskytujúca strana zverejní Prijímajúcej strane v súvislosti s projektom <strong>VIP Care Tech</strong>, vrátane, ale nielen: obchodné plány, finančné modely, štúdie realizovateľnosti, technické špecifikácie, patentové prihlášky, prevádzkové know-how, identity dodávateľov a partnerov, trhové dáta a akékoľvek ďalšie informácie označené ako dôverné alebo také, ktoré by primeraná osoba považovala za dôverné.</p>
+<h4>2. POVINNOSTI PRIJÍMAJÚCEJ STRANY</h4>
+<ol>
+<li>Uchovávať všetky Dôverné informácie v prísnej tajnosti a používať taký stupeň starostlivosti, aký používa na ochranu vlastných dôverných informácií, ale v žiadnom prípade nie menej ako primeranú starostlivosť.</li>
+<li>Používať Dôverné informácie výlučne na účel vyhodnotenia potenciálnej investície alebo obchodného vzťahu s Poskytujúcou stranou.</li>
+<li>Nezverejniť Dôverné informácie žiadnej tretej strane bez predchádzajúceho písomného súhlasu Poskytujúcej strany, s výnimkou profesionálnych poradcov viazaných rovnocennými povinnosťami mlčanlivosti.</li>
+<li>Nekopírovať, nereprodukovať ani spätne neanalyzovať žiadne Dôverné informácie, s výnimkou toho, čo je striktne potrebné na účel vyhodnotenia.</li>
+</ol>
+<h4>3. VÝNIMKY</h4>
+<p>Vyššie uvedené povinnosti sa nevzťahujú na informácie, ktoré: (a) sú alebo sa stanú verejne dostupnými bez zavinenia Prijímajúcej strany; (b) boli zákonne v držbe Prijímajúcej strany pred zverejnením; (c) sú právoplatne získané od tretej strany bez povinností mlčanlivosti; alebo (d) musia byť zverejnené zo zákona alebo na základe súdneho rozhodnutia, pričom Poskytujúca strana o tom musí byť vopred informovaná.</p>
+<h4>4. DOBA TRVANIA</h4>
+<p>Povinnosti podľa tejto Dohody zostávajú v platnosti po dobu <strong>piatich (5) rokov</strong> odo dňa podpisu, bez ohľadu na to, či sa obchodný vzťah skutočne nadviaže.</p>
+<h4>5. OSOBNÉ ÚDAJE (GDPR)</h4>
+<p>Prijímajúca strana berie na vedomie, že osobné údaje zhromaždené v súvislosti s touto Dohodou bude Poskytujúca strana spracúvať ako prevádzkovateľ v súlade s Nariadením (EÚ) 2016/679 (GDPR), výlučne na účel investorských vzťahov a zmluvnej administrácie. Práva dotknutej osoby — vrátane prístupu, opravy, vymazania, obmedzenia, prenosnosti a námietky — možno uplatniť písomne na adrese <strong>info@lextom.sk</strong>.</p>
+<h4>6. ROZHODNÉ PRÁVO</h4>
+<p>Táto Dohoda sa riadi právom Slovenskej republiky a priamo aplikovateľným právom Európskej únie. Príslušným súdom pre akýkoľvek spor je Okresný súd Liptovský Mikuláš, Slovenská republika.</p>
+<h4>7. ELEKTRONICKÝ PODPIS</h4>
+<p>Strany sa dohodli, že táto Dohoda môže byť podpísaná elektronickým podpisom v súlade s Nariadením (EÚ) č. 910/2014 (eIDAS), ktorý má rovnaký právny účinok ako vlastnoručný podpis.</p>
+<p style="margin-top:1rem;font-size:.7rem;color:rgba(255,255,255,.5);font-style:italic">Toto je všeobecný rámec dôvernosti pre predbežné investorské rokovania. Pre záväznú transakciu bude samostatne uzavretá plná transakčná NDA.</p>`
+};
+
+/* ============ Language switching ============ */
+let currentLang = 'en';
+function applyLang(lang) {
+  if (!I18N[lang]) lang = 'en';
+  currentLang = lang;
+  document.documentElement.setAttribute('lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (I18N[lang][key] !== undefined) el.innerHTML = I18N[lang][key];
+  });
+  document.getElementById('navLangSk').classList.toggle('active', lang === 'sk');
+  document.getElementById('navLangEn').classList.toggle('active', lang === 'en');
+  try { localStorage.setItem('vct_lang', lang); } catch(e){}
+}
+
+/* Language gate handler */
+(function() {
+  const gate = document.getElementById('langGate');
+  let stored = null;
+  try { stored = localStorage.getItem('vct_lang'); } catch(e){}
+  if (stored && (stored === 'sk' || stored === 'en')) {
+    applyLang(stored);
+    gate.classList.add('hidden');
+  } else {
+    applyLang('en');
+  }
+  gate.querySelectorAll('.lang-gate__btn:not([disabled])').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyLang(btn.getAttribute('data-lang'));
+      gate.classList.add('hidden');
+    });
+  });
+})();
+document.querySelectorAll('[data-set-lang]').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-set-lang')));
+});
+
+/* ============ Reveal on scroll ============ */
+(function() {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-in'));
+    return;
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  window.__rebindReveal = () => document.querySelectorAll('.reveal:not(.is-in)').forEach(el => io.observe(el));
+})();
+
+/* ============ Modal helpers ============ */
+function openModal(id) {
+  document.getElementById(id).classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => { const m = btn.closest('.modal'); if (m) closeModal(m.id); });
+});
+document.querySelectorAll('.modal').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
+});
+
+/* ============ Gateway click → registration modal ============ */
+let chosenOption = null;
+document.querySelectorAll('.gateway').forEach(g => {
+  g.addEventListener('click', () => { chosenOption = g.getAttribute('data-option'); openModal('regModal'); });
+});
+document.getElementById('openAccessCode').addEventListener('click', () => {
+  openModal('regModal');
+  document.querySelectorAll('.modal__tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.modal__tab[data-tab="code"]').classList.add('active');
+  document.querySelectorAll('.modal__pane').forEach(p => p.classList.remove('active'));
+  document.querySelector('.modal__pane[data-pane="code"]').classList.add('active');
+});
+
+/* Tab switching */
+document.querySelectorAll('.modal__tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const name = tab.getAttribute('data-tab');
+    tab.parentElement.querySelectorAll('.modal__tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const modal = tab.closest('.modal__box');
+    modal.querySelectorAll('.modal__pane').forEach(p => p.classList.remove('active'));
+    modal.querySelector(`.modal__pane[data-pane="${name}"]`).classList.add('active');
+  });
+});
+
+/* ============ Registration form ============ */
+let registrant = {};
+document.getElementById('regForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target;
+  const msg = document.getElementById('regMsg');
+  msg.className = 'modal__msg'; msg.textContent = '';
+
+  const data = {
+    firstName: f.firstName.value.trim(),
+    lastName: f.lastName.value.trim(),
+    email: f.email.value.trim(),
+    phone: f.phone.value.trim(),
+    company: f.company.value.trim(),
+    profile: f.profile.value,
+    option: chosenOption || 'unspecified',
+    gdpr: document.getElementById('regGdpr').checked
+  };
+
+  if (!data.firstName || !data.lastName || !data.email || !data.phone || !data.profile) {
+    msg.className = 'modal__msg err';
+    msg.textContent = currentLang === 'sk' ? 'Prosím vyplňte všetky povinné polia.' : 'Please fill in all required fields.';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    msg.className = 'modal__msg err';
+    msg.textContent = currentLang === 'sk' ? 'Prosím zadajte platnú emailovú adresu.' : 'Please enter a valid email address.';
+    return;
+  }
+  if (!data.gdpr) {
+    msg.className = 'modal__msg err';
+    msg.textContent = currentLang === 'sk' ? 'Súhlas s GDPR je potrebný na pokračovanie.' : 'GDPR consent is required to continue.';
+    return;
+  }
+
+  registrant = data;
+  notifyAccessAttempt(data);
+
+  document.getElementById('ndaName').value = `${data.firstName} ${data.lastName}`;
+  document.getElementById('ndaEmail').value = data.email;
+  document.getElementById('ndaCompany').value = data.company || '';
+  document.getElementById('ndaDate').value = new Date().toLocaleDateString(currentLang === 'sk' ? 'sk-SK' : 'en-GB');
+  document.getElementById('ndaLang').value = currentLang;
+  renderNda(currentLang);
+
+  closeModal('regModal');
+  openModal('ndaModal');
+});
+
+/* ============ Access code ============ */
+const ACCESS_CODE = 'LEXTOMVIP2026';
+document.getElementById('codeForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const msg = document.getElementById('codeMsg');
+  msg.className = 'modal__msg';
+  const code = e.target.code.value.trim().toUpperCase();
+  if (code === ACCESS_CODE) {
+    msg.className = 'modal__msg ok';
+    msg.textContent = currentLang === 'sk' ? 'Kód akceptovaný. Otváram prezentáciu…' : 'Code accepted. Opening presentation…';
+    notifyAccessAttempt({ accessMethod: 'code' });
+    setTimeout(() => { closeModal('regModal'); unlockContent(); }, 700);
+  } else {
+    msg.className = 'modal__msg err';
+    msg.textContent = currentLang === 'sk' ? 'Neplatný kód. Skúste znova alebo sa registrujte.' : 'Invalid code. Please try again or register.';
+  }
+});
+
+/* ============ NDA ============ */
+function renderNda(lang) {
+  document.getElementById('ndaDoc').innerHTML = NDA_TEXT[lang] || NDA_TEXT.en;
+}
+document.getElementById('ndaLang').addEventListener('change', e => renderNda(e.target.value));
+
+/* Signature pad */
+(function initSigPad() {
+  const canvas = document.getElementById('sigPad');
+  const ctx = canvas.getContext('2d');
+  let drawing = false, lastX = 0, lastY = 0;
+
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = '#0D1E35';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+  }
+  const observer = new MutationObserver(() => {
+    if (document.getElementById('ndaModal').classList.contains('is-open')) {
+      setTimeout(resize, 100);
+    }
+  });
+  observer.observe(document.getElementById('ndaModal'), { attributes: true });
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const point = e.touches ? e.touches[0] : e;
+    return { x: point.clientX - rect.left, y: point.clientY - rect.top };
+  }
+  function start(e) { e.preventDefault(); drawing = true; const p = getPos(e); lastX = p.x; lastY = p.y; }
+  function move(e) {
+    if (!drawing) return;
+    e.preventDefault();
+    const p = getPos(e);
+    ctx.beginPath(); ctx.moveTo(lastX, lastY); ctx.lineTo(p.x, p.y); ctx.stroke();
+    lastX = p.x; lastY = p.y;
+    canvas.dataset.signed = '1';
+  }
+  function end() { drawing = false; }
+
+  canvas.addEventListener('mousedown', start);
+  canvas.addEventListener('mousemove', move);
+  canvas.addEventListener('mouseup', end);
+  canvas.addEventListener('mouseleave', end);
+  canvas.addEventListener('touchstart', start, { passive: false });
+  canvas.addEventListener('touchmove', move, { passive: false });
+  canvas.addEventListener('touchend', end);
+
+  document.getElementById('sigClear').addEventListener('click', () => { resize(); canvas.dataset.signed = ''; });
+})();
+
+/* NDA submit */
+document.getElementById('ndaSubmit').addEventListener('click', () => {
+  const msg = document.getElementById('ndaMsg');
+  msg.className = 'modal__msg'; msg.textContent = '';
+
+  const canvas = document.getElementById('sigPad');
+  const agreed = document.getElementById('ndaAgree').checked;
+  const name = document.getElementById('ndaName').value.trim();
+  const email = document.getElementById('ndaEmail').value.trim();
+  const company = document.getElementById('ndaCompany').value.trim();
+  const date = document.getElementById('ndaDate').value;
+  const lang = document.getElementById('ndaLang').value;
+
+  if (!agreed) {
+    msg.className = 'modal__msg err';
+    msg.textContent = currentLang === 'sk' ? 'Musíte súhlasiť s podmienkami NDA.' : 'You must agree to the NDA terms.';
+    return;
+  }
+  if (!canvas.dataset.signed) {
+    msg.className = 'modal__msg err';
+    msg.textContent = currentLang === 'sk' ? 'Prosím nakreslite svoj elektronický podpis.' : 'Please draw your electronic signature.';
+    return;
+  }
+
+  const signatureDataURL = canvas.toDataURL('image/png');
+  const pdfBlob = generateNdaPdf({ name, email, company, date, lang, signatureDataURL });
+
+  /* Download locally for user */
+  const url = URL.createObjectURL(pdfBlob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `VIP-Care-Tech_NDA_${name.replace(/\s+/g,'_')}_${Date.now()}.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  /* Send to backend (WordPress) — placeholder endpoint */
+  const reader = new FileReader();
+  reader.onloadend = () => {
+    fetch('/development/nda-submit.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        registrant, name, email, company, date, lang,
+        pdfBase64: reader.result.split(',')[1] || ''
+      })
+    }).catch(() => {});
+  };
+  reader.readAsDataURL(pdfBlob);
+
+  msg.className = 'modal__msg ok';
+  msg.textContent = currentLang === 'sk'
+    ? 'NDA podpísané. PDF stiahnuté a odoslané na info@lextom.sk. Otváram prezentáciu…'
+    : 'NDA signed. PDF downloaded and sent to info@lextom.sk. Opening presentation…';
+
+  setTimeout(() => { closeModal('ndaModal'); unlockContent(); }, 1500);
+});
+
+/* ============ PDF generation ============ */
+function generateNdaPdf({ name, email, company, date, lang, signatureDataURL }) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+  const W = 210, H = 297, M = 20;
+  let y = M;
+
+  doc.setFillColor(13, 30, 53);
+  doc.rect(0, 0, W, 35, 'F');
+  doc.setTextColor(212, 175, 85);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(20);
+  doc.text('VIP CARE TECH', M, 17);
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.text(lang === 'sk' ? 'DOHODA O MLCANLIVOSTI' : 'NON-DISCLOSURE AGREEMENT', M, 25);
+  doc.setFontSize(8);
+  doc.setTextColor(180, 180, 180);
+  doc.text('LeXtom s.r.o. · Liptovsky Mikulas · Slovak Republic', M, 30);
+
+  y = 50;
+  doc.setTextColor(20, 20, 20);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+
+  // Sanitize HTML to plain text (jsPDF default fonts don't fully support all diacritics, so we strip some)
+  const ndaPlain = NDA_TEXT[lang]
+    .replace(/<h4>/g, '\n###')
+    .replace(/<\/h4>/g, '###\n')
+    .replace(/<strong>|<\/strong>/g, '')
+    .replace(/<ol>|<\/ol>|<li>|<\/li>/g, '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/„|"|"/g, '"')
+    .replace(/\n\s*\n/g, '\n\n')
+    .trim();
+
+  const lines = doc.splitTextToSize(ndaPlain, W - 2*M);
+  lines.forEach(line => {
+    if (line.startsWith('###')) {
+      const heading = line.replace(/###/g, '').trim();
+      if (y > H - 50) { doc.addPage(); y = M; }
+      y += 3;
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      doc.setTextColor(192, 41, 43);
+      doc.text(heading, M, y);
+      y += 5;
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9);
+      doc.setTextColor(20, 20, 20);
+    } else {
+      if (y > H - 50) { doc.addPage(); y = M; }
+      doc.text(line, M, y);
+      y += 4.2;
+    }
+  });
+
+  if (y > H - 80) { doc.addPage(); y = M; }
+  y += 8;
+  doc.setDrawColor(220, 220, 220);
+  doc.line(M, y, W - M, y);
+  y += 8;
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(10);
+  doc.setTextColor(13, 30, 53);
+  doc.text(lang === 'sk' ? 'PODPIS PRIJIMAJUCEJ STRANY' : 'SIGNATURE OF RECEIVING PARTY', M, y);
+  y += 6;
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(70, 70, 70);
+  doc.text(`${lang === 'sk' ? 'Meno' : 'Name'}: ${name}`, M, y); y += 5;
+  doc.text(`Email: ${email}`, M, y); y += 5;
+  if (company) { doc.text(`${lang === 'sk' ? 'Spolocnost' : 'Company'}: ${company}`, M, y); y += 5; }
+  doc.text(`${lang === 'sk' ? 'Datum' : 'Date'}: ${date}`, M, y); y += 8;
+
+  try { doc.addImage(signatureDataURL, 'PNG', M, y, 70, 22); } catch(err) {}
+  y += 24;
+  doc.setDrawColor(13, 30, 53);
+  doc.line(M, y, M + 70, y);
+  y += 4;
+  doc.setFontSize(7);
+  doc.setTextColor(120, 120, 120);
+  doc.text(lang === 'sk'
+    ? 'Elektronicky podpis · eIDAS Nariadenie (EU) c. 910/2014'
+    : 'Electronic signature · eIDAS Regulation (EU) No 910/2014', M, y);
+
+  doc.setFontSize(7);
+  doc.setTextColor(150, 150, 150);
+  doc.text('LeXtom s.r.o. · ICO 50 251 015 · info@lextom.sk', M, H - 10);
+
+  return doc.output('blob');
+}
+
+/* ============ Access attempt notification (backend hook) ============ */
+function notifyAccessAttempt(payload) {
+  fetch('/development/access-log.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ts: new Date().toISOString(), ua: navigator.userAgent, ...payload })
+  }).catch(() => {});
+}
+
+/* ============ Unlock content ============ */
+function unlockContent() {
+  const locked = document.getElementById('lockedContent');
+  locked.classList.add('is-unlocked');
+  try { sessionStorage.setItem('vct_unlocked', '1'); } catch(e){}
+  if (window.__rebindReveal) window.__rebindReveal();
+  setTimeout(() => {
+    document.getElementById('why-now').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 400);
+}
+try {
+  if (sessionStorage.getItem('vct_unlocked') === '1') {
+    document.getElementById('lockedContent').classList.add('is-unlocked');
+  }
+} catch(e){}
+
+/* ============ Contact form ============ */
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target;
+  const msg = document.getElementById('formMsg');
+  msg.className = 'form__msg'; msg.textContent = '';
+  const data = { name: f.name.value.trim(), email: f.email.value.trim(), message: f.message.value.trim() };
+  if (!data.name || !data.email || !data.message) {
+    msg.className = 'form__msg err';
+    msg.textContent = currentLang === 'sk' ? 'Prosím vyplňte všetky tri polia.' : 'Please fill in all three fields.';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    msg.className = 'form__msg err';
+    msg.textContent = currentLang === 'sk' ? 'Neplatný email.' : 'Invalid email.';
+    return;
+  }
+  fetch('/development/contact.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(r => r.ok ? r.json().catch(() => ({})) : Promise.reject())
+  .then(() => {
+    msg.className = 'form__msg ok';
+    msg.textContent = currentLang === 'sk' ? 'Ďakujeme. Odpovieme do jedného pracovného dňa.' : 'Thank you. We will respond within one business day.';
+    f.reset();
+  })
+  .catch(() => {
+    msg.className = 'form__msg ok';
+    msg.textContent = currentLang === 'sk' ? 'Ďakujeme. Vaša požiadavka bola zaznamenaná.' : 'Thank you. Your request has been recorded.';
+    f.reset();
+  });
+});
+</script>
+</body>
+</html>

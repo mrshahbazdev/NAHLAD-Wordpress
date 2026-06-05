@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeXtom s.r.o. — Inovácie, technológie a riešenia s ľudským rozmerom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#14201c;--forest-deep:#0e1714;--cream:#f4f1ea;--cream-soft:#eae5d9;
+    --brass:#d4b483;--brass-deep:#b8975f;--sage:#b8c4bc;--ink:#44443f;--muted:#5f5e5a;
+    --red:#e2231a;--line:rgba(212,180,131,0.18);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Manrope',sans-serif;background:var(--forest-deep);color:var(--cream);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--brass);color:var(--forest)}
+
+  /* fixovaná podkladová vodotlač s mapou */
+  .watermark{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url('images/mapa-watermark.webp');background-repeat:no-repeat;background-position:center center;background-size:min(60vw,560px);opacity:0.06;filter:grayscale(1)}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;transition:all .5s ease;border-bottom:0.5px solid transparent}
+  nav.scrolled{background:rgba(14,23,20,0.9);backdrop-filter:blur(16px);border-bottom:0.5px solid var(--line);padding:12px 5vw}
+  .nav-logo img{height:40px;background:var(--cream);padding:6px 10px;border-radius:3px;display:block}
+  .nav-links{display:flex;gap:26px;align-items:center;font-size:13px;letter-spacing:.3px;color:var(--sage)}
+  .nav-links a{color:inherit;text-decoration:none;transition:color .3s;position:relative;white-space:nowrap}
+  .nav-links a:hover{color:var(--cream)}
+  .nav-links a.current{color:var(--cream)}
+  .nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--brass);transition:width .3s}
+  .nav-links a:hover::after,.nav-links a.current::after{width:100%}
+  .lang{display:flex;gap:8px;align-items:center;margin-left:10px;padding-left:18px;border-left:0.5px solid var(--line)}
+  .lang button{background:none;border:none;color:var(--muted);font-family:'Manrope';font-size:12px;font-weight:600;letter-spacing:.5px;cursor:pointer;padding:4px 6px;border-radius:3px;transition:all .25s}
+  .lang button.active{color:var(--forest);background:var(--brass)}
+  .lang button:not(.active):hover{color:var(--cream)}
+  .nav-toggle{display:none;background:none;border:none;color:var(--cream);font-size:26px;cursor:pointer}
+
+  /* HERO — jemnejší, nižší */
+  .hero{position:relative;min-height:62vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 5vw 70px;overflow:hidden;z-index:1}
+  .hero-bg{position:absolute;inset:0;z-index:-1}
+  .hero-bg img{width:100%;height:100%;object-fit:cover}
+  .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,23,20,0.82) 0%,rgba(14,23,20,0.68) 45%,rgba(14,23,20,0.96) 100%)}
+  .hero-inner{position:relative;z-index:2;max-width:780px}
+  .eyebrow{font-size:12px;letter-spacing:3.5px;text-transform:uppercase;color:var(--brass);margin-bottom:24px;opacity:0;transform:translateY(20px);animation:rise .9s .2s cubic-bezier(.16,1,.3,1) forwards}
+  .eyebrow .dot{opacity:.5;margin:0 8px}
+  h1.hero-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(30px,4.6vw,52px);line-height:1.12;letter-spacing:-.5px;color:#fff;margin-bottom:22px;text-shadow:0 2px 30px rgba(0,0,0,.4)}
+  h1.hero-title .word{display:inline-block;opacity:0;transform:translateY(40px);animation:rise 1s cubic-bezier(.16,1,.3,1) forwards}
+  h1.hero-title .accent{font-style:italic;color:var(--brass)}
+  .hero-sub{font-size:clamp(14px,1.5vw,17px);line-height:1.7;color:#e8ece9;max-width:540px;margin:0 auto 30px;opacity:0;transform:translateY(20px);animation:rise .9s 1s cubic-bezier(.16,1,.3,1) forwards;text-shadow:0 1px 12px rgba(0,0,0,.3)}
+  .hero-scroll{opacity:0;animation:fade 1s 1.5s forwards}
+  .hero-scroll a{color:var(--brass);font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;display:inline-flex;flex-direction:column;align-items:center;gap:8px}
+  .hero-scroll .ln{width:1px;height:30px;background:linear-gradient(var(--brass),transparent);animation:scrollLine 2s infinite}
+
+  /* SECTIONS */
+  section{position:relative;z-index:1;padding:clamp(64px,8vw,118px) 5vw}
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}
+  .sec-label{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--brass);margin-bottom:22px;display:flex;align-items:center;gap:14px}
+  .sec-label::before{content:'';width:32px;height:1px;background:var(--brass);opacity:.6}
+
+  /* FIRMA */
+  .company{background:var(--forest)}
+  .company .wrap{max-width:860px;margin:0 auto}
+  .company h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(26px,3.4vw,42px);line-height:1.2;color:var(--cream);letter-spacing:-.3px;margin-bottom:30px}
+  .company p{font-size:clamp(15px,1.4vw,17px);line-height:1.85;color:var(--sage);margin-bottom:22px}
+  .company p strong{color:var(--cream);font-weight:500}
+
+  /* MANAŽÉR */
+  .manager{background:var(--forest-deep)}
+  .manager .wrap{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:center}
+  .manager .photo{position:relative}
+  .manager .photo img{width:100%;border-radius:6px;display:block;filter:saturate(.92)}
+  .manager .photo::after{content:'';position:absolute;inset:0;border:1px solid var(--line);border-radius:6px;transform:translate(14px,14px);z-index:-1}
+  .manager .photo .badge{position:absolute;left:18px;bottom:18px;background:rgba(14,23,20,0.86);backdrop-filter:blur(8px);padding:14px 20px;border-radius:4px;border-left:2px solid var(--brass)}
+  .manager .photo .badge .nm{font-family:'Fraunces',serif;font-size:18px;color:var(--cream)}
+  .manager .photo .badge .rl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--brass);margin-top:4px}
+  .manager h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(24px,3vw,38px);line-height:1.2;color:var(--cream);margin-bottom:26px;letter-spacing:-.3px}
+  .manager p{font-size:clamp(14px,1.35vw,16px);line-height:1.85;color:var(--sage);margin-bottom:18px}
+  .manager p strong{color:var(--cream);font-weight:500}
+
+  /* VÍZIA */
+  .vision{background:var(--forest);position:relative;overflow:hidden}
+  .vision::before{content:'';position:absolute;top:-15%;right:-8%;width:55%;height:130%;background:radial-gradient(circle,rgba(212,180,131,0.06),transparent 60%)}
+  .vision .wrap{max-width:860px;margin:0 auto;position:relative;z-index:2}
+  .vision .bigq{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(24px,3.6vw,42px);line-height:1.3;color:var(--cream);letter-spacing:-.4px;margin-bottom:36px}
+  .vision .bigq em{font-style:italic;color:var(--brass)}
+  .vision p{font-size:clamp(15px,1.4vw,17px);line-height:1.85;color:var(--sage);margin-bottom:22px}
+  .vision p strong{color:var(--cream);font-weight:500}
+
+  /* INFOGRAFIKA */
+  .infographic{background:var(--forest-deep);text-align:center}
+  .infographic .wrap{max-width:1100px;margin:0 auto}
+  .infographic .frame{border:0.5px solid var(--line);border-radius:8px;overflow:hidden;background:#0a110e}
+  .infographic img{width:100%;display:block}
+  .infographic .cap{font-size:13px;color:var(--muted);margin-top:20px;letter-spacing:.4px}
+
+  /* FOOTER */
+  footer{position:relative;z-index:1;background:#0a110e;padding:54px 5vw 30px;border-top:0.5px solid var(--line)}
+  footer .fwrap{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;align-items:flex-start}
+  footer .fcol .flogo{height:42px;background:var(--cream);padding:7px 11px;border-radius:3px;margin-bottom:16px;display:block}
+  footer .fcol p{font-size:13px;line-height:1.7;color:var(--muted);max-width:280px}
+  footer .fcol h4{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
+  footer .fcol a{display:block;font-size:13px;color:var(--sage);text-decoration:none;margin-bottom:10px;transition:color .3s}
+  footer .fcol a:hover{color:var(--cream)}
+  .fbottom{max-width:1120px;margin:40px auto 0;padding-top:24px;border-top:0.5px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);letter-spacing:.4px}
+
+  @keyframes rise{to{opacity:1;transform:none}}
+  @keyframes fade{to{opacity:1}}
+  @keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  @media(max-width:860px){
+    .nav-links{position:fixed;top:0;right:-100%;height:100vh;width:75%;max-width:320px;flex-direction:column;background:var(--forest);padding:90px 36px;gap:22px;align-items:flex-start;transition:right .4s;border-left:0.5px solid var(--line)}
+    .nav-links.open{right:0}
+    .nav-toggle{display:block;z-index:101}
+    .lang{border-left:none;padding-left:0;margin-left:0;margin-top:14px}
+    .manager .wrap{grid-template-columns:1fr;gap:36px}
+    .manager .photo{max-width:380px;margin:0 auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="watermark"></div>
+
+<nav id="nav">
+  <div class="nav-logo"><img src="images/lextom-logo.png" alt="LeXtom s.r.o."></div>
+  <div class="nav-links" id="navlinks">
+    <a href="kto-sme.html" class="current" data-sk="Kto sme" data-en="Who We Are">Kto sme</a>
+    <a href="odborny-personal.html" data-sk="Odborný personál" data-en="Professional Staff">Odborný personál</a>
+    <a href="vip-care-technology.html" data-sk="VIP Care Technology" data-en="VIP Care Technology">VIP Care Technology</a>
+    <a href="distribucia-produktov.html" data-sk="Distribúcia produktov" data-en="Product Distribution">Distribúcia produktov</a>
+    <a href="development.html" data-sk="Development" data-en="Development">Development</a>
+    <div class="lang"><button class="active" data-lang="sk">SK</button><button data-lang="en">EN</button></div>
+  </div>
+  <button class="nav-toggle" id="navtoggle" aria-label="Menu">☰</button>
+</nav>
+
+<!-- HERO (jemnejší) -->
+<header class="hero">
+  <div class="hero-bg"><img src="images/uvod-hero.jpg" alt="LeXtom — prepojený systém služieb pre Slovensko a Európu"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">LeXtom s.r.o.<span class="dot">·</span>Slovensko<span class="dot">·</span>od 2016</div>
+    <h1 class="hero-title">
+      <span class="word" style="animation-delay:.4s">Inovácie a technológie</span>
+      <span class="word accent" style="animation-delay:.55s">s ľudským rozmerom.</span>
+    </h1>
+    <p class="hero-sub">Prepájame sociálne služby, zdravotníctvo, šport, vzdelávanie a moderné technológie do funkčných celkov s reálnym dopadom na ľudí, inštitúcie a komunity.</p>
+    <div class="hero-scroll"><a href="#firma"><span>Kto sme</span><span class="ln"></span></a></div>
+  </div>
+</header>
+
+<!-- 1. FIRMA -->
+<section class="company" id="firma">
+  <div class="wrap">
+    <div class="sec-label reveal">Kto sme</div>
+    <h2 class="reveal">LeXtom s.r.o. — spoločnosť prepájajúca sociálny dopad, inovácie a praktické riešenia</h2>
+    <p class="reveal d1"><strong>LeXtom s.r.o. je slovenská spoločnosť</strong> zameraná na rozvoj projektov, služieb a riešení v oblastiach, kde sa stretáva spoločenská potreba, odborné know-how, technologický pokrok a praktická realizácia. Spoločnosť pôsobí ako flexibilná projektová, inovačná a realizačná platforma, ktorá prepája sociálne služby, zdravotníctvo, šport, vzdelávanie, developerské projektové riešenia, moderné technológie, automatizáciu, robotizáciu, AI riešenia a smart ekologické prístupy do funkčných celkov.</p>
+    <p class="reveal d1">Jej cieľom nie je vytvárať izolované produkty bez širšieho významu, ale rozvíjať riešenia, ktoré majú konkrétny dopad na ľudí, organizácie, komunity, verejné inštitúcie a moderné prostredie služieb. LeXtom s.r.o. vníma súčasný svet ako priestor, v ktorom už nestačí pracovať iba tradičným spôsobom. Sociálne služby, zdravotníctvo, verejný sektor, športové prostredie, mestá, obce, zariadenia starostlivosti aj moderné developerské projekty potrebujú nové typy prepojení — medzi ľuďmi, dátami, technológiami, infraštruktúrou a službami.</p>
+    <p class="reveal d2">Práve v tomto priestore spoločnosť hľadá svoju hodnotu: identifikuje potreby, prepája odborné kapacity, vytvára partnerstvá a pripravuje riešenia, ktoré dokážu fungovať v reálnych podmienkach. Dôležitou súčasťou smerovania spoločnosti je sociálna zodpovednosť, podpora dostupnosti služieb, zavádzanie moderných technologických nástrojov a orientácia na inovácie, ktoré majú nielen ekonomický, ale aj verejnoprospešný význam. <strong>LeXtom s.r.o. preto možno charakterizovať ako spoločnosť, ktorá stojí na hranici medzi projektovým manažmentom, sociálnymi inováciami, zdravotníckymi riešeniami, technologickým vývojom a novým spôsobom myslenia o službách budúcnosti.</strong></p>
+  </div>
+</section>
+
+<!-- 2. MANAŽÉR -->
+<section class="manager" id="manazer">
+  <div class="wrap">
+    <div class="photo reveal">
+      <img src="images/manazer.jpg" alt="PaedDr. Tomáš Hvostík, PhD.">
+      <div class="badge">
+        <div class="nm">PaedDr. Tomáš Hvostík, PhD.</div>
+        <div class="rl">Konateľ · LeXtom s.r.o.</div>
+      </div>
+    </div>
+    <div class="text">
+      <div class="sec-label reveal">Manažment</div>
+      <h2 class="reveal">Manažér, tvorca riešení a iniciátor inovačných projektov</h2>
+      <p class="reveal d1"><strong>PaedDr. Tomáš Hvostík, PhD.</strong> je manažér, podnikateľ a odborník orientovaný na technologické, inovatívne a spoločensky prospešné riešenia, ktorý prepája skúsenosti zo sociálnej oblasti, športu, projektového riadenia, inovácií, AI riešení, automatizácie a developerských projektov s praktickou schopnosťou premieňať vízie na konkrétne výsledky.</p>
+      <p class="reveal d1">Ako konateľ spoločnosti udáva firme smer, ktorý nestojí iba na obchodnom uvažovaní, ale predovšetkým na schopnosti rozpoznať, kde vzniká reálna potreba a ako ju možno pretaviť do funkčného projektu. Jeho odborný profil vychádza z presvedčenia, že budúcnosť sociálnych služieb, zdravotníctva, športu, verejného priestoru a projektového developmentu bude postavená na prepájaní ľudského prístupu s modernými technológiami.</p>
+      <p class="reveal d2">Profiluje sa ako manažér, ktorý nevníma inovácie iba ako technickú novinku, ale ako nástroj na zlepšenie fungovania ľudí, inštitúcií a systémov. V sociálnej oblasti a zdravotníctve je tento prístup mimoriadne dôležitý, pretože moderné riešenia musia rešpektovať ľudskú dôstojnosť, citlivosť prostredia, potrebu dôvery a odbornosť. Výsledkom má byť <strong>nový typ manažérskeho a projektového prístupu</strong> — taký, ktorý spája strategické myslenie, technologickú odvahu, sociálne cítenie a schopnosť praktickej realizácie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. VÍZIA -->
+<section class="vision" id="vizia">
+  <div class="wrap">
+    <div class="sec-label reveal">Vízia spoločnosti</div>
+    <blockquote class="bigq reveal">Technológie, ktoré neslúžia iba na znižovanie nákladov, ale predovšetkým na <em>zvyšovanie kvality života, bezpečnosti a dôstojnosti človeka.</em></blockquote>
+    <p class="reveal d1">Víziou spoločnosti je podieľať sa na tvorbe modernej, technologicky vyspelej a spoločensky zodpovednej infraštruktúry služieb, ktorá prepája sociálnu oblasť, zdravotníctvo, šport, smart riešenia, ekologické inovácie, automatizáciu, robotizáciu a umelú inteligenciu do jednotného systému s praktickým využitím na Slovensku aj v širšom európskom priestore.</p>
+    <p class="reveal d1">Európske krajiny čelia podobným výzvam: starnutie populácie, nedostatok odborného personálu, rastúce nároky na zdravotnícke a sociálne služby, potreba efektívnejšieho riadenia verejných zdrojov, tlak na ekologickú udržateľnosť a rastúci význam dátovo riadeného rozhodovania. LeXtom chce na tieto výzvy reagovať víziou prepojených riešení, ktoré umožnia vytvárať <strong>inteligentné systémy služieb</strong> — od sociálnej starostlivosti a zdravotníckej podpory, cez smart monitoring, automatizované procesy, AI asistenciu a robotické prvky až po developerské riešenia novej generácie.</p>
+    <p class="reveal d2">Vízia smeruje k prepojeniu európskych skúseností, odborných kapacít a inovatívnych trendov do systému, ktorý podporuje výmenu know-how, spoločné projekty a cezhraničné partnerstvá. <strong>LeXtom chce byť súčasťou tejto transformácie ako partner, ktorý rozumie lokálnym potrebám, ale zároveň sleduje európske smerovanie</strong> — k smart službám, AI podpore, robotizácii, udržateľným technológiám a novým modelom spolupráce medzi verejným, súkromným a odborným sektorom.</p>
+  </div>
+</section>
+
+<!-- INFOGRAFIKA -->
+<section class="infographic">
+  <div class="wrap">
+    <div class="frame reveal"><img src="images/vizia-infografika.jpg" alt="Moderná, technologicky vyspelá a spoločensky zodpovedná infraštruktúra služieb — jednotný systém pre Slovensko a Európu"></div>
+    <p class="cap reveal d1">Prepojený systém služieb — lokálne potreby a európske smerovanie.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="fwrap">
+    <div class="fcol">
+      <img class="flogo" src="images/lextom-logo.png" alt="LeXtom s.r.o.">
+      <p>Slovenská spoločnosť prepájajúca sociálny dopad, inovácie a praktické riešenia do funkčných celkov.</p>
+    </div>
+    <div class="fcol">
+      <h4>Menu</h4>
+      <a href="kto-sme.html" data-sk="Kto sme" data-en="Who We Are">Kto sme</a>
+      <a href="odborny-personal.html" data-sk="Odborný personál" data-en="Professional Staff">Odborný personál</a>
+      <a href="vip-care-technology.html" data-sk="VIP Care Technology" data-en="VIP Care Technology">VIP Care Technology</a>
+      <a href="distribucia-produktov.html" data-sk="Distribúcia produktov" data-en="Product Distribution">Distribúcia produktov</a>
+      <a href="development.html" data-sk="Development" data-en="Development">Development</a>
+    </div>
+    <div class="fcol">
+      <h4>Kontakt</h4>
+      <a href="mailto:info@lextom.sk">info@lextom.sk</a>
+      <a href="#" onclick="return false">www.lextom.sk</a>
+    </div>
+  </div>
+  <div class="fbottom">
+    <span>© 2026 LeXtom s.r.o. · IČO 50251015</span>
+    <span>Slovensko · od 2016</span>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const tg=document.getElementById('navtoggle'),nl=document.getElementById('navlinks');
+  tg.addEventListener('click',()=>nl.classList.toggle('open'));
+  
+
+  function setLang(lang){
+    document.documentElement.lang=lang;
+    document.querySelectorAll('[data-sk]').forEach(el=>{
+      const t=el.getAttribute('data-'+lang);
+      if(t!==null&&t!==undefined&&t!=='') el.textContent=t;
+    });
+    document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+    document.querySelectorAll('.langimg').forEach(img=>{
+      const u=(lang==='en')?'en':'sk'; img.classList.toggle('show',img.dataset.for===u);
+    });
+    try{localStorage.setItem('lextom_lang',lang)}catch(e){}
+  }
+  document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+  try{const sv=localStorage.getItem('lextom_lang'); if(sv&&sv!=='sk') setLang(sv);}catch(e){}
+
+</script>
+</body>
+</html>
